@@ -11,6 +11,7 @@ import SubProducts from "./pages/Products/SubProducts/SubProducts";
 import Products from "./pages/Products/ProductsCynko/Products"
 import StandsPage from "./pages/Products/ProductsCynko/Stands";
 import ScreensPage from "./pages/Products/ProductsCynko/Screens";
+import AccessoriesPage from "./pages/Products/ProductsCynko/Accessories";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/products/:categorySlug" element={<SubProducts />} />
         <Route path="/products/smartscreen-stands" element={<StandsPage />} />
         <Route path="/products/smart-screens" element={<ScreensPage />} />
+        <Route path="/products/accessories" element={<AccessoriesPage />} />
       </Routes>
       <Footer />
     </Router>

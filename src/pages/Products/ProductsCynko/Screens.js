@@ -5,6 +5,7 @@ import ProductHeroSection from "./ProductHero";
 
 import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
 import CTSC65WC from "../../../Assets/Products/Screens/CT-SC65WC.png";
+import CTSC75WC from "../../../Assets/Products/Screens/CT-SC75WC.png";
 
 // Theme Colors
 const green = "#24AC4C";
@@ -21,7 +22,7 @@ const screens = [
   },
   {
     name: "CT-SC75WC",
-    image: "https://via.placeholder.com/400x300.png?text=CT-SC75WC",
+    image: CTSC75WC,
     description:
       "The CT-SC75WC offers a 75-inch 4K Ultra HD display with an ultra-narrow bezel design, integrating a 48-megapixel camera and 8-array microphone for enhanced virtual meetings. With dual-pen, dual-color writing and wireless screen transfer, it’s ideal for dynamic team collaborations.",
   },

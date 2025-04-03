@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Grid } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
-import herohome from "../../Assets/herohome.png";
+import herohome from "../../Assets/herohome.jpg";
 
 const HeroSection = () => {
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const HeroSection = () => {
               alt="CYNKCO smart screens"
               style={{
                 width: "100%", // Make the image responsive
-                height: "auto", // Maintain aspect ratio
+                height: { xs: "420px", md: "440px" },
                 display: "block", // Remove any inline spacing
               }}
             />
