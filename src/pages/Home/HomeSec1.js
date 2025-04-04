@@ -6,9 +6,6 @@ import herohome from "../../Assets/herohome.jpg";
 const HeroSection = () => {
   const navigate = useNavigate();
 
-  const handleImageClick = () => {
-    navigate("/specs");
-  };
   return (
     <Box sx={{ textAlign: "center" }}>
       <Grid container spacing={2} justifyContent="center">
@@ -19,14 +16,14 @@ const HeroSection = () => {
               maxWidth: "100%", // Maximum width for larger screens
               margin: "0 auto", // Center the image
             }}
-            onClick={handleImageClick}
+            
           >
             <img
               src={herohome}
               alt="CYNKCO smart screens"
               style={{
                 width: "100%", // Make the image responsive
-                height: { xs: "420px", md: "440px" },
+                height: "auto",
                 display: "block", // Remove any inline spacing
               }}
             />
