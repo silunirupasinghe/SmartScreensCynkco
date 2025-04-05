@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 import "@fontsource/poppins"; // Headings
-import "@fontsource/roboto";  // Paragraphs
+import "@fontsource/roboto"; // Paragraphs
 
 import backgroundImage from "../../../Assets/Products/productHero.png";
 
@@ -11,7 +11,7 @@ const HeroSection = () => {
     <Box
       sx={{
         position: "relative",
-        width:{ md:"100%"},
+        width: { md: "auto" },
         height: { xs: "420px", md: "540px" },
         backgroundImage: `url(${backgroundImage})`,
         backgroundSize: "cover",
@@ -27,7 +27,7 @@ const HeroSection = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.55)",
+          backgroundColor: "rgba(184, 230, 202, 0.55)",
           zIndex: 1,
         },
       }}
@@ -48,6 +48,9 @@ const HeroSection = () => {
             fontWeight: 600,
             fontSize: { xs: "2rem", md: "3.2rem" },
             lineHeight: 1.3,
+            background: "linear-gradient(45deg, #006400, #0D47A1)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
             mb: 2,
           }}
         >
@@ -60,12 +63,12 @@ const HeroSection = () => {
             fontFamily: "Roboto",
             fontWeight: 400,
             fontSize: { xs: "1rem", md: "1.25rem" },
-            color: "#e0e0e0",
+            color: "#555",
             px: { xs: 2, md: 0 },
           }}
         >
-          Explore Interactive Displays, Smart Boards & Robust Display Stands
-          for Seamless Business & Education Experiences
+          Explore Interactive Displays, Smart Boards & Robust Display Stands for
+          Seamless Business & Education Experiences
         </Typography>
       </Box>
     </Box>
