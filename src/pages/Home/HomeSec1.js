@@ -2,8 +2,6 @@ import React from "react";
 import { Box, Typography, Button, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import herohome from "../../Assets/herohome.jpg";
-
-
 import GoogleIcon from "@mui/icons-material/Google"; // Placeholder for Google Certified icon
 import AndroidIcon from "@mui/icons-material/Android"; // Placeholder for Android 13.0 icon
 import WifiIcon from "@mui/icons-material/Wifi"; // Placeholder for Dual WiFi icon
