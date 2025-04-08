@@ -1,158 +1,177 @@
 import React from "react";
-import { Box, Grid, Typography, Button, Container } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  Button,
+  Container,
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+} from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { Fade } from "@mui/material";
 import ProductHeroSection from "./ProductHero";
+import { Link } from "react-router-dom";
+
+// Import Google Fonts via @fontsource
+import "@fontsource/poppins/700.css"; // Bold for headings
+import "@fontsource/roboto/400.css"; // Regular for body text
 
 import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
 import CTSC65WC from "../../../Assets/Products/Screens/CT-SC65WC.png";
 import CTSC75WC from "../../../Assets/Products/Screens/CT-SC75WC.png";
+import CTSC75A from "../../../Assets/Products/Screens/CT-SC75A.png";
+
+// Fallback image in case any image fails to load
+const fallbackImage =
+  "https://via.placeholder.com/400x300.png?text=Image+Not+Found";
 
 // Theme Colors
 const green = "#24AC4C";
-const greenDark = "#388E3C";
-const pink = "#666";
+const greenDark = "#006400";
 
-// Product Data
+// Styled Card component with fixed size, hover effect, and greenDark border
+const ProductCard = styled(Card)(({ theme }) => ({
+  width: 350, // Fixed width for all cards
+  height: 450, // Fixed height for all cards
+  margin: "auto",
+  borderRadius: 5,
+  border: `1px solid ${greenDark}`, // Set border with greenDark color
+  transition: "transform 0.3s ease-in-out", // Simplified transition (removed duplicate)
+  display: "flex",
+  flexDirection: "column", // Ensure content fits within fixed height
+  "&:hover": {
+    transform: "translateY(-8px)",
+  },
+}));
+
+// Product Data with shortened descriptions
 const screens = [
   {
     name: "CT-SC65WC",
     image: CTSC65WC,
     description:
-      "The CT-SC65WC is a 65-inch 4K Ultra HD SmartScreen with an ultra-narrow bezel, featuring a 48-megapixel camera and 8-array microphone for seamless video conferencing. Its zero-lamination process ensures low parallax writing with a ±1mm high-precision infrared touch, perfect for collaborative environments.",
+      "A 65-inch 4K Ultra HD SmartScreen with a 48MP camera and 8-array mic, ideal for video conferencing and collaborative work.",
+    url: "/products/smart-screens/ct-sc65wc",
   },
   {
     name: "CT-SC75WC",
     image: CTSC75WC,
     description:
-      "The CT-SC75WC offers a 75-inch 4K Ultra HD display with an ultra-narrow bezel design, integrating a 48-megapixel camera and 8-array microphone for enhanced virtual meetings. With dual-pen, dual-color writing and wireless screen transfer, it’s ideal for dynamic team collaborations.",
+      "A 75-inch 4K Ultra HD display with a 48MP camera and dual-pen writing, perfect for virtual meetings and team collaboration.",
+    url: "/products/smart-screens/ct-sc75wc",
   },
   {
     name: "CT-SC65A",
     image: CTSC65A,
     description:
-      "The CT-SC65A is a 65-inch 4K Ultra HD SmartScreen with a sleek, ultra-narrow bezel design, optimized for smooth writing with ±1mm high-precision infrared touch. It supports dual-pen, dual-color writing and wireless screen sharing, making it a great choice for interactive presentations.",
+      "A 65-inch 4K Ultra HD SmartScreen with high-precision touch and wireless screen sharing, great for interactive presentations.",
+    url: "/products/smart-screens/ct-sc65a",
   },
   {
     name: "CT-SC86WC",
     image: "https://via.placeholder.com/400x300.png?text=CT-SC86WC",
     description:
-      "The CT-SC86WC boasts an expansive 86-inch 4K Ultra HD display with an ultra-narrow bezel, equipped with a 48-megapixel camera and 8-array microphone for superior video conferencing. Its high-precision touch and dual-pen writing capabilities make it perfect for large-scale collaborative settings.",
+      "An 86-inch 4K Ultra HD display with a 48MP camera and high-precision touch, suited for large-scale video conferencing.",
+    url: "/products/smart-screens/ct-sc86wc",
   },
   {
     name: "CT-SC75A",
-    image: "https://via.placeholder.com/400x300.png?text=CT-SC75A",
+    image: CTSC75A,
     description:
-      "The CT-SC75A features a 75-inch 4K Ultra HD display with a minimalist ultra-narrow bezel, designed for smooth, low-parallax writing with ±1mm touch accuracy. Supporting dual-pen, dual-color writing and wireless screen transfer, it’s well-suited for interactive team brainstorming sessions.",
+      "A 75-inch 4K Ultra HD display with dual-pen writing and wireless screen transfer, ideal for team brainstorming.",
+    url: "/products/smart-screens/ct-sc75a",
   },
   {
     name: "CT-SC85A",
     image: "https://via.placeholder.com/400x300.png?text=CT-SC85A",
     description:
-      "The CT-SC85A delivers an impressive 86-inch 4K Ultra HD display with an ultra-narrow bezel, offering ±1mm high-precision infrared touch for smooth writing. With dual-pen, dual-color writing and wireless screen sharing, it’s an excellent fit for large, interactive meeting spaces.",
+      "An 86-inch 4K Ultra HD SmartScreen with precise touch and wireless sharing, perfect for interactive meeting spaces.",
+    url: "/products/smart-screens/ct-sc85a",
   },
 ];
 
 const ScreensPage = () => {
+  // Log screens to debug image sources
+  React.useEffect(() => {
+    console.log("Screens data:", screens);
+  }, []);
+
   return (
     <Box>
-      <ProductHeroSection />
+      <ProductHeroSection category="interactiveDisplays" />
       <Box sx={{ background: "#FAFFFC", py: { md: 6, xs: 4 } }}>
         <Container maxWidth="lg">
-          <Typography
-            variant="h2"
-            sx={{
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 600,
-              mb: { md: 6, xs: 3, sm: 1 },
-              textAlign: "center",
-              fontSize: { xs: "1.6rem", sm: "2.0rem", md: "2.3rem" },
-              lineHeight: { md: 1.2 },
-              background: "linear-gradient(45deg, #006400, #0D47A1 )",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Cynkco SmartScreen Displays
-          </Typography>
-
-          {screens.map((screen, index) => (
-            <Fade in key={index} timeout={1000}>
-              <Grid
-                container
-                spacing={6}
-                alignItems="center"
-                sx={{ mb: 10, px: { xs: 2, sm: 4 } }}
-              >
-                {/* Image Section */}
-                <Grid item size={{ md: 6, xs: 12 }}>
-                  <Box
-                    sx={{
-                      borderRadius: 2,
-                      overflow: "hidden",
-                      maxWidth: "500px",
-                      mx: "auto",
-                    }}
-                  >
-                    <Box
+          <Grid container spacing={4} justifyContent="center">
+            {screens.map((screen, index) => (
+              <Grid item xs={12} sm={6} md={4} key={screen.name}>
+                <Fade in timeout={1000 + index * 200}>
+                  <ProductCard>
+                    <CardMedia
                       component="img"
-                      src={screen.image}
+                      height="200" // Fixed image height within card
+                      image={screen.image || fallbackImage}
                       alt={screen.name}
-                      sx={{
-                        width: "100%",
-                        height: "auto",
-                        objectFit: "cover",
+                      sx={{ objectFit: "cover" }}
+                      onError={(e) => {
+                        e.target.src = fallbackImage;
                       }}
                     />
-                  </Box>
-                </Grid>
-
-                {/* Description Section */}
-                <Grid item size={{ md: 6, xs: 12 }}>
-                  <Typography
-                    variant="h4"
-                    sx={{
-                      fontWeight: "bold",
-                      color: pink,
-                      mb: 2,
-                      fontSize: { xs: "1.5rem", md: "2rem" },
-                    }}
-                  >
-                    {screen.name}
-                  </Typography>
-
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      mb: 3,
-                      fontSize: "1rem",
-                      color: "#333",
-                      lineHeight: 1.7,
-                    }}
-                  >
-                    {screen.description}
-                  </Typography>
-
-                  <Button
-                    variant="contained"
-                    sx={{
-                      backgroundColor: greenDark,
-                      color: "#fff",
-                      fontWeight: "bold",
-                      textTransform: "none",
-                      px: 4,
-                      py: 1.2,
-                      borderRadius: "8px",
-                      "&:hover": {
-                        backgroundColor: green,
-                      },
-                    }}
-                  >
-                    Inquire Now
-                  </Button>
-                </Grid>
+                    <CardContent sx={{ flexGrow: 1 }}>
+                      <Typography
+                        variant="h5"
+                        sx={{
+                          fontFamily: "Poppins, sans-serif", // Google Font: Poppins
+                          fontWeight: 700, // Bold
+                          color: greenDark,
+                          mb: 1.5,
+                          fontSize: { xs: "1.25rem", md: "1.5rem" },
+                        }}
+                      >
+                        {screen.name}
+                      </Typography>
+                      <Typography
+                        variant="body2"
+                        sx={{
+                          fontFamily: "Roboto, sans-serif", // Google Font: Roboto
+                          fontWeight: 400, // Regular
+                          color: "#333",
+                          lineHeight: 1.6,
+                          fontSize: { xs: "0.9rem", md: "1rem" },
+                        }}
+                      >
+                        {screen.description}
+                      </Typography>
+                    </CardContent>
+                    <CardActions sx={{ justifyContent: "center", pb: 2 }}>
+                      <Button
+                        variant="contained"
+                        component={Link}
+                        to={screen.url}
+                        sx={{
+                          backgroundColor: greenDark,
+                          color: "#fff",
+                          fontFamily: "Poppins, sans-serif", // Apply Poppins to button
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          px: 3,
+                          py: 1,
+                          borderRadius: "8px",
+                          "&:hover": {
+                            backgroundColor: green,
+                          },
+                        }}
+                      >
+                        More
+                      </Button>
+                    </CardActions>
+                  </ProductCard>
+                </Fade>
               </Grid>
-            </Fade>
-          ))}
+            ))}
+          </Grid>
         </Container>
       </Box>
     </Box>

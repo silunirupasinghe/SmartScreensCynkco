@@ -53,16 +53,15 @@ const Contact = () => {
         py: 6,
         px: { xs: 2, md: 10 },
         fontFamily: "Roboto, sans-serif",
-        minHeight: "100vh",
+        minHeight: "60vh",
       }}
     >
       <Grid container spacing={0} sx={{ maxWidth: 1200, mx: "auto" }}>
         {/* Image Section (Left) */}
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid item xs={12} sm={12} lg={6} md={4}>
           <Box
             sx={{
               height: { xs: "300px", md: "100%" },
-              backgroundColor: "#F1FFF7", // Match the page background
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
@@ -70,22 +69,12 @@ const Contact = () => {
               overflow: "hidden",
             }}
           >
-            {/* Placeholder for overlapping images */}
-            <Box
-              sx={{
-                position: "relative",
-                width: "100%",
-                height: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
+           
               {/* Placeholder image */}
               <Box
                 sx={{
-                  width: { xs: "200px", md: "400px" },
-                  height: { xs: "200px", md: "100%" },
+                  width: { xs: "300px", sm:"400px", lg: "400px" },
+                  height: { xs: "100%", md: "100%" },
                   backgroundImage: `url(${contactImg})`, // Replace with actual image URL
                   backgroundSize: "cover",
                   backgroundPosition: "center",
@@ -94,18 +83,17 @@ const Contact = () => {
                 }}
               />
             </Box>
-          </Box>
+   
         </Grid>
 
         {/* Form Section (Right) */}
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid item xs={12} sm={12} lg={6} md={8}>
           <Paper
             elevation={3}
             sx={{
               maxWidth: 900,
               mx: "auto",
-              p: { xs: 4, md: 5 },
-              // borderRadius: 2,
+              p: { xs: 2, md: 5 },
               bgcolor: "#FFFFFF",
             }}
           >
@@ -116,6 +104,7 @@ const Contact = () => {
                 fontWeight: 600,
                 textAlign: "center",
                 mb: 2,
+                fontSize: { xs: "1.8rem", md: "2.125rem" },
                 background: "linear-gradient(45deg, #006400, #0D47A1)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -131,6 +120,7 @@ const Contact = () => {
                 color: "#757575",
                 mb: 4,
                 maxWidth: 600,
+                
                 mx: "auto",
                 fontFamily: "Roboto, sans-serif",
               }}

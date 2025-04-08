@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Typography, Button, Container, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import heroImage from "../../Assets/hero.jpg"
+import heroImage from "../../Assets/hero.jpg";
 
 // Styled component for the hero section with gradient and background image
 const HeroSection = styled(Box)(({ theme }) => ({
@@ -14,19 +14,18 @@ const HeroSection = styled(Box)(({ theme }) => ({
   backgroundSize: "cover",
   backgroundPosition: "center",
   position: "relative",
-  overflow: "hidden",
 }));
 
 // Styled component for the content container
 const HeroContent = styled(Box)(({ theme }) => ({
-  width: "100%", // Changed from maxWidth to ensure full width
+  width: "auto", // Changed from maxWidth to ensure full width
   padding: theme.spacing(4),
   [theme.breakpoints.down("sm")]: {
     padding: theme.spacing(2),
   },
 }));
 
-const Hero = () => {
+const SolutionSec1 = () => {
   return (
     <HeroSection>
       <Container>
@@ -44,19 +43,19 @@ const Hero = () => {
               textAlign: "center",
             }}
           >
-            CONTACT US
+            CYNKCO SOLUTIONS
           </Typography>
           <Typography
             variant="subtitle1"
             sx={{
+              fontFamily: "Roboto",
+              fontWeight: 400,
               fontSize: { xs: "1rem", md: "1.25rem" },
-              color: "#555", // Changed to black
-              textShadow: "1px 1px 2px rgba(255, 255, 255, 0.3)", // Light shadow for contrast
-              maxWidth: "400px",
-              margin: "0 auto",
+              color: "#555",
+              px: { xs: 2, md: 0 },
             }}
           >
-            "We're here to help you connect and grow."
+            "Comprehensive Solutions with CYNKCO Smartboards"
           </Typography>
         </HeroContent>
       </Container>
@@ -64,4 +63,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default SolutionSec1;
