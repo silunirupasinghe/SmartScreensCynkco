@@ -4,6 +4,7 @@ import {
   Toolbar,
   Button,
   IconButton,
+  Typography,
   Box,
   Drawer,
   List,
@@ -26,6 +27,47 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 
 import cynckoLogo from "../Assets/cynkco.png"; // Adjust if needed
 
+// Import screens data from ScreensPage
+import CTSC65A from "../Assets/Products/Screens/CT-SC65A.png";
+import CTSC65WC from "../Assets/Products/Screens/CT-SC65WC.png";
+import CTSC75WC from "../Assets/Products/Screens/CT-SC75WC.png";
+import CTSC75A from "../Assets/Products/Screens/CT-SC75A.png";
+import CTSC86WC from "../Assets/Products/Screens/CT-SC86WC.png";
+import CTSC85A from "../Assets/Products/Screens/CT-SC85A.png";
+
+const screens = [
+  {
+    name: "CT-SC65WC",
+    image: CTSC65WC,
+    url: "/products/smart-screens/ct-sc65wc",
+  },
+  {
+    name: "CT-SC75WC",
+    image: CTSC75WC,
+    url: "/products/smart-screens/ct-sc75wc",
+  },
+  {
+    name: "CT-SC65A",
+    image: CTSC65A,
+    url: "/products/smart-screens/ct-sc65a",
+  },
+  {
+    name: "CT-SC86WC",
+    image: CTSC86WC,
+    url: "/products/smart-screens/ct-sc86wc",
+  },
+  {
+    name: "CT-SC75A",
+    image: CTSC75A,
+    url: "/products/smart-screens/ct-sc75a",
+  },
+  {
+    name: "CT-SC85A",
+    image: CTSC85A,
+    url: "/products/smart-screens/ct-sc85a",
+  },
+];
+
 function Navbar() {
   const location = useLocation();
   const theme = useTheme();
@@ -34,6 +76,7 @@ function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
+  const [smartScreensOpen, setSmartScreensOpen] = useState(false);
 
   const navItems = [
     { label: "Home", path: "/" },
@@ -46,8 +89,6 @@ function Navbar() {
       ],
     },
     { label: "Solutions", path: "/solutions" },
-    { label: "Support", path: "/support" },
-    { label: "Partners", path: "/partners" },
     { label: "Contact Us", path: "/contact" },
   ];
 
@@ -65,6 +106,10 @@ function Navbar() {
 
   const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
+  const handleSmartScreensClick = () => {
+    setSmartScreensOpen(true);
+  };
+
   const mobileDrawer = (
     <Box sx={{ width: 260, p: 2 }}>
       <List>
@@ -73,7 +118,9 @@ function Navbar() {
             <ListItem
               button
               onClick={
-                item.subcategories ? () => setProductsOpen(!productsOpen) : undefined
+                item.subcategories
+                  ? () => setProductsOpen(!productsOpen)
+                  : undefined
               }
               component={item.subcategories ? "div" : Link}
               to={item.subcategories ? undefined : item.path}
@@ -95,6 +142,11 @@ function Navbar() {
                       key={sub.label}
                       component={Link}
                       to={sub.path}
+                      onClick={
+                        sub.label === "Smart Screens"
+                          ? handleSmartScreensClick
+                          : undefined
+                      }
                       sx={{
                         pl: 4,
                         color: isActive(sub.path) ? "#24AC4C" : "inherit",
@@ -113,6 +165,39 @@ function Navbar() {
     </Box>
   );
 
+  const smartScreensDrawer = (
+    <Box sx={{ width: 300, p: 2 }}>
+      <Typography variant="h6" sx={{ p: 2, color: "#24AC4C" }}>
+        Smart Screens
+      </Typography>
+      <List>
+        {screens.map((screen) => (
+          <ListItem
+            key={screen.name}
+            button
+            component={Link}
+            to={screen.url}
+            onClick={() => setSmartScreensOpen(false)}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              color: isActive(screen.url) ? "#24AC4C" : "inherit",
+              fontWeight: isActive(screen.url) ? "bold" : "normal",
+            }}
+          >
+            <Box
+              component="img"
+              src={screen.image}
+              alt={screen.name}
+              sx={{ width: 50, height: 50, mr: 2, objectFit: "cover" }}
+            />
+            <ListItemText primary={screen.name} />
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
+
   return (
     <AppBar position="static" sx={{ bgcolor: "#fff", color: "#000" }}>
       <Toolbar>
@@ -121,9 +206,12 @@ function Navbar() {
           <img src={cynckoLogo} alt="Cynkco Logo" style={{ height: "40px" }} />
         </Box>
 
+        {/* Spacer to push navigation to the right */}
+        <Box sx={{ flexGrow: 1 }} />
+
         {/* Desktop Menu */}
         {!isMobile && (
-          <Box sx={{ flexGrow: 1, display: "flex", justifyContent: "center" }}>
+          <Box sx={{ display: "flex", alignItems: "center" }}>
             {navItems.map((item) => (
               <Box key={item.label}>
                 <Button
@@ -153,7 +241,11 @@ function Navbar() {
                         key={sub.label}
                         component={Link}
                         to={sub.path}
-                        onClick={() => setAnchorEl(null)}
+                        onClick={
+                          sub.label === "Smart Screens"
+                            ? handleSmartScreensClick
+                            : () => setAnchorEl(null)
+                        }
                         sx={{
                           color: isActive(sub.path) ? "#24AC4C" : "inherit",
                           fontWeight: isActive(sub.path) ? "bold" : "normal",
@@ -169,20 +261,12 @@ function Navbar() {
           </Box>
         )}
 
-        {/* Spacer */}
-        <Box sx={{ flexGrow: 1 }} />
-
-        {/* Right Side Icons */}
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-          <IconButton color="inherit">
-            <SearchIcon />
+        {/* Mobile Menu Icon */}
+        {isMobile && (
+          <IconButton color="inherit" onClick={handleDrawerToggle}>
+            <MenuIcon />
           </IconButton>
-          {isMobile && (
-            <IconButton color="inherit" onClick={handleDrawerToggle}>
-              <MenuIcon />
-            </IconButton>
-          )}
-        </Box>
+        )}
 
         {/* Mobile Drawer */}
         <Drawer
@@ -192,6 +276,15 @@ function Navbar() {
           sx={{ display: { xs: "block", md: "none" } }}
         >
           {mobileDrawer}
+        </Drawer>
+
+        {/* Smart Screens Left Drawer */}
+        <Drawer
+          anchor="left"
+          open={smartScreensOpen}
+          onClose={() => setSmartScreensOpen(false)}
+        >
+          {smartScreensDrawer}
         </Drawer>
       </Toolbar>
     </AppBar>

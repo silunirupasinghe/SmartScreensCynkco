@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Grid,
@@ -17,6 +17,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Button,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -45,42 +47,53 @@ const SpecsHeader = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
 }));
 
-const ContactSection = styled(Box)(({ theme }) => ({
-  background: `linear-gradient(to right, ${greenDark}, ${green})`,
-  color: "#fff",
-  padding: theme.spacing(4),
-  textAlign: "center",
-  borderRadius: "12px",
-  marginTop: theme.spacing(6),
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-}));
-
-const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#fff",
-  color: greenDark,
-  fontFamily: "Poppins, sans-serif",
-  fontWeight: 700,
-  padding: theme.spacing(1.5, 4),
-  borderRadius: "25px",
-  textTransform: "none",
-  "&:hover": {
-    backgroundColor: green,
-    color: "#fff",
-  },
-}));
 
 const CTSC75APage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when the component mounts
+  }, []);
+
   // Technical Specs Data from CT-SC75A PDF
   const specsData = [
-    { label: "Display", value: '75" IPS, 3840x2160, 350 cd/m², 1200:1 contrast, 178° viewing angle, 60Hz refresh' },
-    { label: "Touch", value: "40-point infrared, ±1mm accuracy, ≤7ms response, dual-pen dual-color support" },
+    {
+      label: "Display",
+      value:
+        '75" IPS, 3840x2160, 350 cd/m², 1200:1 contrast, 178° viewing angle, 60Hz refresh',
+    },
+    {
+      label: "Touch",
+      value:
+        "40-point infrared, ±1mm accuracy, ≤7ms response, dual-pen dual-color support",
+    },
     { label: "Audio", value: "2x15W speakers (2.0 sound track)" },
-    { label: "System", value: "Android 11.0, Quad-core A55 CPU, MaliG52MP2 GPU, 4GB RAM, 32GB ROM" },
-    { label: "Connectivity", value: "HDMI IN (2), USB 3.0 (1), USB 2.0 (3), USB-C (1), TOUCH 2.0 (1), MIC IN (1), OPTICAL OUT (1), LINE OUT (1), RS232 (1), RJ45 IN (1)" },
-    { label: "Power", value: "260W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5.5A" },
-    { label: "Dimensions", value: "1707 x 1014.5 x 88.4 mm (without wall plate), 50 kg" },
+    {
+      label: "System",
+      value:
+        "Android 11.0, Quad-core A55 CPU, MaliG52MP2 GPU, 4GB RAM, 32GB ROM",
+    },
+    {
+      label: "Connectivity",
+      value:
+        "HDMI IN (2), USB 3.0 (1), USB 2.0 (3), USB-C (1), TOUCH 2.0 (1), MIC IN (1), OPTICAL OUT (1), LINE OUT (1), RS232 (1), RJ45 IN (1)",
+    },
+    {
+      label: "Power",
+      value: "260W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5.5A",
+    },
+    {
+      label: "Dimensions",
+      value: "1707 x 1014.5 x 88.4 mm (without wall plate), 50 kg",
+    },
     { label: "Accessories", value: "Power cord (1), 2 styluses, wall mount" },
-    { label: "Environmental", value: "Operating: 0°C ~ 40°C, 10% ~ 90% RH; Storage: -20°C ~ 60°C, 10% ~ 90% RH" },
+    {
+      label: "Environmental",
+      value:
+        "Operating: 0°C ~ 40°C, 10% ~ 90% RH; Storage: -20°C ~ 60°C, 10% ~ 90% RH",
+    },
   ];
 
   // Key Features for Overview (derived from PDF)
@@ -117,19 +130,23 @@ const CTSC75APage = () => {
   return (
     <Section>
       {/* Product Overview */}
-      <Container>
-        <Grid container spacing={4} alignItems="center" sx={{ py: 8 }}>
+      <Container maxWidth="lg">
+        <Grid container spacing={isMobile ? 2 : 4} alignItems="center" sx={{ py: isMobile ? 4 : 8 }}>
           <Grid item size={{ xs: 12, md: 6 }}>
             <CardMedia
               component="img"
               image={CTSC75A}
               alt="CYNKCO Smart Screen CT-SC75A"
-              sx={{ maxWidth: "90%" }}
+              sx={{
+                maxWidth: isMobile ? "85%" : "90%",
+                margin: "0 auto",
+                display: "block",
+              }}
             />
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography
-              variant="h3"
+              variant={isMobile ? "h4" :  "h3" }
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
@@ -137,24 +154,33 @@ const CTSC75APage = () => {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 lineHeight: 1.2,
-                mb: 2,
+                mb: 1,
+                textAlign: isMobile ? "center" : "left",
               }}
             >
               CYNKCO CT-SC75A
             </Typography>
             <Typography
-              variant="h4"
+              variant={isMobile ? "h6" : isTablet ? "h5" : "h4"}
               sx={{
                 fontFamily: "Poppins, sans-serif",
-                fontWeight: 700,
-                color: greenDark,
-                lineHeight: 1.2,
+                fontWeight: 500,
+                color: "#555",
+                lineHeight: 0.7,
                 mb: 3,
+                textAlign: isMobile ? "center" : "left",
               }}
             >
               Android
             </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 1,
+                justifyContent: isMobile ? "center" : "flex-start",
+              }}
+            >
               {keywords.map((keyword, index) => (
                 <Chip
                   key={index}
@@ -166,8 +192,9 @@ const CTSC75APage = () => {
                     border: `1px solid ${greenDark}`,
                     borderRadius: "16px",
                     color: "#374151",
-                    px: 2,
+                    px: isMobile ? 1.5 : 2,
                     py: 0.5,
+                    fontSize: isMobile ? "0.75rem" : "0.875rem",
                   }}
                 />
               ))}
@@ -179,7 +206,7 @@ const CTSC75APage = () => {
       {/* Specifications Section Header */}
       <SpecsHeader>
         <Typography
-          variant="h4"
+          variant={isMobile ? "h5" : "h4"}
           sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}
         >
           CYNKCO CT-SC75A Specifications
@@ -187,10 +214,10 @@ const CTSC75APage = () => {
       </SpecsHeader>
 
       {/* Specifications with Accordion */}
-      <Container sx={{ my: 6 }}>
-        <Paper elevation={3} sx={{ p: 4, borderRadius: "8px" }}>
+      <Container maxWidth="lg" sx={{ my: isMobile ? 4 : 6 }}>
+        <Paper elevation={3} sx={{ p: isMobile ? 2 : 4, borderRadius: "8px" }}>
           <Typography
-            variant="h5"
+            variant={isMobile ? "h6" : "h5"}
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
@@ -198,11 +225,12 @@ const CTSC75APage = () => {
               borderBottom: `1px solid ${greenDark}`,
               pb: 2,
               mb: 4,
+              textAlign: isMobile ? "center" : "left",
             }}
           >
             Overview
           </Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={isMobile ? 1 : 2}>
             <Grid item size={{ xs: 12, md: 6 }}>
               <Accordion>
                 <AccordionSummary
@@ -217,6 +245,7 @@ const CTSC75APage = () => {
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 700,
                       color: greenDark,
+                      fontSize: isMobile ? "0.9rem" : "1rem",
                     }}
                   >
                     Key Features
@@ -225,9 +254,20 @@ const CTSC75APage = () => {
                 <AccordionDetails>
                   <Box>
                     {keyFeatures.map((feature, index) => (
-                      <Box key={index} sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                        <CheckCircleOutlineIcon sx={{ color: green, mr: 1 }} />
-                        <Typography sx={{ fontFamily: "Roboto, sans-serif", color: "#374151" }}>
+                      <Box
+                        key={index}
+                        sx={{ display: "flex", alignItems: "center", mb: 1 }}
+                      >
+                        <CheckCircleOutlineIcon
+                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
+                        />
+                        <Typography
+                          sx={{
+                            fontFamily: "Roboto, sans-serif",
+                            color: "#374151",
+                            fontSize: isMobile ? "0.85rem" : "1rem",
+                          }}
+                        >
                           {feature}
                         </Typography>
                       </Box>
@@ -250,6 +290,7 @@ const CTSC75APage = () => {
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 700,
                       color: greenDark,
+                      fontSize: isMobile ? "0.9rem" : "1rem",
                     }}
                   >
                     Introduction
@@ -258,9 +299,20 @@ const CTSC75APage = () => {
                 <AccordionDetails>
                   <Box>
                     {introductionPoints.map((point, index) => (
-                      <Box key={index} sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                        <CheckCircleOutlineIcon sx={{ color: green, mr: 1 }} />
-                        <Typography sx={{ fontFamily: "Roboto, sans-serif", color: "#374151" }}>
+                      <Box
+                        key={index}
+                        sx={{ display: "flex", alignItems: "center", mb: 1 }}
+                      >
+                        <CheckCircleOutlineIcon
+                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
+                        />
+                        <Typography
+                          sx={{
+                            fontFamily: "Roboto, sans-serif",
+                            color: "#374151",
+                            fontSize: isMobile ? "0.85rem" : "1rem",
+                          }}
+                        >
                           {point}
                         </Typography>
                       </Box>
@@ -271,30 +323,43 @@ const CTSC75APage = () => {
             </Grid>
           </Grid>
           <Typography
-            variant="h5"
+            variant={isMobile ? "h6" : "h5"}
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               color: "#1F2937",
               borderBottom: `1px solid ${greenDark}`,
               pb: 2,
-              mt: 6,
+              mt: isMobile ? 4 : 6,
               mb: 4,
+              textAlign: isMobile ? "center" : "left",
             }}
           >
             Technical Specifications
           </Typography>
           <TableContainer>
-            <Table>
+            <Table sx={{ minWidth: isMobile ? "auto" : 650 }}>
               <TableHead>
                 <TableRow sx={{ backgroundColor: greenDark }}>
                   <TableCell
-                    sx={{ color: "#fff", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}
+                    sx={{
+                      color: "#fff",
+                      fontFamily: "Poppins, sans-serif",
+                      fontWeight: 700,
+                      fontSize: isMobile ? "0.8rem" : "1rem",
+                      padding: isMobile ? "8px" : "16px",
+                    }}
                   >
                     Specification
                   </TableCell>
                   <TableCell
-                    sx={{ color: "#fff", fontFamily: "Poppins, sans-serif", fontWeight: 700 }}
+                    sx={{
+                      color: "#fff",
+                      fontFamily: "Poppins, sans-serif",
+                      fontWeight: 700,
+                      fontSize: isMobile ? "0.8rem" : "1rem",
+                      padding: isMobile ? "8px" : "16px",
+                    }}
                   >
                     Details
                   </TableCell>
@@ -304,11 +369,24 @@ const CTSC75APage = () => {
                 {specsData.map((spec, index) => (
                   <TableRow key={index}>
                     <TableCell
-                      sx={{ fontFamily: "Roboto, sans-serif", fontWeight: 700, color: greenDark }}
+                      sx={{
+                        fontFamily: "Roboto, sans-serif",
+                        fontWeight: 700,
+                        color: greenDark,
+                        fontSize: isMobile ? "0.75rem" : "0.875rem",
+                        padding: isMobile ? "8px" : "16px",
+                      }}
                     >
                       {spec.label}
                     </TableCell>
-                    <TableCell sx={{ fontFamily: "Roboto, sans-serif", color: "#374151" }}>
+                    <TableCell
+                      sx={{
+                        fontFamily: "Roboto, sans-serif",
+                        color: "#374151",
+                        fontSize: isMobile ? "0.75rem" : "0.875rem",
+                        padding: isMobile ? "8px" : "16px",
+                      }}
+                    >
                       {spec.value}
                     </TableCell>
                   </TableRow>

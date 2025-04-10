@@ -18,7 +18,7 @@ import {
   AccordionDetails,
   Button,
   useMediaQuery,
-  useTheme, // Added useTheme import
+  useTheme,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -27,8 +27,8 @@ import "@fontsource/poppins/700.css"; // Bold for headings
 import "@fontsource/roboto/400.css"; // Regular for body text
 import Contact from "./Contact";
 
-// Note: Update this path to the correct CT-SC65A image
-import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
+// Note: Update this path to the correct CT-SC75WC image
+import CTSC75WC from "../../../Assets/Products/Screens/CT-SC75WC.png"; // Adjust path as needed
 
 // Theme Colors
 const green = "#24AC4C";
@@ -61,8 +61,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const CTSC65APage = () => {
-  const theme = useTheme(); // Define theme using useTheme hook
+const CTSC75WCPage = () => {
+  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
 
@@ -70,12 +70,12 @@ const CTSC65APage = () => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);
 
-  // Technical Specs Data from CT-SC65A PDF
+  // Technical Specs Data from CT-SC75WC PDF
   const specsData = [
     {
       label: "Display",
       value:
-        '65" IPS, 3840x2160, 350 cd/m², 1200:1 contrast, 178° viewing angle, 60Hz refresh',
+        '75" IPS, 3840x2160, 350 cd/m², 1200:1 contrast, 178° viewing angle, 60Hz refresh',
     },
     {
       label: "Touch",
@@ -84,6 +84,14 @@ const CTSC65APage = () => {
     },
     { label: "Audio", value: "2x15W speakers (2.0 sound track)" },
     {
+      label: "Microphone",
+      value: "8-array, 0-8m pickup distance",
+    },
+    {
+      label: "Camera",
+      value: "48MP, auto-focus, upper border center",
+    },
+    {
       label: "System",
       value:
         "Android 11.0, Quad-core A55 CPU, MaliG52MP2 GPU, 4GB RAM, 32GB ROM",
@@ -91,15 +99,15 @@ const CTSC65APage = () => {
     {
       label: "Connectivity",
       value:
-        "HDMI IN (2), USB 3.0 (1), USB 2.0 (3), USB-C (1), TOUCH 2.0 (1), MIC IN (1), OPTICAL OUT (1), LINE OUT (1), RS232 (1), RJ45 IN (1)",
+        "HDMI IN (2), USB 3.0 (1), USB 2.0 (3), USB-C (1), TOUCH 2.0 (1), MIC IN (1), OPTICAL OUT (1), LINE OUT (1), RS232 (1), RJ45 IN (1), 100Gb Ethernet",
     },
     {
       label: "Power",
-      value: "180W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5.5A",
+      value: "260W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5A",
     },
     {
       label: "Dimensions",
-      value: "1485 x 891.5 x 88.4 mm (without wall plate), 36 kg",
+      value: "1707 x 1028.5 x 88.4 mm (without wall plate), 50 kg",
     },
     { label: "Accessories", value: "Power cord (1), 2 styluses, wall mount" },
     {
@@ -109,26 +117,28 @@ const CTSC65APage = () => {
     },
   ];
 
-  // Key Features for Overview (derived from PDF)
+  // Key Features for Overview (derived from CT-SC75WC PDF)
   const keyFeatures = [
-    "Ultra-narrow Bezel Design",
+    "Ultra-narrow Bezel with Integrated Camera & Microphone",
     "Android 11.0",
     "4K Ultra HD Display",
     "Dual-pen, Dual-color Writing",
     "Wireless Screen Sharing",
     "Anti-glare Tempered Glass",
     "Hotspot Dual-band 2.4G/5G",
-    "Light-sensitive Brightness Adjustment",
+    "48MP Auto-focus Camera",
+    "8-array Microphone",
+    "100Gb Ethernet Support",
   ];
 
-  // Introduction Points (derived from PDF)
+  // Introduction Points (derived from CT-SC75WC PDF)
   const introductionPoints = [
-    "Advanced interactive display for professional collaboration",
+    "Advanced interactive display with integrated AV for seamless collaboration",
     "Zero-lamination process for low parallax writing",
-    "High-precision infrared touch technology",
+    "High-precision infrared touch with built-in camera and microphone",
   ];
 
-  // Keywords for Chips (updated to reflect CT-SC65A features)
+  // Keywords for Chips (updated to reflect CT-SC75WC features)
   const keywords = [
     "Interactive Whiteboard",
     "Ultra-narrow Bezel",
@@ -137,24 +147,21 @@ const CTSC65APage = () => {
     "Dual-pen Writing",
     "Dual-band Hotspot",
     "Eye-care Display",
-    "Seamless Collaboration",
+    "48MP Camera",
+    "8-array Microphone",
+    "100Gb Ethernet",
   ];
 
   return (
     <Section>
       {/* Product Overview */}
       <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={isMobile ? 2 : 4}
-          alignItems="center"
-          sx={{ py: isMobile ? 4 : 8 }}
-        >
+        <Grid container spacing={isMobile ? 2 : 4} alignItems="center" sx={{ py: isMobile ? 4 : 8 }}>
           <Grid item size={{ xs: 12, md: 6 }}>
             <CardMedia
               component="img"
-              image={CTSC65A}
-              alt="CYNKCO Smart Screen CT-SC65A"
+              image={CTSC75WC}
+              alt="CYNKCO Smart Screen CT-SC75WC"
               sx={{
                 maxWidth: isMobile ? "85%" : "90%",
                 margin: "0 auto",
@@ -164,7 +171,7 @@ const CTSC65APage = () => {
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography
-              variant={isMobile ? "h4" :  "h3"}
+              variant={isMobile ? "h4": "h3"}
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
@@ -176,10 +183,10 @@ const CTSC65APage = () => {
                 textAlign: isMobile ? "center" : "left",
               }}
             >
-              CYNKCO CT-SC65A
+              CYNKCO CT-SC75WC
             </Typography>
             <Typography
-              variant={isMobile ? "h6" : "h4"}
+              variant={isMobile ? "h6" : isTablet ? "h5" : "h4"}
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 500,
@@ -189,7 +196,7 @@ const CTSC65APage = () => {
                 textAlign: isMobile ? "center" : "left",
               }}
             >
-              Android/Windows
+              Android
             </Typography>
             <Box
               sx={{
@@ -227,7 +234,7 @@ const CTSC65APage = () => {
           variant={isMobile ? "h5" : "h4"}
           sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}
         >
-          CYNKCO CT-SC65A Specifications
+          CYNKCO CT-SC75WC Specifications
         </Typography>
       </SpecsHeader>
 
@@ -277,11 +284,7 @@ const CTSC65APage = () => {
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
                         <CheckCircleOutlineIcon
-                          sx={{
-                            color: green,
-                            mr: 1,
-                            fontSize: isMobile ? 18 : 24,
-                          }}
+                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
                         />
                         <Typography
                           sx={{
@@ -326,11 +329,7 @@ const CTSC65APage = () => {
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
                         <CheckCircleOutlineIcon
-                          sx={{
-                            color: green,
-                            mr: 1,
-                            fontSize: isMobile ? 18 : 24,
-                          }}
+                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
                         />
                         <Typography
                           sx={{
@@ -428,4 +427,4 @@ const CTSC65APage = () => {
   );
 };
 
-export default CTSC65APage;
+export default CTSC75WCPage;

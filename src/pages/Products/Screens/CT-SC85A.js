@@ -18,7 +18,7 @@ import {
   AccordionDetails,
   Button,
   useMediaQuery,
-  useTheme, // Added useTheme import
+  useTheme,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -27,8 +27,8 @@ import "@fontsource/poppins/700.css"; // Bold for headings
 import "@fontsource/roboto/400.css"; // Regular for body text
 import Contact from "./Contact";
 
-// Note: Update this path to the correct CT-SC65A image
-import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
+// Note: Update this path to the correct CT-SC85A image
+import CTSC85A from "../../../Assets/Products/Screens/CT-SC85A.png"; // Adjust path as needed
 
 // Theme Colors
 const green = "#24AC4C";
@@ -61,8 +61,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
   },
 }));
 
-const CTSC65APage = () => {
-  const theme = useTheme(); // Define theme using useTheme hook
+const CTSC85APage = () => {
+  const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
 
@@ -70,12 +70,12 @@ const CTSC65APage = () => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);
 
-  // Technical Specs Data from CT-SC65A PDF
+  // Technical Specs Data from CT-SC85A PDF
   const specsData = [
     {
       label: "Display",
       value:
-        '65" IPS, 3840x2160, 350 cd/m², 1200:1 contrast, 178° viewing angle, 60Hz refresh',
+        '86" IPS, 3840x2160, 350 cd/m², 1200:1 contrast, 178° viewing angle, 60Hz refresh',
     },
     {
       label: "Touch",
@@ -95,11 +95,11 @@ const CTSC65APage = () => {
     },
     {
       label: "Power",
-      value: "180W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5.5A",
+      value: "360W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5.5A",
     },
     {
       label: "Dimensions",
-      value: "1485 x 891.5 x 88.4 mm (without wall plate), 36 kg",
+      value: "1953.5 x 1154 x 88.4 mm (without wall plate), 68 kg",
     },
     { label: "Accessories", value: "Power cord (1), 2 styluses, wall mount" },
     {
@@ -109,7 +109,7 @@ const CTSC65APage = () => {
     },
   ];
 
-  // Key Features for Overview (derived from PDF)
+  // Key Features for Overview (derived from CT-SC85A PDF)
   const keyFeatures = [
     "Ultra-narrow Bezel Design",
     "Android 11.0",
@@ -121,14 +121,14 @@ const CTSC65APage = () => {
     "Light-sensitive Brightness Adjustment",
   ];
 
-  // Introduction Points (derived from PDF)
+  // Introduction Points (derived from CT-SC85A PDF)
   const introductionPoints = [
     "Advanced interactive display for professional collaboration",
     "Zero-lamination process for low parallax writing",
     "High-precision infrared touch technology",
   ];
 
-  // Keywords for Chips (updated to reflect CT-SC65A features)
+  // Keywords for Chips (updated to reflect CT-SC85A features)
   const keywords = [
     "Interactive Whiteboard",
     "Ultra-narrow Bezel",
@@ -144,17 +144,12 @@ const CTSC65APage = () => {
     <Section>
       {/* Product Overview */}
       <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={isMobile ? 2 : 4}
-          alignItems="center"
-          sx={{ py: isMobile ? 4 : 8 }}
-        >
+        <Grid container spacing={isMobile ? 2 : 4} alignItems="center" sx={{ py: isMobile ? 4 : 8 }}>
           <Grid item size={{ xs: 12, md: 6 }}>
             <CardMedia
               component="img"
-              image={CTSC65A}
-              alt="CYNKCO Smart Screen CT-SC65A"
+              image={CTSC85A}
+              alt="CYNKCO Smart Screen CT-SC85A"
               sx={{
                 maxWidth: isMobile ? "85%" : "90%",
                 margin: "0 auto",
@@ -164,7 +159,7 @@ const CTSC65APage = () => {
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography
-              variant={isMobile ? "h4" :  "h3"}
+              variant={isMobile ? "h4" : "h3" }
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
@@ -176,10 +171,10 @@ const CTSC65APage = () => {
                 textAlign: isMobile ? "center" : "left",
               }}
             >
-              CYNKCO CT-SC65A
+              CYNKCO CT-SC85A
             </Typography>
             <Typography
-              variant={isMobile ? "h6" : "h4"}
+              variant={isMobile ? "h6" : isTablet ? "h5" : "h4"}
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 500,
@@ -189,7 +184,7 @@ const CTSC65APage = () => {
                 textAlign: isMobile ? "center" : "left",
               }}
             >
-              Android/Windows
+              Android
             </Typography>
             <Box
               sx={{
@@ -227,7 +222,7 @@ const CTSC65APage = () => {
           variant={isMobile ? "h5" : "h4"}
           sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}
         >
-          CYNKCO CT-SC65A Specifications
+          CYNKCO CT-SC85A Specifications
         </Typography>
       </SpecsHeader>
 
@@ -277,11 +272,7 @@ const CTSC65APage = () => {
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
                         <CheckCircleOutlineIcon
-                          sx={{
-                            color: green,
-                            mr: 1,
-                            fontSize: isMobile ? 18 : 24,
-                          }}
+                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
                         />
                         <Typography
                           sx={{
@@ -326,11 +317,7 @@ const CTSC65APage = () => {
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
                         <CheckCircleOutlineIcon
-                          sx={{
-                            color: green,
-                            mr: 1,
-                            fontSize: isMobile ? 18 : 24,
-                          }}
+                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
                         />
                         <Typography
                           sx={{
@@ -428,4 +415,4 @@ const CTSC65APage = () => {
   );
 };
 
-export default CTSC65APage;
+export default CTSC85APage;

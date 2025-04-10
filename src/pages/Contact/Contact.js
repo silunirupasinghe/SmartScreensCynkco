@@ -9,7 +9,8 @@ import {
   CircularProgress,
   Grid,
 } from "@mui/material";
-import contactImg from "../../Assets/Home/contact.jpg"
+import contactImg from "../../Assets/Home/contact.jpg";
+
 const Contact = () => {
   const [formStatus, setFormStatus] = useState({
     submitted: false,
@@ -49,47 +50,33 @@ const Contact = () => {
   return (
     <Box
       sx={{
-        background: "#F1FFF7", // Soft green background
+        background: "#F1FFF7",
         py: 6,
         px: { xs: 2, md: 10 },
         fontFamily: "Roboto, sans-serif",
         minHeight: "60vh",
       }}
     >
-      <Grid container spacing={0} sx={{ maxWidth: 1200, mx: "auto" }}>
+      <Grid container spacing={0} >
         {/* Image Section (Left) */}
-        <Grid item xs={12} sm={12} lg={6} md={4}>
+        <Grid item size={{sm:12, md:4, lg:6}} >
           <Box
+            component="img"
+            src={contactImg}
+            alt="Contact"
             sx={{
-              height: { xs: "300px", md: "100%" },
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-              overflow: "hidden",
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              maxHeight: "800px",
             }}
-          >
-           
-              {/* Placeholder image */}
-              <Box
-                sx={{
-                  width: { xs: "300px", sm:"400px", lg: "400px" },
-                  height: { xs: "100%", md: "100%" },
-                  backgroundImage: `url(${contactImg})`, // Replace with actual image URL
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  position: "relative",
-                  zIndex: 1,
-                }}
-              />
-            </Box>
-   
+          />
         </Grid>
 
         {/* Form Section (Right) */}
-        <Grid item xs={12} sm={12} lg={6} md={8}>
+        <Grid item size={{sm:12, md:8, lg:6}}>
           <Paper
-            elevation={3}
+        
             sx={{
               maxWidth: 900,
               mx: "auto",
@@ -120,7 +107,6 @@ const Contact = () => {
                 color: "#757575",
                 mb: 4,
                 maxWidth: 600,
-                
                 mx: "auto",
                 fontFamily: "Roboto, sans-serif",
               }}

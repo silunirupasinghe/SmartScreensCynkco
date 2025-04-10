@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Grid,
@@ -17,6 +17,8 @@ import {
   AccordionSummary,
   AccordionDetails,
   Button,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
@@ -44,16 +46,6 @@ const SpecsHeader = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
 }));
 
-const ContactSection = styled(Box)(({ theme }) => ({
-  background: `linear-gradient(to right, ${greenDark}, ${green})`,
-  color: "#fff",
-  padding: theme.spacing(4),
-  textAlign: "center",
-  borderRadius: "12px",
-  marginTop: theme.spacing(6),
-  boxShadow: "0 4px 12px rgba(0, 0, 0, 0.2)",
-}));
-
 const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#fff",
   color: greenDark,
@@ -69,9 +61,14 @@ const StyledButton = styled(Button)(({ theme }) => ({
 }));
 
 const CTSC65WCPage = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
+
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);
+
   // Technical Specs Data from CT-SC65WC
   const specsData = [
     {
@@ -132,19 +129,23 @@ const CTSC65WCPage = () => {
   return (
     <Section>
       {/* Product Overview */}
-      <Container>
-        <Grid container spacing={4} alignItems="center" sx={{ py: 8 }}>
+      <Container maxWidth="lg">
+        <Grid container spacing={isMobile ? 2 : 4} alignItems="center" sx={{ py: isMobile ? 4 : 8 }}>
           <Grid item size={{ xs: 12, md: 6 }}>
             <CardMedia
               component="img"
               image={CTSC65WC}
               alt="CYNKCO Smart Screen CT-SC65WC"
-              sx={{ maxWidth: "90%" }}
+              sx={{
+                maxWidth: isMobile ? "85%" : "90%",
+                margin: "0 auto",
+                display: "block",
+              }}
             />
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography
-              variant="h3"
+              variant={isMobile ? "h4" : "h3" }
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
@@ -152,24 +153,33 @@ const CTSC65WCPage = () => {
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 lineHeight: 1.2,
-                mb: 2,
+                mb: 1,
+                textAlign: isMobile ? "center" : "left",
               }}
             >
               CYNKCO CT-SC65WC
             </Typography>
             <Typography
-              variant="h4"
+              variant={isMobile ? "h6" : isTablet ? "h5" : "h4"}
               sx={{
                 fontFamily: "Poppins, sans-serif",
-                fontWeight: 700,
-                color: greenDark,
-                lineHeight: 1.2,
+                fontWeight: 500,
+                color: "#555",
+                lineHeight: 0.7,
                 mb: 3,
+                textAlign: isMobile ? "center" : "left",
               }}
             >
               Android/Windows
             </Typography>
-            <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 1,
+                justifyContent: isMobile ? "center" : "flex-start",
+              }}
+            >
               {keywords.map((keyword, index) => (
                 <Chip
                   key={index}
@@ -181,8 +191,9 @@ const CTSC65WCPage = () => {
                     border: `1px solid ${greenDark}`,
                     borderRadius: "16px",
                     color: "#374151",
-                    px: 2,
+                    px: isMobile ? 1.5 : 2,
                     py: 0.5,
+                    fontSize: isMobile ? "0.75rem" : "0.875rem",
                   }}
                 />
               ))}
@@ -194,7 +205,7 @@ const CTSC65WCPage = () => {
       {/* Specifications Section Header */}
       <SpecsHeader>
         <Typography
-          variant="h4"
+          variant={isMobile ? "h5" : "h4"}
           sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}
         >
           CYNKCO CT-SC65WC Specifications
@@ -202,10 +213,10 @@ const CTSC65WCPage = () => {
       </SpecsHeader>
 
       {/* Specifications with Accordion */}
-      <Container sx={{ my: 6 }}>
-        <Paper elevation={3} sx={{ p: 4, borderRadius: "8px" }}>
+      <Container maxWidth="lg" sx={{ my: isMobile ? 4 : 6 }}>
+        <Paper elevation={3} sx={{ p: isMobile ? 2 : 4, borderRadius: "8px" }}>
           <Typography
-            variant="h5"
+            variant={isMobile ? "h6" : "h5"}
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
@@ -213,11 +224,12 @@ const CTSC65WCPage = () => {
               borderBottom: `1px solid ${greenDark}`,
               pb: 2,
               mb: 4,
+              textAlign: isMobile ? "center" : "left",
             }}
           >
             Overview
           </Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={isMobile ? 1 : 2}>
             <Grid item size={{ xs: 12, md: 6 }}>
               <Accordion>
                 <AccordionSummary
@@ -232,6 +244,7 @@ const CTSC65WCPage = () => {
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 700,
                       color: greenDark,
+                      fontSize: isMobile ? "0.9rem" : "1rem",
                     }}
                   >
                     Key Features
@@ -244,11 +257,14 @@ const CTSC65WCPage = () => {
                         key={index}
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
-                        <CheckCircleOutlineIcon sx={{ color: green, mr: 1 }} />
+                        <CheckCircleOutlineIcon
+                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
+                        />
                         <Typography
                           sx={{
                             fontFamily: "Roboto, sans-serif",
                             color: "#374151",
+                            fontSize: isMobile ? "0.85rem" : "1rem",
                           }}
                         >
                           {feature}
@@ -273,6 +289,7 @@ const CTSC65WCPage = () => {
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 700,
                       color: greenDark,
+                      fontSize: isMobile ? "0.9rem" : "1rem",
                     }}
                   >
                     Introduction
@@ -285,11 +302,14 @@ const CTSC65WCPage = () => {
                         key={index}
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
-                        <CheckCircleOutlineIcon sx={{ color: green, mr: 1 }} />
+                        <CheckCircleOutlineIcon
+                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
+                        />
                         <Typography
                           sx={{
                             fontFamily: "Roboto, sans-serif",
                             color: "#374151",
+                            fontSize: isMobile ? "0.85rem" : "1rem",
                           }}
                         >
                           {point}
@@ -302,21 +322,22 @@ const CTSC65WCPage = () => {
             </Grid>
           </Grid>
           <Typography
-            variant="h5"
+            variant={isMobile ? "h6" : "h5"}
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               color: "#1F2937",
               borderBottom: `1px solid ${greenDark}`,
               pb: 2,
-              mt: 6,
+              mt: isMobile ? 4 : 6,
               mb: 4,
+              textAlign: isMobile ? "center" : "left",
             }}
           >
             Technical Specifications
           </Typography>
           <TableContainer>
-            <Table>
+            <Table sx={{ minWidth: isMobile ? "auto" : 650 }}>
               <TableHead>
                 <TableRow sx={{ backgroundColor: greenDark }}>
                   <TableCell
@@ -324,6 +345,8 @@ const CTSC65WCPage = () => {
                       color: "#fff",
                       fontFamily: "Poppins, sans-serif",
                       fontWeight: 700,
+                      fontSize: isMobile ? "0.8rem" : "1rem",
+                      padding: isMobile ? "8px" : "16px",
                     }}
                   >
                     Specification
@@ -333,6 +356,8 @@ const CTSC65WCPage = () => {
                       color: "#fff",
                       fontFamily: "Poppins, sans-serif",
                       fontWeight: 700,
+                      fontSize: isMobile ? "0.8rem" : "1rem",
+                      padding: isMobile ? "8px" : "16px",
                     }}
                   >
                     Details
@@ -347,6 +372,8 @@ const CTSC65WCPage = () => {
                         fontFamily: "Roboto, sans-serif",
                         fontWeight: 700,
                         color: greenDark,
+                        fontSize: isMobile ? "0.75rem" : "0.875rem",
+                        padding: isMobile ? "8px" : "16px",
                       }}
                     >
                       {spec.label}
@@ -355,6 +382,8 @@ const CTSC65WCPage = () => {
                       sx={{
                         fontFamily: "Roboto, sans-serif",
                         color: "#374151",
+                        fontSize: isMobile ? "0.75rem" : "0.875rem",
+                        padding: isMobile ? "8px" : "16px",
                       }}
                     >
                       {spec.value}
