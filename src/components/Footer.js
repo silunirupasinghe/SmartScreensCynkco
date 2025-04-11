@@ -23,13 +23,12 @@ import { styled } from "@mui/system";
 const primaryColor = "#24AC4C"; // Green for icons
 const textColor = "#E0E0E0"; // Light gray for text
 
-
 // Styled Footer Container
 const FooterContainer = styled(Box)({
   backgroundColor: "#103B29", // Using your specified dark green
   color: textColor,
   padding: "4rem 0",
-  textAlign:"center"
+  textAlign: "center",
 });
 
 // Styled Links
@@ -65,7 +64,7 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container spacing={5}>
           {/* Company Info */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               CYNKCO
             </Typography>
@@ -79,7 +78,7 @@ const Footer = () => {
           </Grid>
 
           {/* Quick Links */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Quick Links
             </Typography>
@@ -90,27 +89,39 @@ const Footer = () => {
           </Grid>
 
           {/* Products */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Our Products
             </Typography>
-            <FooterLink to="/products/smart-screens/ct-sc65wc">CT-SC65WC</FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc65a">CT-SC65A</FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc75a">CT-SC75A</FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc86wc">CT-SC86WC</FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc85a">CT-SC85A</FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc75wc">CT-SC75WC</FooterLink>
+            <FooterLink to="/products/smart-screens/ct-sc65wc">
+              CT-SC65WC
+            </FooterLink>
+            <FooterLink to="/products/smart-screens/ct-sc65a">
+              CT-SC65A
+            </FooterLink>
+            <FooterLink to="/products/smart-screens/ct-sc75a">
+              CT-SC75A
+            </FooterLink>
+            <FooterLink to="/products/smart-screens/ct-sc86wc">
+              CT-SC86WC
+            </FooterLink>
+            <FooterLink to="/products/smart-screens/ct-sc85a">
+              CT-SC85A
+            </FooterLink>
+            <FooterLink to="/products/smart-screens/ct-sc75wc">
+              CT-SC75WC
+            </FooterLink>
           </Grid>
 
           {/* Contact Info & Social Media */}
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item size={{ xs: 12, sm: 6, md: 3 }} sx={{alignContent:"center"}}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Contact Us
             </Typography>
             <Box display="flex" alignItems="center" mb={1}>
               <LocationOn sx={{ color: primaryColor, mr: 1 }} />
               <Typography variant="body2">
-                456 Innovation Lane, Tech City, Sri Lanka
+                No 286, R. A. De Mel Mawatha, Colombo 00300, Sri Lanka
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" mb={1}>
@@ -123,7 +134,7 @@ const Footer = () => {
             </Box>
 
             {/* Social Media */}
-            <Box mt={3} display="flex">
+            {/* <Box mt={3} display="flex">
               <SocialIconButton bg="#3b5998">
                 <Facebook />
               </SocialIconButton>
@@ -136,7 +147,7 @@ const Footer = () => {
               <SocialIconButton bg="#E4405F">
                 <Instagram />
               </SocialIconButton>
-            </Box>
+            </Box> */}
           </Grid>
         </Grid>
 
