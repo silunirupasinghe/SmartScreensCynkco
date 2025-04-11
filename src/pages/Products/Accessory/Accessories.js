@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   Box,
   Grid,
@@ -24,7 +24,7 @@ import AccessoryHero from "./AccessoryHero";
 
 // Theme Colors
 const green = "#24AC4C";
-const greenDark = "#388E3C";
+const greenDark = "#006400";
 
 // Styled Card with improved design
 const AccessoryCard = styled(Card)(({ theme }) => ({
@@ -62,6 +62,9 @@ const accessories = [
 ];
 
 const AccessoriesPage = () => {
+  useEffect(() => {
+      window.scrollTo(0, 0); // Scroll to top when the component mounts
+    }, []);
   return (
     <Box>
       {/* Hero Section */}
@@ -132,7 +135,7 @@ const AccessoriesPage = () => {
                         component={Link}
                         to="/contact"
                         sx={{
-                          backgroundColor: green,
+                          backgroundColor: greenDark,
                           color: "#fff",
                           fontWeight: 600,
                           textTransform: "none",
@@ -141,7 +144,7 @@ const AccessoriesPage = () => {
                           py: 1.2,
                           borderRadius: "10px",
                           "&:hover": {
-                            backgroundColor: greenDark,
+                            backgroundColor: green,
                           },
                         }}
                       >

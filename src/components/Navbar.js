@@ -15,8 +15,6 @@ import {
   Collapse,
 } from "@mui/material";
 import {
-  PersonOutline as PersonOutlineIcon,
-  Search as SearchIcon,
   Menu as MenuIcon,
   ExpandMore as ExpandMoreIcon,
   ExpandLess as ExpandLessIcon,
@@ -37,6 +35,10 @@ import CTSC85A from "../Assets/Products/Screens/CT-SC85A.png";
 
 const screens = [
   {
+    name: "All Screens",
+    url: "/products/smart-screens/",
+  },
+  {
     name: "CT-SC65WC",
     image: CTSC65WC,
     url: "/products/smart-screens/ct-sc65wc",
@@ -47,15 +49,16 @@ const screens = [
     url: "/products/smart-screens/ct-sc75wc",
   },
   {
-    name: "CT-SC65A",
-    image: CTSC65A,
-    url: "/products/smart-screens/ct-sc65a",
-  },
-  {
     name: "CT-SC86WC",
     image: CTSC86WC,
     url: "/products/smart-screens/ct-sc86wc",
   },
+  {
+    name: "CT-SC65A",
+    image: CTSC65A,
+    url: "/products/smart-screens/ct-sc65a",
+  },
+  
   {
     name: "CT-SC75A",
     image: CTSC75A,
@@ -185,12 +188,14 @@ function Navbar() {
               fontWeight: isActive(screen.url) ? "bold" : "normal",
             }}
           >
-            <Box
-              component="img"
-              src={screen.image}
-              alt={screen.name}
-              sx={{ width: 50, height: 50, mr: 2, objectFit: "cover" }}
-            />
+            {screen.image && (
+              <Box
+                component="img"
+                src={screen.image}
+                alt={screen.name}
+                sx={{ width: 50, height: 50, mr: 2, objectFit: "cover" }}
+              />
+            )}
             <ListItemText primary={screen.name} />
           </ListItem>
         ))}
@@ -199,7 +204,15 @@ function Navbar() {
   );
 
   return (
-    <AppBar position="static" sx={{ bgcolor: "#fff", color: "#000" }}>
+    <AppBar
+      position="fixed"
+      sx={{
+        bgcolor: "#fff",
+        color: "#000",
+        boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+        zIndex: 1100,
+      }}
+    >
       <Toolbar>
         {/* Logo */}
         <Box component={Link} to="/" sx={{ textDecoration: "none", mr: 3 }}>

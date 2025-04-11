@@ -2,21 +2,20 @@ import React from "react";
 import { Box, Typography, Button, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import herohome from "../../Assets/herohome.jpg";
-import GoogleIcon from "@mui/icons-material/Google"; // Placeholder for Google Certified icon
-import AndroidIcon from "@mui/icons-material/Android"; // Placeholder for Android 13.0 icon
-import WifiIcon from "@mui/icons-material/Wifi"; // Placeholder for Dual WiFi icon
+import CameraIcon from "@mui/icons-material/PhotoCamera"; // Icon for camera feature
+import MicIcon from "@mui/icons-material/Mic"; // Icon for microphone feature
+import WifiIcon from "@mui/icons-material/Wifi"; // Icon for Dual WiFi
 
 const HeroSection = () => {
   const navigate = useNavigate();
 
   const handleLearnMore = () => {
-    navigate("/learn-more"); // Adjust the route as needed
+    navigate("/products/smart-screens/"); // Adjust the route as needed
   };
 
   return (
     <Box
       sx={{
-        
         position: "relative", // For absolute positioning of the text
         overflow: "hidden", // Prevent any overflow issues
       }}
@@ -30,7 +29,7 @@ const HeroSection = () => {
       >
         <img
           src={herohome}
-          alt="CYNKCO smart screens"
+          alt="CYNKCO smart boards"
           style={{
             width: "100%", // Full width
             height: "100vh", // Full height
@@ -61,7 +60,7 @@ const HeroSection = () => {
               fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem" }, // Responsive font size
             }}
           >
-            CYNKCO | M6APro
+            CYNKCO Smart Boards
           </Typography>
 
           {/* Main Heading */}
@@ -77,7 +76,7 @@ const HeroSection = () => {
               fontSize: { xs: "1.5rem", sm: "2rem", md: "3rem" }, // Responsive font size
             }}
           >
-            THE FIRST GOOGLE <br /> EDLA-CERTIFIED IFPS
+            NEXT-LEVEL INTERACTIVE <br /> COLLABORATION
           </Typography>
 
           {/* Icons and Labels */}
@@ -87,9 +86,9 @@ const HeroSection = () => {
             sx={{ mb: 3 }}
           >
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <GoogleIcon
+              <CameraIcon
                 sx={{
-                  color: "#4285F4", // Dominant blue from Google logo
+                  color: "#4285F4", // Blue for camera
                   fontSize: { xs: "1rem", md: "1.5rem" },
                 }}
               />
@@ -97,13 +96,13 @@ const HeroSection = () => {
                 variant="body2"
                 sx={{ color: "#555", fontSize: { xs: "0.75rem", md: "1rem" } }}
               >
-                Google Certified
+                High-Quality Camera
               </Typography>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <AndroidIcon
+              <MicIcon
                 sx={{
-                  color: "#3DDC84", // Green from Android logo
+                  color: "#24AC4C", // Green for microphones
                   fontSize: { xs: "1rem", md: "1.5rem" },
                 }}
               />
@@ -111,13 +110,13 @@ const HeroSection = () => {
                 variant="body2"
                 sx={{ color: "#555", fontSize: { xs: "0.75rem", md: "1rem" } }}
               >
-                Android 13.0
+                Advanced Audio
               </Typography>
             </Box>
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
               <WifiIcon
                 sx={{
-                  color: "#000000", // Black for WiFi icon
+                  color: "#000000", // Black for WiFi
                   fontSize: { xs: "1rem", md: "1.5rem" },
                 }}
               />
@@ -125,7 +124,7 @@ const HeroSection = () => {
                 variant="body2"
                 sx={{ color: "#555", fontSize: { xs: "0.75rem", md: "1rem" } }}
               >
-                Dual WiFi
+                Dual-Band WiFi
               </Typography>
             </Box>
           </Stack>
@@ -135,14 +134,14 @@ const HeroSection = () => {
             variant="contained"
             onClick={handleLearnMore}
             sx={{
-              backgroundColor: "#1C883C", // green button
+              backgroundColor: "#006400", // Green button
               color: "#fff",
               textTransform: "none",
               padding: { xs: "8px 16px", md: "10px 20px" }, // Responsive padding
               borderRadius: "25px",
               fontSize: { xs: "0.875rem", md: "1rem" }, // Responsive font size
               "&:hover": {
-                backgroundColor: "#0D47A1",
+                backgroundColor: "#24AC4C",
               },
             }}
           >

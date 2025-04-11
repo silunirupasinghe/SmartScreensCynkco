@@ -1,5 +1,12 @@
-import React from "react";
-import { Box, Grid, Typography, Button, Container, Divider } from "@mui/material";
+import React, {useEffect} from "react";
+import {
+  Box,
+  Grid,
+  Typography,
+  Button,
+  Container,
+  Divider,
+} from "@mui/material";
 import { Fade } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -12,8 +19,7 @@ import ProductHeroSection from "./StandHero";
 
 // Theme Colors
 const green = "#24AC4C";
-const greenDark = "#388E3C";
-const pink = "#E91E63";
+const greenDark = "#006400";
 
 const products = [
   {
@@ -39,6 +45,9 @@ const products = [
 ];
 
 const StandsPage = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to top when the component mounts
+  }, []);
   return (
     <Box>
       <ProductHeroSection />

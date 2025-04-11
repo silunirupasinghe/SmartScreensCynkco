@@ -6,18 +6,19 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import screen1 from "../../Assets/Home/screen1.png";
-
-// Sample Data
+import googleIcons from "../../Assets/Home/google.png"
+import accessories from "../../Assets/Home/accessories.png"
+import wifi from "../../Assets/Home/wifi.png"
+// Updated Product Data with CT-SC65WC focus and additional features
 const productData = [
-  { id: 1, title: "M5APro", image: screen1 },
-  { id: 2, title: "Video Wall", image: screen1 },
-  { id: 3, title: "Content Management", image: screen1 },
+  { id: 1, title: "CT-SC65WC", image: screen1 }, // Flagship product
+  { id: 2, title: "Google's Ecosystem", image: googleIcons }, // Complementary displays
+  { id: 3, title: "Collaboration Tools", image: wifi }, // Touch, camera, mic, etc.
   {
     id: 4,
     title: "Accessories",
-    image:
-      "https://res.cloudinary.com/iwh/image/upload/q_auto,g_center/w_1024,h_768,c_lpad/assets/1/26/SmartBoard_SBM685-laser-S_Interactive_whiteboard_kit.jpg",
-  },
+    image: accessories,
+  }, 
 ];
 
 const HomeSec3 = () => {
@@ -27,7 +28,7 @@ const HomeSec3 = () => {
   const isMediumScreen = useMediaQuery(theme.breakpoints.down("md")); // <900px
 
   useEffect(() => {
-    setActiveId(1); // Initial card selection
+    setActiveId(1); // Initial card selection highlights CT-SC65WC
   }, []);
 
   return (
@@ -42,12 +43,12 @@ const HomeSec3 = () => {
           textAlign: "center",
           fontSize: { xs: "1.6rem", sm: "2.2rem", md: "2.5rem" },
           lineHeight: 1.2,
-          background: 'linear-gradient(45deg, #006400, #0D47A1 )',
+          background: "linear-gradient(45deg, #006400, #0D47A1)",
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
       >
-        CYNKCO : Inspire. Innovate. Collaborate.
+        CYNKCO: Inspire. Innovate. Collaborate.
       </Typography>
 
       {/* Description */}
@@ -64,13 +65,12 @@ const HomeSec3 = () => {
           fontSize: { xs: "0.95rem", md: "1.05rem" },
         }}
       >
-        CYNKCO is a leading provider of next-generation smart display solutions,
-        specializing in Interactive Flat Panel Displays (IFPDs), video walls,
-        digital signage, content management systems, and essential accessories.
-        Designed to empower innovation and seamless collaboration, CYNKCO
-        products deliver cutting-edge performance, intuitive user experiences,
-        and versatile integration across educational, corporate, and public
-        environments.
+        CYNKCO redefines smart display technology with the CT-SC65WC, featuring
+        Android 11.0, a 4K anti-glare display, and dual-pen collaboration tools.
+        Combined with dynamic video walls, advanced connectivity options like
+        100Gb Ethernet, and essential accessories, CYNKCO solutions empower
+        seamless interaction and productivity in education, healthcare,
+        corporate, and public environments.
       </Typography>
 
       {/* Swiper for Small & Medium Screens */}
@@ -112,7 +112,7 @@ const HomeSec3 = () => {
                 <Typography
                   fontFamily="Poppins, sans-serif"
                   fontWeight={600}
-                  color="#007D52"
+                  color="#006400"
                   fontSize="1.1rem"
                 >
                   {product.title}

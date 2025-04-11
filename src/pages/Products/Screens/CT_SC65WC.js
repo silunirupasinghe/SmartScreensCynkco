@@ -16,7 +16,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Button,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -46,19 +45,6 @@ const SpecsHeader = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#fff",
-  color: greenDark,
-  fontFamily: "Poppins, sans-serif",
-  fontWeight: 700,
-  padding: theme.spacing(1.5, 4),
-  borderRadius: "25px",
-  textTransform: "none",
-  "&:hover": {
-    backgroundColor: green,
-    color: "#fff",
-  },
-}));
 
 const CTSC65WCPage = () => {
   const theme = useTheme();
@@ -206,7 +192,8 @@ const CTSC65WCPage = () => {
       <SpecsHeader>
         <Typography
           variant={isMobile ? "h5" : "h4"}
-          sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}
+          
+          sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 ,color:"#"}}
         >
           CYNKCO CT-SC65WC Specifications
         </Typography>

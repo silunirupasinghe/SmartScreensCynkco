@@ -64,19 +64,20 @@ const screens = [
     url: "/products/smart-screens/ct-sc75wc",
   },
   {
-    name: "CT-SC65A",
-    image: CTSC65A,
-    description:
-      "A 65-inch 4K Ultra HD SmartScreen with high-precision touch and wireless screen sharing, great for interactive presentations.",
-    url: "/products/smart-screens/ct-sc65a",
-  },
-  {
     name: "CT-SC86WC",
     image: CTSC86WC,
     description:
       "An 86-inch 4K Ultra HD display with a 48MP camera and high-precision touch, suited for large-scale video conferencing.",
     url: "/products/smart-screens/ct-sc86wc",
   },
+  {
+    name: "CT-SC65A",
+    image: CTSC65A,
+    description:
+      "A 65-inch 4K Ultra HD SmartScreen with high-precision touch and wireless screen sharing, great for interactive presentations.",
+    url: "/products/smart-screens/ct-sc65a",
+  },
+  
   {
     name: "CT-SC75A",
     image: CTSC75A,
@@ -99,7 +100,7 @@ const ScreensPage = () => {
 
   // Log screens to debug image sources
   React.useEffect(() => {
-    console.log("Screens data:", screens);
+    window.scrollTo(0,0);
   }, []);
 
   return (

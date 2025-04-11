@@ -1,21 +1,14 @@
 import React from "react";
-import {
-  Box,
-  Typography,
-  Grid,
-  useTheme,
-  useMediaQuery,
-} from "@mui/material";
+import { Box, Typography, Grid, useTheme, useMediaQuery } from "@mui/material";
 import smartScreen2 from "../../Assets/smartScreen2.jpg";
 
 const HomeSec2 = () => {
   const theme = useTheme();
   const isSmDown = useMediaQuery(theme.breakpoints.down("sm")); // Small screens and below
-  const isMdDown = useMediaQuery(theme.breakpoints.down("md")); // Medium screens and below
 
   const specs = [
-    ["Android 13.0", "8G+128G", "4K UI+ 4K Panel"],
-    ["48MP Camera", "8-array microphone", "2.4G/5G Wifi Module"],
+    ["4K Ultra HD Display", "48MP Camera", "Dual-Band WiFi"],
+    ["8-Array Microphone", "40-Point Touch", "Wireless Sharing"],
   ];
 
   return (
@@ -30,7 +23,7 @@ const HomeSec2 = () => {
         {/* Image Section */}
         <Grid
           item
-          size={{sm:12, md:6, }}
+          size={{ sm: 12, md: 6 }}
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -40,7 +33,7 @@ const HomeSec2 = () => {
           <Box
             component="img"
             src={smartScreen2}
-            alt="Smart Screen"
+            alt="CYNKCO CT-SC65WC Smart Board"
             sx={{
               width: "100%",
               maxWidth: { xs: 300, sm: 450, md: 600 }, // Responsive max-width
@@ -54,11 +47,11 @@ const HomeSec2 = () => {
         {/* Text and Specs Section */}
         <Grid
           item
-          size={{sm:12, md:6, }}
+          size={{ sm: 12, md: 6 }}
           sx={{
             display: "flex",
-            alignItems: "center", 
-            mt:4 // Vertically center content
+            alignItems: "center", // Vertically center content
+            mt: { xs: 4, md: 0 }, // Margin-top on small screens only
           }}
         >
           <Box sx={{ px: { xs: 2, sm: 5, md: 4 } }}>
@@ -75,7 +68,7 @@ const HomeSec2 = () => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              The Ultimate Smart Display
+              Ultimate Collaboration Hub
             </Typography>
 
             <Typography
@@ -87,8 +80,7 @@ const HomeSec2 = () => {
                 lineHeight: 1.5, // Improved readability
               }}
             >
-              The latest series of Horion M6APro interactive touch screen board
-              appearance uses zero fit process.
+              The CYNKCO CT-SC65WC interactive smart board redefines efficiency with its zero-lamination design, delivering smooth writing and vibrant visuals for seamless collaboration.
             </Typography>
 
             {/* Specs Section */}

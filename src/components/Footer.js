@@ -22,13 +22,14 @@ import { styled } from "@mui/system";
 // Theme Colors (aligned with CYNKCO branding)
 const primaryColor = "#24AC4C"; // Green for icons
 const textColor = "#E0E0E0"; // Light gray for text
-const accentColor = "#E91E63"; // Pink for highlights
+
 
 // Styled Footer Container
 const FooterContainer = styled(Box)({
   backgroundColor: "#103B29", // Using your specified dark green
   color: textColor,
   padding: "4rem 0",
+  textAlign:"center"
 });
 
 // Styled Links

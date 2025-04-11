@@ -10,40 +10,45 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
+import CTSC65WC from "../../Assets/Products/Screens/CT-SC65WC.png";
+import accessories from "../../Assets/Home/acc.jpg";
+import Stands from "../../Assets/Home/screen1.png";
 
 const productImages = [
-  "https://via.placeholder.com/300x200.png?text=Product+1",
-  "https://via.placeholder.com/300x200.png?text=Product+2",
-  "https://via.placeholder.com/300x200.png?text=Product+3",
+  "https://via.placeholder.com/300x200.png?text=CT-SC65WC",
+  "https://via.placeholder.com/300x200.png?text=CT-SC75WC",
+  "https://via.placeholder.com/300x200.png?text=CT-VideoWall",
+  "https://via.placeholder.com/300x200.png?text=CT-Accessories",
 ];
 
 function Products() {
+  const greenDark = "#006400";
   const products = [
     {
-      name: "CYNKCO CLASSMATE",
+      name: "Smart Screens",
       description:
-        "4 MP Smart Hybrid Light with ColorVu Fixed Turret Network...",
-      image:
-        "https://vibe.us/blog/advantages-of-interactive-whiteboard/cover_huffa80fae682c771c1add650d0333d320_3937042_1680x0_resize_q90_h2_lanczos_3.9c0e9bee5c0988b98912b635dc7f1e25bb7049e1a13ea701993a695b94a4fb22.webp",
-      isNew: true,
+        "65-inch 4K interactive flat panel with 40-point touch, dual-pen writing, and advanced collaboration tools for seamless productivity.",
+      image: CTSC65WC,
+      link: "/products/smart-screens",
     },
     {
-      name: "DS-2XS6A87G1-L/C32S80(N...",
-      description: "4K ColorVu Fixed Bullet Solar Power 4G Network Camera Kit",
-      image: productImages[1],
-      isNew: false,
+      name: "Stands",
+      description:
+        "Adjustable, sturdy stands designed to support smart screens, offering mobility and ergonomic positioning for versatile use.",
+      image: Stands,
+      link: "/products/smartscreen-stands",
     },
     {
-      name: "DS-2CD2786G2H-LIPTRZS...",
+      name: "Accessories",
       description:
-        "8 MP Smart Hybrid Light with ColorVu Motorized PTRZ Varifoc...",
-      image: productImages[2],
-      isNew: true,
+        "Essential add-ons including stylus pens, wall mounts, and connectivity cables to enhance your smart screen experience.",
+      image: accessories,
+      link: "/products/accessories",
     },
   ];
 
   return (
-    <Box sx={{ py:2 }}>
+    <Box sx={{ py: 2 }}>
       <Container>
         <Typography
           variant="h2"
@@ -54,7 +59,7 @@ function Products() {
             textAlign: "center",
             fontSize: { xs: "1.5rem", sm: "2rem", md: "2.4rem" },
             lineHeight: 1.3,
-            background: 'linear-gradient(45deg, #006400, #0D47A1 )',
+            background: "linear-gradient(45deg, #006400, #0D47A1)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
@@ -68,36 +73,16 @@ function Products() {
               <Card
                 sx={{
                   position: "relative",
-                  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+                  border: `1px solid ${greenDark}`,
                   borderRadius: "12px",
                   overflow: "hidden",
                   width: 300,
-                  height: 400,
+                  height: 400, // Fixed height for the card
                   bgcolor: "#FFFFFF",
+                  display: "flex",
+                  flexDirection: "column", // Make card a flex container
                 }}
               >
-                {/* NEW badge */}
-                {product.isNew && (
-                  <Box
-                    sx={{
-                      position: "absolute",
-                      top: 8,
-                      left: 8,
-                      bgcolor: "#24AC4C",
-                      color: "#FFFFFF",
-                      px: 1.2,
-                      py: 0.4,
-                      fontSize: "0.75rem",
-                      fontWeight: "bold",
-                      borderRadius: "4px",
-                      zIndex: 2,
-                      fontFamily: "Roboto, sans-serif",
-                    }}
-                  >
-                    NEW
-                  </Box>
-                )}
-
                 <CardMedia
                   component="img"
                   height="200"
@@ -113,44 +98,61 @@ function Products() {
                   }}
                 />
 
-                <CardContent sx={{ textAlign: "left" }}>
-                  <Typography
-                    variant="subtitle1"
-                    sx={{
-                      fontFamily: "Poppins, sans-serif",
-                      fontWeight: 600,
-                      color: "#1D6B44",
-                      mb: 1,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {product.name}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      fontFamily: "Roboto, sans-serif",
-                      color: "#757575",
-                      mb: 2,
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {product.description}
-                  </Typography>
+                <CardContent
+                  sx={{
+                    textAlign: "left",
+                    flex: 1, // Allow CardContent to take remaining space
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between", // Push content and button apart
+                    p: 2,
+                  }}
+                >
+                  <Box>
+                    <Typography
+                      variant="subtitle1"
+                      sx={{
+                        fontFamily: "Poppins, sans-serif",
+                        fontWeight: 600,
+                        color: "#1D6B44",
+                        mb: 1,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {product.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        fontFamily: "Roboto, sans-serif",
+                        color: "#757575",
+                        mb: 2,
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3, // Limit to 3 lines
+                        WebkitBoxOrient: "vertical",
+                        flexGrow: 1, // Allow description to take available space
+                      }}
+                    >
+                      {product.description}
+                    </Typography>
+                  </Box>
                   <Button
+                    component={Link}
+                    to={product.link}
                     sx={{
-                      backgroundColor: "#24AC4C",
+                      backgroundColor: "#006400",
                       color: "#FFFFFF",
                       textTransform: "none",
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 500,
                       "&:hover": {
-                        backgroundColor: "#9DD338",
+                        backgroundColor: "#24AC4C",
                       },
+                      alignSelf: "flex-start", // Align button to the left
                     }}
                   >
                     More
@@ -161,23 +163,7 @@ function Products() {
           ))}
         </Grid>
 
-        {/* View All Button */}
-        <Box sx={{ textAlign: "right", mt: 4 }}>
-          <Button
-            component={Link}
-            to="/products"
-            sx={{
-              fontFamily: "Poppins, sans-serif",
-              color: "#1D6B44",
-              textTransform: "none",
-              fontWeight: 600,
-              "&:hover": { color: "#28C96B" },
-            }}
-            endIcon={<Box component="span">→</Box>}
-          >
-            View All
-          </Button>
-        </Box>
+       
       </Container>
     </Box>
   );

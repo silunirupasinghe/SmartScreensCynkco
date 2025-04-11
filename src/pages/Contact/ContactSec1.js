@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Button, Container, Stack } from "@mui/material";
+import { Box, Typography, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import heroImage from "../../Assets/hero.jpg"
 

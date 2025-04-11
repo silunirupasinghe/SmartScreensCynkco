@@ -16,7 +16,6 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
-  Button,
   useMediaQuery,
   useTheme, // Added useTheme import
 } from "@mui/material";
@@ -47,25 +46,11 @@ const SpecsHeader = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
 }));
 
-const StyledButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#fff",
-  color: greenDark,
-  fontFamily: "Poppins, sans-serif",
-  fontWeight: 700,
-  padding: theme.spacing(1.5, 4),
-  borderRadius: "25px",
-  textTransform: "none",
-  "&:hover": {
-    backgroundColor: green,
-    color: "#fff",
-  },
-}));
 
 const CTSC65APage = () => {
   const theme = useTheme(); // Define theme using useTheme hook
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
-
+  
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);

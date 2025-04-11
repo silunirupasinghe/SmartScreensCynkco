@@ -38,27 +38,27 @@ const SectionContent = styled(Typography)(({ theme }) => ({
 
 const solutions = [
   {
-    title: "Education Sector: Transforming Learning with Smart Whiteboards",
+    title: "Education Sector: Transforming Learning with Interactive Smart Boards",
     description:
-      "more interactive and engaging. Designed for schools, universities, and training institutions, our interactive flat panels (IFPs) support multimedia presentations and enable real-time collaboration. Teachers can display educational content, conduct interactive lessons, and allow students to participate by solving problems or drawing diagrams directly on the whiteboard. With Google EDLA certification, educators gain access to a vast array of educational resources, while multi-touch technology (supporting up to 10-point touch) allows multiple students to interact simultaneously, fostering group discussions. The M6A PRO’s ultra-high-definition display ensures vibrant visuals, making complex concepts easier to understand. CYNKCO whiteboards enhance teaching effectiveness, boost student participation, and create a dynamic, technology-driven learning environment.",
+      "Interactive smart boards revolutionize education by enhancing lesson efficiency through dynamic interactivity. Designed for schools and universities, these devices feature high-quality displays that ensure clear visuals for all students. Multi-user touch capabilities allow simultaneous collaboration, enabling students to solve problems or annotate diagrams together, saving time and boosting engagement. Writing tools with multiple input options streamline group discussions, while wireless connectivity provides instant access to digital resources, reducing preparation time. Eye-friendly features like glare reduction improve focus during long sessions, creating a technology-driven environment that maximizes teaching efficiency and student participation.",
     image: educationImg,
   },
   {
-    title: "Medical Sector: Enhancing Healthcare with Digital Patient Whiteboards",
+    title: "Healthcare Sector: Enhancing Healthcare with Digital Smart Boards",
     description:
-      "In healthcare, CYNKCO electronic patient whiteboards streamline operations and improve communication between medical professionals and patients. Integrated with Hospital Information Systems (HIS), the M6A PRO provides nurses with a clear overview of patient beds, surgery schedules, and real-time alerts, improving the efficiency and accuracy of medical services. In operating rooms, surgeons can display imaging data such as CT scans and MRIs, annotate surgical plans, and access electronic medical records instantly, ensuring precision during procedures. The whiteboard’s recording function allows the surgical process to be saved for analysis and training. For cosmetic surgery institutions, CYNKCO IFPs enable seamless collaboration by allowing surgeons to brief teams, draw key points, and conduct remote consultations via video conferencing. With Dual WiFi and Android 13.0, CYNKCO whiteboards support medical informatization, simplify information exchange, and improve patient outcomes by fostering better communication in healthcare settings.",
+      "In healthcare, smart boards improve operational efficiency by integrating seamlessly with medical systems to display real-time patient data, schedules, and imaging. High-precision touch functionality allows staff to annotate plans quickly and accurately, minimizing delays in decision-making. Built-in audiovisual tools enable remote consultations, reducing the need for in-person meetings and speeding up collaboration across locations. Clear, adjustable displays ensure visibility in varied lighting, while compatibility with healthcare apps streamlines workflows, enhancing communication and patient care efficiency in busy hospitals and clinics.",
     image: medicalImg,
   },
   {
-    title: "Business Sector: Elevating Operations with Commercial Digital Screens",
+    title: "Business Sector: Elevating Operations with Digital Smart Boards",
     description:
-      "CYNKCO smartboards, such as the M6A PRO, are the ideal solution for modern enterprises, hospitality displays, and the catering industry. Our commercial digital screens deliver ultra-high-definition resolution and vibrant colors, ensuring crystal-clear visuals that enhance brand image and customer experience. These screens feature interactive touch capabilities and support multiple input and output interfaces, making them perfect for presentations, advertising, and customer engagement. In financial institutions, CYNKCO digital signage systems transform bank halls by replacing outdated paper posters with dynamic displays that combine video, images, and real-time data. Customers can access financial product information, market trends, and personalized recommendations, improving service efficiency and customer experience. CYNKCO screens are built for durability and stability, reducing maintenance costs and downtime, making them a reliable choice for businesses aiming to achieve digital transformation and market competitiveness.",
+      "Smart boards elevate business efficiency in retail, hospitality, and finance by delivering vibrant, dynamic content for presentations and customer engagement. Interactive touch features enable real-time interaction with clients, speeding up service delivery and feedback. Connectivity with multiple devices ensures quick integration of data and visuals, while network sharing allows instant updates to displays, eliminating manual adjustments. Durable designs reduce downtime and maintenance, ensuring consistent performance that enhances operational efficiency and strengthens brand presence in competitive markets.",
     image: retailImg,
   },
   {
     title: "Meeting Room Solutions: Seamless Collaboration for Teams",
     description:
-      "CYNKCO interactive whiteboards, like the M6A PRO, are essential for modern meeting rooms, enabling dynamic presentations, real-time collaboration, and seamless data sharing. With Google EDLA certification and Android 13.0, our smartboards support video conferencing and remote collaboration, allowing teams to connect with remote participants worldwide for uninterrupted collaboration. The multi-touch technology enables multiple users to annotate and discuss simultaneously, making meetings more engaging and productive. The M6A PRO integrates with various charts and data presentation tools, ideal for business reports and market analysis, facilitating data-driven decision-making. In exhibition halls, CYNKCO digital whiteboards can be interconnected with video walls to create immersive displays. Whether in corporate offices or government settings, CYNKCO meeting room solutions boost productivity, enhance communication, and streamline information sharing, ensuring every meeting is effective and impactful.",
+      "Smart boards transform meeting rooms into efficient collaboration hubs with tools that streamline teamwork. High-accuracy touch and multi-user input options allow real-time annotations by multiple participants, accelerating brainstorming and decision-making. Audiovisual features support clear video conferencing, minimizing communication delays for remote teams. Wireless data sharing and integration with business tools enable quick access to reports and visuals, reducing setup time. Sleek, reliable designs ensure uninterrupted sessions, boosting productivity and communication efficiency in corporate and government settings.",
     image: meetingImg,
   },
 ];
@@ -74,14 +74,7 @@ const SolutionSec2 = () => {
           {/* Main Header */}
           <Box sx={{ textAlign: "center", my: { xs: 2, sm: 3, md: 4 } }}>
             <SectionContent sx={{ my: { xs: 2, sm: 4, md: 8 } }}>
-              CYNKCO interactive whiteboards, such as the M6A PRO, are designed
-              to revolutionize collaboration, communication, and engagement
-              across multiple sectors. With Google EDLA certification, Android
-              13.0, and Dual WiFi capabilities, CYNKCO provides cutting-edge
-              technology to meet the needs of education, healthcare, business,
-              and meeting room environments. Our solutions offer seamless
-              integration, superior display quality, and versatile applications
-              to enhance productivity and user experience in every setting.
+              Interactive <strong>smart boards</strong> are engineered to enhance collaboration, communication, and productivity across diverse sectors. With advanced displays, multi-user interactivity, and seamless connectivity, these <strong>smart boards</strong> streamline workflows and deliver efficient solutions for education, healthcare, business, and meeting rooms, meeting the demands of modern environments with cutting-edge technology.
             </SectionContent>
           </Box>
 
@@ -111,7 +104,7 @@ const SolutionSec2 = () => {
                 {/* Image Section */}
                 <Grid
                   item
-                  size={{sm:12, md:6}}
+                  size={{ sm: 12, md: 6 }}
                   sx={{ display: "flex", justifyContent: "center" }}
                 >
                   <Box
@@ -131,7 +124,7 @@ const SolutionSec2 = () => {
                 {/* Description Section */}
                 <Grid
                   item
-                  size={{sm:12, md:6}}
+                  size={{ sm: 12, md: 6 }}
                   sx={{
                     display: "flex",
                     alignItems: "center",
@@ -161,9 +154,8 @@ const SolutionSec2 = () => {
                         textAlign: { xs: "justify", md: "justify" },
                         lineHeight: 1.5,
                       }}
-                    >
-                      {solution.description}
-                    </Typography>
+                      dangerouslySetInnerHTML={{ __html: solution.description }} // Render HTML for bold smart boards
+                    />
                   </Box>
                 </Grid>
               </Grid>
@@ -172,7 +164,7 @@ const SolutionSec2 = () => {
         </Container>
       </SolutionsSection>
 
-      {/* Why Choose CYNKCO Section */}
+      {/* Why Choose Smart Boards Section */}
       <Box
         sx={{
           textAlign: "center",
@@ -182,7 +174,7 @@ const SolutionSec2 = () => {
         }}
       >
         <SectionHeader variant="h4" sx={{ mb: { xs: 1, sm: 2 } }}>
-          Why Choose CYNKCO?
+          Why Choose Smart Boards?
         </SectionHeader>
         <Box
           sx={{
@@ -193,19 +185,19 @@ const SolutionSec2 = () => {
         >
           {[
             {
-              text: "- <strong>Superior Display Quality:</strong> CYNKCO utilizes cutting-edge display technology to deliver ultra-high-definition resolution and vibrant colors, ensuring every detail is crystal clear.",
+              text: "- <strong>Enhanced Visual Clarity:</strong> High-quality displays with glare reduction ensure clear visibility, speeding up comprehension and reducing time spent adjusting for lighting conditions.",
             },
             {
-              text: "- <strong>Versatile Applications:</strong> From education and healthcare to business and meeting rooms, our solutions support a wide range of scenarios with interactive touch capabilities and multiple content formats.",
+              text: "- <strong>Streamlined Collaboration:</strong> Multi-user touch and writing tools enable simultaneous input, accelerating group tasks and decision-making across industries.",
             },
             {
-              text: "- <strong>Seamless Integration:</strong> CYNKCO whiteboards, with Google EDLA certification and Android 13.0, integrate with existing systems like HIS, EMRs, and financial platforms, ensuring real-time updates and efficient workflows.",
+              text: "- <strong>Efficient Integration:</strong> Seamless connectivity with devices and software minimizes setup time, ensuring quick access to resources and smooth workflows.",
             },
             {
-              text: "- Concurrent operation in various environments with minimal maintenance.",
+              text: "- <strong>Long-Term Reliability:</strong> Durable designs reduce downtime and maintenance, providing consistent performance that enhances operational efficiency.",
             },
             {
-              text: "- <strong>Global Collaboration:</strong> With Dual WiFi and video conferencing features, CYNKCO breaks geographical barriers, enabling teams to work together seamlessly from anywhere in the world.",
+              text: "- <strong>Improved Remote Interaction:</strong> Audiovisual tools facilitate fast, clear communication with remote participants, cutting delays and boosting teamwork efficiency.",
             },
           ].map((item, index) => (
             <Typography

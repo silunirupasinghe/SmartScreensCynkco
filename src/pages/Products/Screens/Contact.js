@@ -55,7 +55,10 @@ function Contact() {
         }}
       >
         Contact us for more information or inquiries at{" "}
-        <a href="tel:+1-800-555-1234" style={{ color: "#fff", textDecoration: "underline" }}>
+        <a
+          href="tel:+1-800-555-1234"
+          style={{ color: "#fff", textDecoration: "underline" }}
+        >
           +1-800-555-1234
         </a>
       </Typography>
