@@ -14,12 +14,6 @@ import CTSC65WC from "../../Assets/Products/Screens/CT-SC65WC.png";
 import accessories from "../../Assets/Home/acc.jpg";
 import Stands from "../../Assets/Home/screen1.png";
 
-const productImages = [
-  "https://via.placeholder.com/300x200.png?text=CT-SC65WC",
-  "https://via.placeholder.com/300x200.png?text=CT-SC75WC",
-  "https://via.placeholder.com/300x200.png?text=CT-VideoWall",
-  "https://via.placeholder.com/300x200.png?text=CT-Accessories",
-];
 
 function Products() {
   const greenDark = "#006400";

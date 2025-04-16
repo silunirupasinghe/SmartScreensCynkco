@@ -45,7 +45,6 @@ const SpecsHeader = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
 }));
 
-
 const CTSC65WCPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
@@ -55,54 +54,86 @@ const CTSC65WCPage = () => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);
 
-  // Technical Specs Data from CT-SC65WC
+  // Technical Specs Data (updated to include all details from PDF)
   const specsData = [
     {
       label: "Display",
       value:
-        '65" IPS, 3840x2160, 350 cd/m², 1200:1 contrast, 178° viewing angle',
+        '65" IPS, 3840x2160 resolution, 1430.48(H) × 803.52(V) mm display size, 0.372 × 0.372 mm pixel pitch, 350 cd/m² brightness, 1200:1 contrast, 178° viewing angle, 60Hz refresh, 1.07B (10bit) colors, 72% NTSC color gamut, DLED backlight, ≥30,000 hours lifespan, 8ms response time',
     },
     {
       label: "Touch",
       value:
-        "40-point infrared, ±1mm accuracy, ≤7ms response, dual-pen support",
+        "40-point infrared recognition, passive infrared pen input, ±1mm accuracy, 2mm minimum recognition object, ≤2.5mm writing height, dual-pen dual-color support, 32768(W) × 32768(D) output coordinates, ≤7ms response, supports Windows 10/8/7/XP, Android, Linux, Mac OS X, Chrome",
     },
-    { label: "Audio", value: "2x15W speakers, 8-array mic (0-8m pickup)" },
-    { label: "Camera", value: "48MP, auto-focus, top-center mounted" },
+    {
+      label: "Audio",
+      value: "2x15W speakers (2.0 sound track), located at bottom and back side, 8-array mic (0-8m pickup)",
+    },
+    {
+      label: "Camera",
+      value: "1 camera, 48MP, auto-focus, top-center mounted (upper border center)",
+    },
     {
       label: "Connectivity",
       value:
-        "HDMI IN (2), USB 3.0 (1), USB 2.0 (3), USB-C (1), RS232, RJ45 (100Gb)",
+        "HDMI IN (2), USB 3.0 (1, on-board), USB 2.0 (3, including 2 front), USB-C (1), TOUCH 2.0 (1), Mini MIC IN (1), OPTICAL OUT (1), Mini LINE OUT (1), RS232 (1), RJ45 IN (1, 100Gb Ethernet), supports USB switching with channel, HDMI/RS232 & network signal input in standby mode, network sharing",
     },
     {
       label: "System",
-      value: "Android 11.0, Quad-core A55 CPU, 4GB RAM, 32GB ROM",
+      value:
+        "Android 11.0, Quad-core A55 CPU, MaliG52MP2 GPU, 4GB RAM, 32GB ROM",
     },
-    { label: "Power", value: "180W max, ≤0.5W standby, 100-240V" },
-    { label: "Dimensions", value: "1485 x 905.5 x 88.4 mm, 36 kg" },
-    { label: "Accessories", value: "Power cord, 2 styluses, wall mount" },
+    {
+      label: "Power",
+      value: "180W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5A, power connector at bottom",
+    },
+    {
+      label: "Dimensions & Weight",
+      value: "1485 x 905.5 x 88.4 mm (machine size), 110.4 mm thickness (without wall plate), 1647 x 267 x 1132.5 mm (package size), 500 x 400 mm VESA, M8 x 25 mm wall mounting screws, 36 kg net weight, 51 kg gross weight",
+    },
+    {
+      label: "Accessories",
+      value: "Power cord (1), 2 styluses (magnetic attachment support), wall mount (1)",
+    },
+    {
+      label: "Environmental",
+      value:
+        "Operating: 0°C ~ 40°C, 10% ~ 90% RH; Storage: -20°C ~ 60°C, 10% ~ 90% RH; Working height: Less than 5000 meters",
+    },
+    {
+      label: "Standard Modules",
+      value: "PC Module: OPS62A",
+    },
+    {
+      label: "Components",
+      value: "On/Off button (bottom)",
+    },
   ];
 
-  // Key Features for Overview
+  // Key Features (updated to include all features from PDF)
   const keyFeatures = [
-    "ALL-IN-ONE design",
-    "Android 11.0",
+    "ALL-IN-ONE Design with Ultra-narrow Bezel and Simple Appearance",
+    "Android 11.0 Operating System",
     "48MP Built-in Camera",
     "8-array Microphone",
-    "4K Ultra HD Display",
-    "Dual-pen, Dual-color Writing",
-    "Wireless Screen Sharing",
-    "Anti-glare Tempered Glass",
+    "4K Ultra HD Display with Full-channel 4K UI",
+    "Dual-pen, Dual-color Writing for Multi-people Collaboration",
+    "Wireless Screen Sharing with Network Sharing Support",
+    "3mm Anti-glare Tempered Glass with High Haze OC, Anti-ambient Light Interference",
+    "Hotspot Dual-band 2.4G/5G, AP+STA Mode",
+    "Light-sensitive Brightness Adjustment with DC Dimming (Eye-care Display)",
+    "±1mm High-precision Infrared Touch, Smooth Writing",
   ];
 
-  // Introduction Points
+  // Introduction Points (updated to include all relevant points)
   const introductionPoints = [
     "Professional conferencing solution with advanced AV capabilities",
-    "Fit to All Rooms",
+    "Fit to All Rooms with Zero-lamination Process for Low Parallax Writing and Wider Viewing Angle",
     "One-Stop Collaboration Solution",
   ];
 
-  // Keywords for Chips
+  // Keywords for Chips (updated to reflect all CT-SC65WC features)
   const keywords = [
     "Smart Collaboration Whiteboard",
     "High-Resolution Display",
@@ -110,6 +141,16 @@ const CTSC65WCPage = () => {
     "Eco-Friendly Design",
     "Seamless Connectivity",
     "Professional AV Experience",
+    "Anti-glare Glass",
+    "Eye-care Display",
+    "Infrared Touch",
+  ];
+
+  // Product Notes (from Page 8 of PDF)
+  const productNotes = [
+    "Subject to the product configuration and manufacturing process, the actual body size/weight may vary, please refer to the actual object.",
+    "Product images in this specification are for illustrative purposes only, the actual product effects (including but not limited to appearance, color, size) may vary slightly, please refer to the actual product.",
+    "Specifications may be adjusted and revised in real-time to match actual product performance, with no special notice provided.",
   ];
 
   return (
@@ -131,7 +172,7 @@ const CTSC65WCPage = () => {
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography
-              variant={isMobile ? "h4" : "h3" }
+              variant={isMobile ? "h4" : "h3"}
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
@@ -192,8 +233,7 @@ const CTSC65WCPage = () => {
       <SpecsHeader>
         <Typography
           variant={isMobile ? "h5" : "h4"}
-          
-          sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 ,color:"#"}}
+          sx={{ fontFamily: "Poppins, sans-serif", fontWeight: 700 }}
         >
           CYNKCO CT-SC65WC Specifications
         </Typography>
@@ -380,6 +420,38 @@ const CTSC65WCPage = () => {
               </TableBody>
             </Table>
           </TableContainer>
+
+          {/* Product Notes Section */}
+          <Typography
+            variant={isMobile ? "h6" : "h5"}
+            sx={{
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 700,
+              color: "#1F2937",
+              borderBottom: `1px solid ${greenDark}`,
+              pb: 2,
+              mt: isMobile ? 4 : 6,
+              mb: 4,
+              textAlign: isMobile ? "center" : "left",
+            }}
+          >
+            Product Notes
+          </Typography>
+          <Box>
+            {productNotes.map((note, index) => (
+              <Typography
+                key={index}
+                sx={{
+                  fontFamily: "Roboto, sans-serif",
+                  color: "#374151",
+                  fontSize: isMobile ? "0.85rem" : "1rem",
+                  mb: 1,
+                }}
+              >
+                - {note}
+              </Typography>
+            ))}
+          </Box>
         </Paper>
 
         <Contact />

@@ -5,7 +5,7 @@ import { styled } from "@mui/material/styles";
 import medicalImg from "../../Assets/Home/hospital.jpg";
 import meetingImg from "../../Assets/Home/meeting.jpg";
 import educationImg from "../../Assets/Home/classroom.jpeg";
-import retailImg from "../../Assets/Home/retail.jpg";
+import retailImg from "../../Assets/Home/store.jpg";
 
 // Styled component for the section with gradient background
 const SolutionsSection = styled(Box)(({ theme }) => ({

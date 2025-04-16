@@ -26,7 +26,6 @@ import "@fontsource/poppins/700.css"; // Bold for headings
 import "@fontsource/roboto/400.css"; // Regular for body text
 import Contact from "./Contact";
 
-// Note: Update this path to the correct CT-SC75A image
 import CTSC75A from "../../../Assets/Products/Screens/CT-SC75A.png";
 
 // Theme Colors
@@ -46,7 +45,6 @@ const SpecsHeader = styled(Box)(({ theme }) => ({
   padding: theme.spacing(3),
 }));
 
-
 const CTSC75APage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
@@ -56,19 +54,22 @@ const CTSC75APage = () => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);
 
-  // Technical Specs Data from CT-SC75A PDF
+  // Technical Specs Data (updated to include all details from PDF)
   const specsData = [
     {
       label: "Display",
       value:
-        '75" IPS, 3840x2160, 350 cd/m², 1200:1 contrast, 178° viewing angle, 60Hz refresh',
+        '75" IPS, 3840x2160 resolution, 1647.66(H) × 925.93(V) mm display size, 0.4296 × 0.4296 mm pixel pitch, 350 cd/m² brightness, 1200:1 contrast, 178° viewing angle, 60Hz refresh, 1.07B (10bit) colors, 72% NTSC color gamut, DLED backlight, ≥30,000 hours lifespan, 8ms response time',
     },
     {
       label: "Touch",
       value:
-        "40-point infrared, ±1mm accuracy, ≤7ms response, dual-pen dual-color support",
+        "40-point infrared recognition, passive infrared pen input, ±1mm accuracy, 2mm minimum recognition object, ≤2.5mm writing height, dual-pen dual-color support, 32768(W) × 32768(D) output coordinates, ≤7ms response, supports Windows 10/8/7/XP, Android, Linux, Mac OS X, Chrome",
     },
-    { label: "Audio", value: "2x15W speakers (2.0 sound track)" },
+    {
+      label: "Audio",
+      value: "2x15W speakers (2.0 sound track), located at back side",
+    },
     {
       label: "System",
       value:
@@ -77,44 +78,56 @@ const CTSC75APage = () => {
     {
       label: "Connectivity",
       value:
-        "HDMI IN (2), USB 3.0 (1), USB 2.0 (3), USB-C (1), TOUCH 2.0 (1), MIC IN (1), OPTICAL OUT (1), LINE OUT (1), RS232 (1), RJ45 IN (1)",
+        "HDMI IN (2), USB 3.0 (1, on-board), USB 2.0 (3, including 2 front), USB-C (1), TOUCH 2.0 (1), Mini MIC IN (1), OPTICAL OUT (1), Mini LINE OUT (1), RS232 (1), RJ45 IN (1), supports USB switching with channel",
     },
     {
       label: "Power",
-      value: "260W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5.5A",
+      value: "260W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5.5A, power connector at bottom",
     },
     {
-      label: "Dimensions",
-      value: "1707 x 1014.5 x 88.4 mm (without wall plate), 50 kg",
+      label: "Dimensions & Weight",
+      value: "1707 x 1014.5 x 88.4 mm (machine size), 110.4 mm thickness (without wall plate), 1869 x 267 x 1256 mm (package size), 600 x 400 mm VESA, M8 x 25 mm wall mounting screws, 50 kg net weight, 64.5 kg gross weight",
     },
-    { label: "Accessories", value: "Power cord (1), 2 styluses, wall mount" },
+    {
+      label: "Accessories",
+      value: "Power cord (1), 2 styluses (magnetic attachment support), wall mount (1)",
+    },
     {
       label: "Environmental",
       value:
-        "Operating: 0°C ~ 40°C, 10% ~ 90% RH; Storage: -20°C ~ 60°C, 10% ~ 90% RH",
+        "Operating: 0°C ~ 40°C, 10% ~ 90% RH; Storage: -20°C ~ 60°C, 10% ~ 90% RH; Working height: Below 5000 meters",
+    },
+    {
+      label: "Standard Modules",
+      value: "PC Module: OPS62A",
+    },
+    {
+      label: "Components",
+      value: "On/Off button (bottom), Camera (top)",
     },
   ];
 
-  // Key Features for Overview (derived from PDF)
+  // Key Features (updated to include all features from PDF)
   const keyFeatures = [
-    "Ultra-narrow Bezel Design",
-    "Android 11.0",
-    "4K Ultra HD Display",
-    "Dual-pen, Dual-color Writing",
+    "Ultra-narrow Bezel Design with Simple Appearance",
+    "Android 11.0 Operating System",
+    "4K Ultra HD Display with Full-channel 4K UI",
+    "Dual-pen, Dual-color Writing for Multi-people Collaboration",
     "Wireless Screen Sharing",
-    "Anti-glare Tempered Glass",
-    "Hotspot Dual-band 2.4G/5G",
-    "Light-sensitive Brightness Adjustment",
+    "3mm Anti-glare Tempered Glass with High Haze OC, Anti-ambient Light Interference",
+    "Hotspot Dual-band 2.4G/5G, AP+STA Mode",
+    "Light-sensitive Brightness Adjustment with DC Dimming (Eye-care Display)",
+    "±1mm High-precision Infrared Touch, Smooth Writing",
   ];
 
-  // Introduction Points (derived from PDF)
+  // Introduction Points (updated to include all relevant points)
   const introductionPoints = [
     "Advanced interactive display for professional collaboration",
-    "Zero-lamination process for low parallax writing",
+    "Zero-lamination process for low parallax writing and wider viewing angle",
     "High-precision infrared touch technology",
   ];
 
-  // Keywords for Chips (updated to reflect CT-SC75A features)
+  // Keywords for Chips (updated to reflect all CT-SC75A features)
   const keywords = [
     "Interactive Whiteboard",
     "Ultra-narrow Bezel",
@@ -124,6 +137,14 @@ const CTSC75APage = () => {
     "Dual-band Hotspot",
     "Eye-care Display",
     "Seamless Collaboration",
+    "Anti-glare Glass",
+  ];
+
+  // Product Notes (from Page 7 of PDF)
+  const productNotes = [
+    "Affected by the product configuration and manufacturing process, the actual body size/weight may vary, please prevail in kind.",
+    "Product images in this specification are for illustrative purposes only, the actual product effects (including but not limited to appearance, color, size) may vary slightly, please prevail in kind.",
+    "Specifications may be adjusted and revised in real-time to match actual product performance, with no special notice provided.",
   ];
 
   return (
@@ -145,7 +166,7 @@ const CTSC75APage = () => {
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography
-              variant={isMobile ? "h4" :  "h3" }
+              variant={isMobile ? "h4" : "h3"}
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
@@ -170,7 +191,7 @@ const CTSC75APage = () => {
                 textAlign: isMobile ? "center" : "left",
               }}
             >
-              Android
+              Android/Windows
             </Typography>
             <Box
               sx={{
@@ -393,6 +414,38 @@ const CTSC75APage = () => {
               </TableBody>
             </Table>
           </TableContainer>
+
+          {/* Product Notes Section */}
+          <Typography
+            variant={isMobile ? "h6" : "h5"}
+            sx={{
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 700,
+              color: "#1F2937",
+              borderBottom: `1px solid ${greenDark}`,
+              pb: 2,
+              mt: isMobile ? 4 : 6,
+              mb: 4,
+              textAlign: isMobile ? "center" : "left",
+            }}
+          >
+            Product Notes
+          </Typography>
+          <Box>
+            {productNotes.map((note, index) => (
+              <Typography
+                key={index}
+                sx={{
+                  fontFamily: "Roboto, sans-serif",
+                  color: "#374151",
+                  fontSize: isMobile ? "0.85rem" : "1rem",
+                  mb: 1,
+                }}
+              >
+                - {note}
+              </Typography>
+            ))}
+          </Box>
         </Paper>
 
         <Contact />

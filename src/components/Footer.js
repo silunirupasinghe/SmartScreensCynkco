@@ -25,10 +25,13 @@ const textColor = "#E0E0E0"; // Light gray for text
 
 // Styled Footer Container
 const FooterContainer = styled(Box)({
-  backgroundColor: "#103B29", // Using your specified dark green
+  backgroundColor: "#103B29", // Dark green
   color: textColor,
-  padding: "4rem 0",
-  textAlign: "center",
+  padding: "2rem 0",
+  display: "flex", // Add flexbox for vertical centering
+  flexDirection: "column",
+  alignItems: "center", // Center content horizontally
+  minHeight: "100%", // Ensure it takes full height if needed
 });
 
 // Styled Links
@@ -41,7 +44,20 @@ const FooterLink = styled(Link)({
   fontWeight: "400",
   transition: "color 0.3s",
   "&:hover": {
-    color: primaryColor, // Green on hover (corrected from your comment)
+    color: primaryColor,
+    textDecoration: "underline",
+  },
+});
+
+// Styled External Link for "Developed by"
+const ExternalLink = styled("a")({
+  color: textColor,
+  textDecoration: "none",
+  fontSize: "0.75rem",
+  fontWeight: "400",
+  transition: "color 0.3s",
+  "&:hover": {
+    color: primaryColor,
     textDecoration: "underline",
   },
 });
@@ -54,7 +70,7 @@ const SocialIconButton = styled(IconButton)(({ bg }) => ({
   transition: "transform 0.3s ease-in-out",
   "&:hover": {
     transform: "scale(1.1)",
-    backgroundColor: primaryColor, // Hover turns to green
+    backgroundColor: primaryColor,
   },
 }));
 
@@ -62,7 +78,11 @@ const Footer = () => {
   return (
     <FooterContainer>
       <Container maxWidth="lg">
-        <Grid container spacing={5}>
+        <Grid
+          container
+          spacing={5}
+          justifyContent="center" // Center grid items horizontally
+        >
           {/* Company Info */}
           <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
@@ -114,7 +134,7 @@ const Footer = () => {
           </Grid>
 
           {/* Contact Info & Social Media */}
-          <Grid item size={{ xs: 12, sm: 6, md: 3 }} sx={{alignContent:"center"}}>
+          <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Contact Us
             </Typography>
@@ -132,33 +152,27 @@ const Footer = () => {
               <Email sx={{ color: primaryColor, mr: 1 }} />
               <Typography variant="body2">support@cynkco.com</Typography>
             </Box>
-
-            {/* Social Media */}
-            {/* <Box mt={3} display="flex">
-              <SocialIconButton bg="#3b5998">
-                <Facebook />
-              </SocialIconButton>
-              <SocialIconButton bg="#1DA1F2">
-                <Twitter />
-              </SocialIconButton>
-              <SocialIconButton bg="#0077b5">
-                <LinkedIn />
-              </SocialIconButton>
-              <SocialIconButton bg="#E4405F">
-                <Instagram />
-              </SocialIconButton>
-            </Box> */}
           </Grid>
         </Grid>
 
         {/* Divider */}
-        <Divider sx={{ my: 4, borderColor: "rgba(255, 255, 255, 0.2)" }} />
+        <Divider sx={{ my: 2, borderColor: "rgba(255, 255, 255, 0.2)" }} />
 
         {/* Copyright Notice */}
         <Box textAlign="center">
           <Typography variant="body2">
-            © {new Date().getFullYear()} CYNKCO Technologies (Pvt) Ltd. All
-            Rights Reserved.
+            © {new Date().getFullYear()} Connex Information Technology (Pvt) Ltd.
+            All Rights Reserved.
+          </Typography>
+          <Typography variant="body2" sx={{ mt: 1 }}>
+            Developed by{" "}
+            <ExternalLink
+              href="https://www.connexcodeworks.biz/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Connex Codeworks
+            </ExternalLink>
           </Typography>
         </Box>
       </Container>

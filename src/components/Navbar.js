@@ -58,7 +58,6 @@ const screens = [
     image: CTSC65A,
     url: "/products/smart-screens/ct-sc65a",
   },
-  
   {
     name: "CT-SC75A",
     image: CTSC75A,
@@ -92,7 +91,7 @@ function Navbar() {
       ],
     },
     { label: "Solutions", path: "/solutions" },
-    { label: "Contact Us", path: "/contact" },
+    { label: "Contact", path: "/contact" },
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -123,7 +122,7 @@ function Navbar() {
               onClick={
                 item.subcategories
                   ? () => setProductsOpen(!productsOpen)
-                  : undefined
+                  : handleDrawerToggle
               }
               component={item.subcategories ? "div" : Link}
               to={item.subcategories ? undefined : item.path}
@@ -147,8 +146,10 @@ function Navbar() {
                       to={sub.path}
                       onClick={
                         sub.label === "Smart Screens"
-                          ? handleSmartScreensClick
-                          : undefined
+                          ? () => {
+                              handleSmartScreensClick();
+                            }
+                          : handleDrawerToggle
                       }
                       sx={{
                         pl: 4,
@@ -180,7 +181,10 @@ function Navbar() {
             button
             component={Link}
             to={screen.url}
-            onClick={() => setSmartScreensOpen(false)}
+            onClick={() => {
+              setSmartScreensOpen(false);
+              setMobileOpen(false); // Close the main mobile drawer as well
+            }}
             sx={{
               display: "flex",
               alignItems: "center",
