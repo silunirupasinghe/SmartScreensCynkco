@@ -32,11 +32,11 @@ function Products() {
       link: "/products/smart-screens",
     },
     {
-      name: "Stands",
+      name: "Screen Stands",
       description:
         "Adjustable, sturdy stands designed to support smart screens, offering mobility and ergonomic positioning for versatile use.",
       image: Stands,
-      link: "/products/smartscreen-stands",
+      link: "/products/screen-stands",
     },
     {
       name: "Accessories",

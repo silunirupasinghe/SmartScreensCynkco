@@ -83,8 +83,8 @@ const Footer = () => {
               Quick Links
             </Typography>
             <FooterLink to="/">Home</FooterLink>
-            <FooterLink to="/products">Products</FooterLink>
-            <FooterLink to="/support">Support</FooterLink>
+            <FooterLink to="/smart-screens">Products</FooterLink>
+            <FooterLink to="/solutions">Solutions</FooterLink>
             <FooterLink to="/contact">Contact Us</FooterLink>
           </Grid>
 

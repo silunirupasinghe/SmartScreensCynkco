@@ -88,7 +88,7 @@ function Navbar() {
       subcategories: [
         { label: "Smart Screens", path: "/products/smart-screens" },
         { label: "Accessories", path: "/products/accessories" },
-        { label: "Stands", path: "/products/smartscreen-stands" },
+        { label: "Stands", path: "/products/screen-stands" },
       ],
     },
     { label: "Solutions", path: "/solutions" },
