@@ -17,6 +17,7 @@ import CTSC75APage from "./pages/Products/Screens/CT_SC75A";
 import CTSC75WCPage from "./pages/Products/Screens/CT_SC75WC";
 import CTSC86WCPage from "./pages/Products/Screens/CT-SC86WC";
 import CTSC85APage from "./pages/Products/Screens/CT-SC85A";
+import AboutUs from "./pages/About/AboutUs";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Route path="/products/accessories" element={<AccessoriesPage />} />
         <Route path="/contact" element={<ContactUsPage />} />
         <Route path="/solutions" element={<Solutions />} />
+        <Route path="/about-us" element={<AboutUs />} />
 
         {/* products */}
         <Route

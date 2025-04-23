@@ -45,19 +45,19 @@ const AccessoryCard = styled(Card)(({ theme }) => ({
 // Accessory data
 const accessories = [
   {
-    name: "CT-011 Sliding Track",
+    name: "CT-011 Laser Pen",
     image: CT011,
-    description: `The CT-011 Sliding Track offers a seamless solution for integrating interactive flat panels into wall systems. With a robust aluminum build and high-precision slide rail, it ensures smooth horizontal mobility. Designed for flexibility and safety, it's ideal for educational and corporate environments that demand adaptable and space-saving configurations.`,
+    description: `The CT-011 Laser Pen is a versatile tool for interactive presentations, featuring keystrokes for annotation, page navigation, and whiteboard control. With a 20-meter effective distance and 8-12 hours of battery life (320mAh), it ensures seamless operation. Its lightweight design (26g) and indicator lights make it ideal for educational and professional settings.`,
   },
   {
-    name: "CT-16A Pen Tray",
+    name: "CT-16A Screen Transmitter",
     image: CT16A,
-    description: `The CT-16A Pen Tray is a sleek and functional storage accessory, engineered to hold multiple stylus pens and erasers. Crafted from high-strength ABS and aluminum alloy, it provides easy access during interactive sessions. Its universal fit and magnetic attachment make it a must-have for streamlined digital collaboration.`,
+    description: `The CT-16A Screen Transmitter enables wireless screen sharing with a 12-meter range, supporting resolutions up to 2560x1440@25Hz with touch return. Featuring Bluetooth 5.2 and Wi-Fi 802.11ax (5 GHz), it ensures seamless connectivity with a transmission delay of ≤120ms. Compatible with Windows 7/10/11 and Mac OS 10.12+, it’s perfect for interactive sessions in classrooms and meeting rooms.`,
   },
   {
-    name: "CT-20 Camera Bracket",
+    name: "CT-20 External Mic",
     image: CT20,
-    description: `The CT-20 Camera Bracket is a durable and adjustable mount designed to securely hold conference cameras on top of flat panels. It supports precise positioning and a wide compatibility range, making it perfect for enhancing video conferencing setups in professional meeting rooms and digital classrooms.`,
+    description: `The CT-20 External Mic is a high-performance conference microphone with an 8-microphone array and 6-meter pickup range, ideal for meeting rooms (up to 8m x 10m in cascade mode). Featuring Bluetooth 5.3, full-duplex audio, and noise suppression, it ensures crystal-clear communication. Compatible with Zoom, Microsoft Teams, and more, it’s perfect for professional video conferencing.`,
   },
 ];
 

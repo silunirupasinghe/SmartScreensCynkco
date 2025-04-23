@@ -91,6 +91,7 @@ function Navbar() {
       ],
     },
     { label: "Solutions", path: "/solutions" },
+    { label: "About Us", path: "/about-us" },
     { label: "Contact", path: "/contact" },
   ];
 
