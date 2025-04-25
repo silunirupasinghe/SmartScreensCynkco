@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Grid,
@@ -26,8 +26,10 @@ import "@fontsource/poppins/700.css"; // Bold for headings
 import "@fontsource/roboto/400.css"; // Regular for body text
 import Contact from "./Contact";
 
-import CTSC75WC from "../../../Assets/Products/Screens/CT-SC75WC.png";
-
+// Note: Update these paths to the correct image locations
+import CTSC75WC from "../../../Assets/Products/Screens/CTSC75WC/CT-SC75WC.png";
+import CTSC75WC_stand from "../../../Assets/Products/Screens/CTSC75WC/CT-SC75WC-stand.jpg"; 
+import CTSC75WC_side from "../../../Assets/Products/Screens/CTSC75WC/CT-SC75WC-side.png"; 
 // Theme Colors
 const green = "#24AC4C";
 const greenDark = "#006400";
@@ -50,11 +52,21 @@ const CTSC75WCPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
 
+  // State for managing the currently displayed image
+  const [selectedImage, setSelectedImage] = useState(CTSC75WC);
+
+  // Array of available images
+  const images = [
+    { src: CTSC75WC, alt: "CYNKCO Smart Screen CT-SC75WC Primary" },
+    { src: CTSC75WC_stand, alt: "CYNKCO Smart Screen CT-SC75WC with Stand" },
+    { src: CTSC75WC_side, alt: "CYNKCO Smart Screen CT-SC75WC side View" },
+  ];
+
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);
 
-  // Technical Specs Data (updated to include all details from PDF)
+  // Technical Specs Data
   const specsData = [
     {
       label: "Display",
@@ -111,7 +123,7 @@ const CTSC75WCPage = () => {
     },
   ];
 
-  // Key Features (updated to include all features from PDF)
+  // Key Features
   const keyFeatures = [
     "Ultra-narrow Bezel with Integrated Camera & Microphone, Simple Appearance",
     "Android 11.0 Operating System",
@@ -127,14 +139,14 @@ const CTSC75WCPage = () => {
     "±1mm High-precision Infrared Touch, Smooth Writing",
   ];
 
-  // Introduction Points (updated to include all relevant points)
+  // Introduction Points
   const introductionPoints = [
     "Advanced interactive display with integrated AV for seamless collaboration",
     "Zero-lamination process for low parallax writing and wider viewing angle",
     "High-precision infrared touch with built-in camera and microphone",
   ];
 
-  // Keywords for Chips (updated to reflect all CT-SC75WC features)
+  // Keywords for Chips
   const keywords = [
     "Interactive Whiteboard",
     "Ultra-narrow Bezel",
@@ -149,7 +161,7 @@ const CTSC75WCPage = () => {
     "Anti-glare Glass",
   ];
 
-  // Product Notes (from Page 8 of PDF)
+  // Product Notes
   const productNotes = [
     "Subject to the product configuration and manufacturing process, the actual body size/weight may vary, please refer to the actual object.",
     "Product images in this specification are for illustrative purposes only, the actual product effects (including but not limited to appearance, color, size) may vary slightly, please refer to the actual product.",
@@ -160,18 +172,72 @@ const CTSC75WCPage = () => {
     <Section>
       {/* Product Overview */}
       <Container maxWidth="lg">
-        <Grid container spacing={isMobile ? 2 : 4} alignItems="center" sx={{ py: isMobile ? 4 : 8 }}>
+        <Grid
+          container
+          spacing={isMobile ? 2 : 4}
+          alignItems="center"
+          sx={{ py: isMobile ? 3 : 5, mt: 1 }}
+        >
           <Grid item size={{ xs: 12, md: 6 }}>
-            <CardMedia
-              component="img"
-              image={CTSC75WC}
-              alt="CYNKCO Smart Screen CT-SC75WC"
+            <Box
               sx={{
-                maxWidth: isMobile ? "85%" : "90%",
+                width: isMobile ? "100%" : 500, // Fixed width for main image
+                height: isMobile ? 300 : 400, // Fixed height for main image
                 margin: "0 auto",
-                display: "block",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-            />
+            >
+              <CardMedia
+                component="img"
+                image={selectedImage}
+                alt="CYNKCO Smart Screen CT-SC75WC"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain", // Ensures image fits within the box without distortion
+                  borderRadius: "8px",
+                }}
+              />
+            </Box>
+            {/* Thumbnail Images */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 3,
+                flexWrap: "wrap",
+                mt: 2,
+              }}
+            >
+              {images.map((image, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    cursor: "pointer",
+                    border: selectedImage === image.src ? `2px solid ${greenDark}` : "2px solid transparent",
+                    borderRadius: "4px",
+                    overflow: "hidden",
+                    transition: "border 0.3s",
+                    width: isMobile ? 40 : 50, // Fixed thumbnail width
+                    height: isMobile ? 40 : 50, // Fixed thumbnail height
+                  }}
+                  onClick={() => setSelectedImage(image.src)}
+                >
+                  <CardMedia
+                    component="img"
+                    image={image.src}
+                    alt={image.alt}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover", // Ensures thumbnails fill the space
+                    }}
+                  />
+                </Box>
+              ))}
+            </Box>
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography

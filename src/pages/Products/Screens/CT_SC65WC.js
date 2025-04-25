@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Grid,
@@ -26,7 +26,10 @@ import "@fontsource/poppins/700.css"; // Bold for headings
 import "@fontsource/roboto/400.css"; // Regular for body text
 import Contact from "./Contact";
 
-import CTSC65WC from "../../../Assets/Products/Screens/CT-SC65WC.png";
+// Note: Update these paths to the correct image locations
+import CTSC65WC from "../../../Assets/Products/Screens/CTSC65WC/CT-SC65WC.png";
+import CTSC65WC_stand from "../../../Assets/Products/Screens/CTSC65WC/CT-SC65WC-stand.jpg";
+import CTSC65WC_side from "../../../Assets/Products/Screens/CTSC65WC/CT-SC65WC-side.png";
 
 // Theme Colors
 const green = "#24AC4C";
@@ -35,7 +38,6 @@ const greenDark = "#006400";
 // Styled Components
 const Section = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2, 0),
-  backgroundColor: "#F1FFF7", // Equivalent to bg-gray-100
 }));
 
 const SpecsHeader = styled(Box)(({ theme }) => ({
@@ -50,11 +52,21 @@ const CTSC65WCPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
 
+  // State for managing the currently displayed image
+  const [selectedImage, setSelectedImage] = useState(CTSC65WC);
+
+  // Array of available images
+  const images = [
+    { src: CTSC65WC, alt: "CYNKCO Smart Screen CT-SC65WC Primary" },
+    { src: CTSC65WC_stand, alt: "CYNKCO Smart Screen CT-SC65WC Stand" },
+    { src: CTSC65WC_side, alt: "CYNKCO Smart Screen CT-SC65WC Side View" },
+  ];
+
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);
 
-  // Technical Specs Data (updated to include all details from PDF)
+  // Technical Specs Data
   const specsData = [
     {
       label: "Display",
@@ -68,11 +80,13 @@ const CTSC65WCPage = () => {
     },
     {
       label: "Audio",
-      value: "2x15W speakers (2.0 sound track), located at bottom and back side, 8-array mic (0-8m pickup)",
+      value:
+        "2x15W speakers (2.0 sound track), located at bottom and back side, 8-array mic (0-8m pickup)",
     },
     {
       label: "Camera",
-      value: "1 camera, 48MP, auto-focus, top-center mounted (upper border center)",
+      value:
+        "1 camera, 48MP, auto-focus, top-center mounted (upper border center)",
     },
     {
       label: "Connectivity",
@@ -86,15 +100,18 @@ const CTSC65WCPage = () => {
     },
     {
       label: "Power",
-      value: "180W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5A, power connector at bottom",
+      value:
+        "180W max, ≤0.5W standby, 100-240V ~ 50/60Hz 5A, power connector at bottom",
     },
     {
       label: "Dimensions & Weight",
-      value: "1485 x 905.5 x 88.4 mm (machine size), 110.4 mm thickness (without wall plate), 1647 x 267 x 1132.5 mm (package size), 500 x 400 mm VESA, M8 x 25 mm wall mounting screws, 36 kg net weight, 51 kg gross weight",
+      value:
+        "1485 x 905.5 x 88.4 mm (machine size), 110.4 mm thickness (without wall plate), 1647 x 267 x 1132.5 mm (package size), 500 x 400 mm VESA, M8 x 25 mm wall mounting screws, 36 kg net weight, 51 kg gross weight",
     },
     {
       label: "Accessories",
-      value: "Power cord (1), 2 styluses (magnetic attachment support), wall mount (1)",
+      value:
+        "Power cord (1), 2 styluses (magnetic attachment support), wall mount (1)",
     },
     {
       label: "Environmental",
@@ -111,7 +128,7 @@ const CTSC65WCPage = () => {
     },
   ];
 
-  // Key Features (updated to include all features from PDF)
+  // Key Features
   const keyFeatures = [
     "ALL-IN-ONE Design with Ultra-narrow Bezel and Simple Appearance",
     "Android 11.0 Operating System",
@@ -126,14 +143,14 @@ const CTSC65WCPage = () => {
     "±1mm High-precision Infrared Touch, Smooth Writing",
   ];
 
-  // Introduction Points (updated to include all relevant points)
+  // Introduction Points
   const introductionPoints = [
     "Professional conferencing solution with advanced AV capabilities",
     "Fit to All Rooms with Zero-lamination Process for Low Parallax Writing and Wider Viewing Angle",
     "One-Stop Collaboration Solution",
   ];
 
-  // Keywords for Chips (updated to reflect all CT-SC65WC features)
+  // Keywords for Chips
   const keywords = [
     "Smart Collaboration Whiteboard",
     "High-Resolution Display",
@@ -146,7 +163,7 @@ const CTSC65WCPage = () => {
     "Infrared Touch",
   ];
 
-  // Product Notes (from Page 8 of PDF)
+  // Product Notes
   const productNotes = [
     "Subject to the product configuration and manufacturing process, the actual body size/weight may vary, please refer to the actual object.",
     "Product images in this specification are for illustrative purposes only, the actual product effects (including but not limited to appearance, color, size) may vary slightly, please refer to the actual product.",
@@ -157,18 +174,75 @@ const CTSC65WCPage = () => {
     <Section>
       {/* Product Overview */}
       <Container maxWidth="lg">
-        <Grid container spacing={isMobile ? 2 : 4} alignItems="center" sx={{ py: isMobile ? 4 : 8 }}>
+        <Grid
+          container
+          spacing={isMobile ? 2 : 4}
+          alignItems="center"
+          sx={{ py: isMobile ? 3 : 5, mt: 1 }}
+        >
           <Grid item size={{ xs: 12, md: 6 }}>
-            <CardMedia
-              component="img"
-              image={CTSC65WC}
-              alt="CYNKCO Smart Screen CT-SC65WC"
+            <Box
               sx={{
-                maxWidth: isMobile ? "85%" : "90%",
+                width: isMobile ? "100%" : 500, // Fixed width for main image
+                height: isMobile ? 300 : 400, // Fixed height for main image
                 margin: "0 auto",
-                display: "block",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-            />
+            >
+              <CardMedia
+                component="img"
+                image={selectedImage}
+                alt="CYNKCO Smart Screen CT-SC65WC"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain", // Ensures image fits within the box without distortion
+                  borderRadius: "8px",
+                }}
+              />
+            </Box>
+            {/* Thumbnail Images */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 3,
+                flexWrap: "wrap",
+                mt: 2,
+              }}
+            >
+              {images.map((image, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    cursor: "pointer",
+                    border:
+                      selectedImage === image.src
+                        ? `2px solid ${greenDark}`
+                        : "2px solid transparent",
+                    borderRadius: "4px",
+                    overflow: "hidden",
+                    transition: "border 0.3s",
+                    width: isMobile ? 40 : 50, // Fixed thumbnail width
+                    height: isMobile ? 40 : 50, // Fixed thumbnail height
+                  }}
+                  onClick={() => setSelectedImage(image.src)}
+                >
+                  <CardMedia
+                    component="img"
+                    image={image.src}
+                    alt={image.alt}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover", // Ensures thumbnails fill the space
+                    }}
+                  />
+                </Box>
+              ))}
+            </Box>
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography
@@ -285,7 +359,11 @@ const CTSC65WCPage = () => {
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
                         <CheckCircleOutlineIcon
-                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
+                          sx={{
+                            color: green,
+                            mr: 1,
+                            fontSize: isMobile ? 18 : 24,
+                          }}
                         />
                         <Typography
                           sx={{
@@ -330,7 +408,11 @@ const CTSC65WCPage = () => {
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
                         <CheckCircleOutlineIcon
-                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
+                          sx={{
+                            color: green,
+                            mr: 1,
+                            fontSize: isMobile ? 18 : 24,
+                          }}
                         />
                         <Typography
                           sx={{

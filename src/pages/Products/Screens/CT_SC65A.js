@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Grid,
@@ -26,8 +26,10 @@ import "@fontsource/poppins/700.css"; // Bold for headings
 import "@fontsource/roboto/400.css"; // Regular for body text
 import Contact from "./Contact";
 
-// Note: Update this path to the correct CT-SC65A image
+// Note: Update these paths to the correct image locations
 import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
+// import CTSC65A_side from "../../../Assets/Products/Screens/CTSC65A/CT-SC65A-side.png";
+// import CTSC65A_stand from "../../../Assets/Products/Screens/CTSC65A/CT-SC65A-stand.jpg";
 
 // Theme Colors
 const green = "#24AC4C";
@@ -36,7 +38,7 @@ const greenDark = "#006400";
 // Styled Components
 const Section = styled(Box)(({ theme }) => ({
   padding: theme.spacing(2, 0),
-  backgroundColor: "#F1FFF7", // Equivalent to bg-gray-100
+
 }));
 
 const SpecsHeader = styled(Box)(({ theme }) => ({
@@ -50,11 +52,21 @@ const CTSC65APage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
 
+  // State for managing the currently displayed image
+  const [selectedImage, setSelectedImage] = useState(CTSC65A);
+
+  // Array of available images
+  const images = [
+    { src: CTSC65A, alt: "CYNKCO Smart Screen CT-SC65A Primary" },
+    // { src: CTSC65A_stand, alt: "CYNKCO Smart Screen CT-SC65A with Stand" },
+    // { src: CTSC65A_side, alt: "CYNKCO Smart Screen CT-SC65A with Stand" },
+  ];
+
   useEffect(() => {
     window.scrollTo(0, 0); // Scroll to top when the component mounts
   }, []);
 
-  // Technical Specs Data (updated to include all details from PDF)
+  // Technical Specs Data
   const specsData = [
     {
       label: "Display",
@@ -95,7 +107,7 @@ const CTSC65APage = () => {
     { label: "Components", value: "On/Off button (bottom), Camera (top)" },
   ];
 
-  // Key Features (updated to include all features from PDF)
+  // Key Features
   const keyFeatures = [
     "Ultra-narrow Bezel Design with Simple Appearance",
     "Android 11.0 Operating System",
@@ -108,14 +120,14 @@ const CTSC65APage = () => {
     "±1mm High-precision Infrared Touch, Smooth Writing",
   ];
 
-  // Introduction Points (updated to include all relevant points)
+  // Introduction Points
   const introductionPoints = [
     "Advanced interactive display for professional collaboration",
     "Zero-lamination process for low parallax writing and wider viewing angle",
     "High-precision infrared touch technology",
   ];
 
-  // Keywords for Chips (updated to reflect all CT-SC65A features)
+  // Keywords for Chips
   const keywords = [
     "Interactive Whiteboard",
     "Ultra-narrow Bezel",
@@ -128,7 +140,7 @@ const CTSC65APage = () => {
     "Anti-glare Glass",
   ];
 
-  // Product Notes (from Page 7 of PDF)
+  // Product Notes
   const productNotes = [
     "Affected by the product configuration and manufacturing process, the actual body size/weight may vary, please prevail in kind.",
     "Product images are for illustrative purposes only; the actual product effects (including but not limited to appearance, color, size) may vary slightly, please prevail in kind.",
@@ -143,19 +155,67 @@ const CTSC65APage = () => {
           container
           spacing={isMobile ? 2 : 4}
           alignItems="center"
-          sx={{ py: isMobile ? 4 : 8 }}
+          sx={{ py: isMobile ? 3 : 5 , mt:1}}
         >
           <Grid item size={{ xs: 12, md: 6 }}>
-            <CardMedia
-              component="img"
-              image={CTSC65A}
-              alt="CYNKCO Smart Screen CT-SC65A"
+            <Box
               sx={{
-                maxWidth: isMobile ? "85%" : "90%",
+                width: isMobile ? "100%" : 500, // Fixed width for main image
+                height: isMobile ? 300 : 400, // Fixed height for main image
                 margin: "0 auto",
-                display: "block",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
               }}
-            />
+            >
+              <CardMedia
+                component="img"
+                image={selectedImage}
+                alt="CYNKCO Smart Screen CT-SC65A"
+                sx={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "contain", // Ensures image fits within the box without distortion
+                  borderRadius: "8px",
+                }}
+              />
+            </Box>
+            {/* Thumbnail Images */}
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                gap: 3,
+                flexWrap: "wrap",
+              }}
+            >
+              {images.map((image, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    cursor: "pointer",
+                    border: selectedImage === image.src ? `2px solid ${greenDark}` : "2px solid transparent",
+                    borderRadius: "4px",
+                    overflow: "hidden",
+                    transition: "border 0.3s",
+                    width: isMobile ? 40 : 50, // Fixed thumbnail width
+                    height: isMobile ? 40 : 50, // Fixed thumbnail height
+                  }}
+                  onClick={() => setSelectedImage(image.src)}
+                >
+                  <CardMedia
+                    component="img"
+                    image={image.src}
+                    alt={image.alt}
+                    sx={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover", // Ensures thumbnails fill the space
+                    }}
+                  />
+                </Box>
+              ))}
+            </Box>
           </Grid>
           <Grid item size={{ xs: 12, md: 6 }}>
             <Typography
@@ -455,4 +515,4 @@ const CTSC65APage = () => {
   );
 };
 
-export default CTSC65APage; 
+export default CTSC65APage;

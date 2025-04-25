@@ -10,7 +10,7 @@ import {
   Button,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import CTSC65WC from "../../Assets/Products/Screens/CT-SC65WC.png";
+import CTSC65WC from "../../Assets/Products/Screens/CTSC65WC/CT-SC65WC.png";
 import accessories from "../../Assets/Home/acc.jpg";
 import Stands from "../../Assets/Home/screen1.png";
 

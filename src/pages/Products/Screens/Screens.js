@@ -22,9 +22,9 @@ import "@fontsource/poppins/700.css"; // Bold for headings
 import "@fontsource/roboto/400.css"; // Regular for body text
 
 import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
-import CTSC65WC from "../../../Assets/Products/Screens/CT-SC65WC.png";
-import CTSC75WC from "../../../Assets/Products/Screens/CT-SC75WC.png";
-import CTSC75A from "../../../Assets/Products/Screens/CT-SC75A.png";
+import CTSC65WC from "../../../Assets/Products/Screens/CTSC65WC/CT-SC65WC.png";
+import CTSC75WC from "../../../Assets/Products/Screens/CTSC75WC/CT-SC75WC.png";
+import CTSC75A from "../../../Assets/Products/Screens/CTSC75A/CTSC75A.png";
 import CTSC86WC from "../../../Assets/Products/Screens/CT-SC86WC.png";
 import CTSC85A from "../../../Assets/Products/Screens/CT-SC85A.png";
 

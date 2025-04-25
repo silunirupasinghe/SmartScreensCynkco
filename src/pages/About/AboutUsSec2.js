@@ -241,7 +241,7 @@ const AboutUs = () => {
                       <Box
                         component="img"
                         src={certification.name}
-                        alt={certification.description}
+                        
                         sx={{
                           width: "100%",
                           height: { xs: 180, sm: 200, md: 220 }, // Responsive image height
