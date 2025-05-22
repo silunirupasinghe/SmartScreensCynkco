@@ -13,10 +13,8 @@ import { Link } from "react-router-dom";
 import CTSC65WC from "../../Assets/Products/Screens/CTSC65WC/CT-SC65WC.png";
 import accessories from "../../Assets/Home/acc.jpg";
 import Stands from "../../Assets/Home/screen1.png";
-
-
+import colors from "../../theme/colors"; // Import the colors
 function Products() {
-  const greenDark = "#006400";
   const products = [
     {
       name: "Smart Screens",
@@ -42,7 +40,7 @@ function Products() {
   ];
 
   return (
-    <Box sx={{ py: 2 }}>
+    <Box sx={{ py: 2, mb:5 }}>
       <Container>
         <Typography
           variant="h2"
@@ -53,7 +51,7 @@ function Products() {
             textAlign: "center",
             fontSize: { xs: "1.5rem", sm: "2rem", md: "2.4rem" },
             lineHeight: 1.3,
-            background: "linear-gradient(45deg, #006400, #0D47A1)",
+            background: `linear-gradient(45deg, ${colors.gradientStart} 0%, ${colors.darkBlue} 100%)`, // Use colors from colors.js
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
           }}
@@ -67,7 +65,7 @@ function Products() {
               <Card
                 sx={{
                   position: "relative",
-                  border: `1px solid ${greenDark}`,
+                  border: `1px solid ${colors.darkBlue}`,
                   borderRadius: "12px",
                   overflow: "hidden",
                   width: 300,
@@ -85,11 +83,7 @@ function Products() {
                     objectFit: "cover",
                     width: "100%",
                   }}
-                  onError={(e) => {
-                    e.target.onerror = null;
-                    e.target.src =
-                      "https://via.placeholder.com/300x200?text=No+Image";
-                  }}
+                  
                 />
 
                 <CardContent
@@ -108,7 +102,7 @@ function Products() {
                       sx={{
                         fontFamily: "Poppins, sans-serif",
                         fontWeight: 600,
-                        color: "#1D6B44",
+                        color: colors.darkBlue,
                         mb: 1,
                         overflow: "hidden",
                         textOverflow: "ellipsis",
@@ -138,13 +132,13 @@ function Products() {
                     component={Link}
                     to={product.link}
                     sx={{
-                      backgroundColor: "#006400",
+                      backgroundColor: colors.darkBlue,
                       color: "#FFFFFF",
                       textTransform: "none",
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 500,
                       "&:hover": {
-                        backgroundColor: "#24AC4C",
+                        backgroundColor: colors.lightBlue,
                       },
                       alignSelf: "flex-start", // Align button to the left
                     }}
@@ -156,8 +150,6 @@ function Products() {
             </Grid>
           ))}
         </Grid>
-
-       
       </Container>
     </Box>
   );

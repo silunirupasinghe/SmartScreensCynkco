@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Typography, Container } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import heroImage from "../../Assets/hero.jpg"
-
+import heroImage from "../../Assets/hero.jpg";
+import colors from "../../theme/colors";
 // Styled component for the hero section with gradient and background image
 const HeroSection = styled(Box)(({ theme }) => ({
   height: "80vh",
@@ -36,7 +36,7 @@ const Hero = () => {
             sx={{
               fontSize: { xs: "2rem", md: "3rem" },
               fontWeight: "bold",
-              background: "linear-gradient(30deg, #0D47A1, #006400)",
+              background: `linear-gradient(45deg, ${colors.gradientStart} 0%, ${colors.darkBlue} 100%)`, // Use colors from colors.js
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               lineHeight: 1.2,

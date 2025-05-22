@@ -3,7 +3,7 @@ import { Box, Container, Typography, Grid } from '@mui/material';
 import EmailIcon from '@mui/icons-material/Email'; // Icon for Email
 import LocationOnIcon from '@mui/icons-material/LocationOn'; // Icon for Office
 import PhoneIcon from '@mui/icons-material/Phone'; // Icon for Phone
-
+import colors from '../../theme/colors'; // Import colors from theme
 const ContactUs = () => {
   return (
     <Box
@@ -23,8 +23,8 @@ const ContactUs = () => {
               mb: 2,
               fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
               lineHeight: 1.0,
-              background: 'linear-gradient(45deg, #006400, #0D47A1)', // Gradient text from the hero section
-              WebkitBackgroundClip: 'text',
+              background: `linear-gradient(45deg, ${colors.gradientStart} 0%, ${colors.darkBlue} 100%)`, // Use colors from colors.js
+                WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
             }}
           >
@@ -58,14 +58,13 @@ const ContactUs = () => {
                 sx={{
                   p: 2,
                   borderRadius: '50%',
-                  bgcolor: 'rgba(206, 225, 214, 0.5)', // Light green background to match the hero section icons
+                  bgcolor: colors.blue, // Light green background to match the hero section icons
                   mb: 2,
                 }}
               >
                 <EmailIcon
                   sx={{
-                    color: 'green.400', // Slightly lighter green to match the hero section icons
-                    fontSize: 24,
+                     fontSize: 24,
                   }}
                 />
               </Box>
@@ -94,7 +93,7 @@ const ContactUs = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: '#006400',
+                  color: colors.darkBlue,
                   fontWeight: 'medium',
                   fontSize: '1rem',
                 }}
@@ -118,7 +117,7 @@ const ContactUs = () => {
                 sx={{
                   p: 2,
                   borderRadius: '50%',
-                  bgcolor: 'rgba(206, 225, 214, 0.5)', // Light green background to match the hero section icons
+                  bgcolor: colors.blue, // Light green background to match the hero section icons
                   mb: 2,
                 }}
               >
@@ -154,7 +153,7 @@ const ContactUs = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: '#006400',
+                  color: colors.darkBlue,
                   fontWeight: 'medium',
                   fontSize: '1rem',
                 }}
@@ -178,7 +177,7 @@ const ContactUs = () => {
                 sx={{
                   p: 2,
                   borderRadius: '50%',
-                  bgcolor: 'rgba(206, 225, 214, 0.5)', // Light green background to match the hero section icons
+                  bgcolor: colors.blue, // Light green background to match the hero section icons
                   mb: 2,
                 }}
               >
@@ -214,7 +213,7 @@ const ContactUs = () => {
               <Typography
                 variant="body2"
                 sx={{
-                  color: '#006400',
+                  color: colors.darkBlue,
                   fontWeight: 'medium',
                   fontSize: '1rem',
                 }}

@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Container, Typography, Grid, useTheme, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Container,
+  Typography,
+  Grid,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 import medicalImg from "../../Assets/Home/hospital.jpg";
@@ -7,6 +14,7 @@ import meetingImg from "../../Assets/Home/meeting.jpg";
 import educationImg from "../../Assets/Home/classroom.jpeg";
 import retailImg from "../../Assets/Home/store.jpg";
 
+import colors from "../../theme/colors"; // Import the colors
 // Styled component for the section with gradient background
 const SolutionsSection = styled(Box)(({ theme }) => ({
   py: { xs: 4, sm: 6, md: 10 }, // Responsive padding
@@ -19,7 +27,7 @@ const SectionHeader = styled(Typography)(({ theme }) => ({
   fontWeight: 600,
   fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" }, // Responsive font size
   lineHeight: 1.2,
-  background: "linear-gradient(45deg, #006400, #0D47A1)",
+  background: `linear-gradient(45deg, ${colors.gradientStart} 0%, ${colors.darkBlue} 100%)`, // Use colors from colors.js
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
   mb: { xs: 2, sm: 3, md: 4 }, // Responsive margin-bottom
@@ -38,7 +46,8 @@ const SectionContent = styled(Typography)(({ theme }) => ({
 
 const solutions = [
   {
-    title: "Education Sector: Transforming Learning with Interactive Smart Boards",
+    title:
+      "Education Sector: Transforming Learning with Interactive Smart Boards",
     description:
       "Interactive smart boards revolutionize education by enhancing lesson efficiency through dynamic interactivity. Designed for schools and universities, these devices feature high-quality displays that ensure clear visuals for all students. Multi-user touch capabilities allow simultaneous collaboration, enabling students to solve problems or annotate diagrams together, saving time and boosting engagement. Writing tools with multiple input options streamline group discussions, while wireless connectivity provides instant access to digital resources, reducing preparation time. Eye-friendly features like glare reduction improve focus during long sessions, creating a technology-driven environment that maximizes teaching efficiency and student participation.",
     image: educationImg,
@@ -74,7 +83,13 @@ const SolutionSec2 = () => {
           {/* Main Header */}
           <Box sx={{ textAlign: "center", my: { xs: 2, sm: 3, md: 4 } }}>
             <SectionContent sx={{ my: { xs: 2, sm: 4, md: 8 } }}>
-              Interactive <strong>smart boards</strong> are engineered to enhance collaboration, communication, and productivity across diverse sectors. With advanced displays, multi-user interactivity, and seamless connectivity, these <strong>smart boards</strong> streamline workflows and deliver efficient solutions for education, healthcare, business, and meeting rooms, meeting the demands of modern environments with cutting-edge technology.
+              Interactive <strong>smart boards</strong> are engineered to
+              enhance collaboration, communication, and productivity across
+              diverse sectors. With advanced displays, multi-user interactivity,
+              and seamless connectivity, these <strong>smart boards</strong>{" "}
+              streamline workflows and deliver efficient solutions for
+              education, healthcare, business, and meeting rooms, meeting the
+              demands of modern environments with cutting-edge technology.
             </SectionContent>
           </Box>
 
@@ -137,7 +152,7 @@ const SolutionSec2 = () => {
                       sx={{
                         fontFamily: "Poppins, sans-serif",
                         fontWeight: "medium",
-                        color: "#006400",
+                        color: colors.darkBlue,
                         mb: { xs: 1, sm: 2 }, // Responsive margin-bottom
                         fontSize: { xs: "1.1rem", sm: "1.25rem", md: "1.5rem" }, // Responsive font size
                         textAlign: { xs: "center", md: "left" }, // Center on mobile, left on desktop
@@ -170,7 +185,7 @@ const SolutionSec2 = () => {
           textAlign: "center",
           mt: { xs: 2, sm: 3, md: 4 }, // Responsive margin-top
           py: { xs: 2, sm: 3, md: 4 }, // Responsive padding-y
-          background: "#F1FFF7",
+          background: colors.blue,
         }}
       >
         <SectionHeader variant="h4" sx={{ mb: { xs: 1, sm: 2 } }}>

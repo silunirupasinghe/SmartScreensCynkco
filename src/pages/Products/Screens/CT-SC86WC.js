@@ -18,21 +18,29 @@ import {
   AccordionDetails,
   useMediaQuery,
   useTheme,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import GetAppIcon from "@mui/icons-material/GetApp";
 import { styled } from "@mui/material/styles";
-import "@fontsource/poppins/700.css"; // Bold for headings
-import "@fontsource/roboto/400.css"; // Regular for body text
+import "@fontsource/poppins/700.css";
+import "@fontsource/roboto/400.css";
 import Contact from "./Contact";
+import { useNavigate } from "react-router-dom";
+import colors from "../../../theme/colors";
 
 // Note: Update these paths to the correct image locations
 import CTSC86WC from "../../../Assets/Products/Screens/CTSC86W/CTSC86WC.png";
-import CTSC86WC_stand from "../../../Assets/Products/Screens/CTSC86W/CTSC86WC-stand.jpg"; 
-import CTSC86WC_side from "../../../Assets/Products/Screens/CTSC86W/CTSC86WC-side.png"; 
-// Theme Colors
-const green = "#24AC4C";
-const greenDark = "#006400";
+import CTSC86WC_stand from "../../../Assets/Products/Screens/CTSC86W/CTSC86WC-stand.jpg";
+import CTSC86WC_side from "../../../Assets/Products/Screens/CTSC86W/CTSC86WC-side.png";
 
 // Styled Components
 const Section = styled(Box)(({ theme }) => ({
@@ -40,19 +48,32 @@ const Section = styled(Box)(({ theme }) => ({
 }));
 
 const SpecsHeader = styled(Box)(({ theme }) => ({
-  backgroundColor: greenDark,
+  backgroundColor: colors.darkBlue,
   color: "#fff",
   textAlign: "center",
   padding: theme.spacing(3),
 }));
 
 const CTSC86WCPage = () => {
+  const navigate = useNavigate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
 
   // State for managing the currently displayed image
   const [selectedImage, setSelectedImage] = useState(CTSC86WC);
+
+  // State for managing the download modal
+  const [openDownloadModal, setOpenDownloadModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [formStatus, setFormStatus] = useState({
+    submitted: false,
+    loading: false,
+    error: null,
+  });
 
   // Array of available images
   const images = [
@@ -62,8 +83,20 @@ const CTSC86WCPage = () => {
   ];
 
   useEffect(() => {
-    window.scrollTo(0, 0); // Scroll to top when the component mounts
-  }, []);
+    window.scrollTo(0, 0);
+    if (formStatus.submitted) {
+      const timer = setTimeout(() => {
+        const link = document.createElement("a");
+        link.href = "/path/to/CT-SC86WC_brochure.pdf"; // Update with real path
+        link.download = "CT-SC86WC_brochure.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        handleCloseDownloadModal();
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formStatus.submitted]);
 
   // Technical Specs Data
   const specsData = [
@@ -105,11 +138,13 @@ const CTSC86WCPage = () => {
     },
     {
       label: "Dimensions & Weight",
-      value: "1953.5 x 1168 x 88.4 mm (machine size), 110.4 mm thickness (without wall plate), 2116 x 267 x 1395 mm (package size), 800 x 400 mm VESA, M8 x 25 mm wall mounting screws, 68 kg net weight, 83 kg gross weight",
+      value:
+        "1953.5 x 1168 x 88.4 mm (machine size), 110.4 mm thickness (without wall plate), 2116 x 267 x 1395 mm (package size), 800 x 400 mm VESA, M8 x 25 mm wall mounting screws, 68 kg net weight, 83 kg gross weight",
     },
     {
       label: "Accessories",
-      value: "Power cord (1), 2 styluses (magnetic attachment support), wall mount (1)",
+      value:
+        "Power cord (1), 2 styluses (magnetic attachment support), wall mount (1)",
     },
     {
       label: "Environmental",
@@ -160,12 +195,102 @@ const CTSC86WCPage = () => {
     "Anti-glare Glass",
   ];
 
-  // Product Notes
-  const productNotes = [
-    "Subject to the product configuration and manufacturing process, the actual body size/weight may vary, please refer to the actual object.",
-    "Product images in this specification are for illustrative purposes only, the actual product effects (including but not limited to appearance, color, size) may vary slightly, please refer to the actual product.",
-    "Specifications may be adjusted and revised in real-time to match actual product performance, with no special notice provided.",
-  ];
+  // Handle Modal Open/Close
+  const handleOpenDownloadModal = () => {
+    setOpenDownloadModal(true);
+    setFormStatus({ submitted: false, loading: false, error: null });
+  };
+
+  const handleCloseDownloadModal = () => {
+    setOpenDownloadModal(false);
+    setEmail("");
+    setPhone("");
+    setEmailError("");
+    setPhoneError("");
+    setFormStatus({ submitted: false, loading: false, error: null });
+  };
+
+  // Handle Input Changes
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setEmailError("");
+    setFormStatus({ ...formStatus, error: null });
+  };
+
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+    setPhoneError("");
+    setFormStatus({ ...formStatus, error: null });
+  };
+
+  // Validate Inputs
+  const validateEmail = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) {
+      setEmailError("Email is required");
+      return false;
+    }
+    if (!emailRegex.test(email)) {
+      setEmailError("Please enter a valid email address");
+      return false;
+    }
+    return true;
+  };
+
+  const validatePhone = () => {
+    const phoneRegex = /^\+?[\d\s-]{10,}$/;
+    if (!phone) {
+      setPhoneError("Phone number is required");
+      return false;
+    }
+    if (!phoneRegex.test(phone)) {
+      setPhoneError("Please enter a valid phone number");
+      return false;
+    }
+    return true;
+  };
+
+  // Handle Form Submission
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const isEmailValid = validateEmail();
+    const isPhoneValid = validatePhone();
+    if (!isEmailValid || !isPhoneValid) return;
+    setFormStatus({ submitted: false, loading: true, error: null });
+
+    try {
+      const form = e.target;
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      const responseText = await response.text();
+      console.log("FormSubmit Response Status:", response.status);
+      console.log("FormSubmit Response Text:", responseText);
+
+      if (response.ok) {
+        setFormStatus({ submitted: true, loading: false, error: null });
+        form.reset();
+        setEmail("");
+        setPhone("");
+        setEmailError("");
+        setPhoneError("");
+      } else {
+        throw new Error(`Submission failed with status ${response.status}: ${responseText}`);
+      }
+    } catch (error) {
+      console.error("Form Submission Error:", error);
+      setFormStatus({
+        submitted: false,
+        loading: false,
+        error: `An error occurred: ${error.message}. Please check the console for details or contact support.`,
+      });
+    }
+  };
 
   return (
     <Section>
@@ -180,8 +305,8 @@ const CTSC86WCPage = () => {
           <Grid item size={{ xs: 12, md: 6 }}>
             <Box
               sx={{
-                width: isMobile ? "100%" : 500, // Fixed width for main image
-                height: isMobile ? 300 : 400, // Fixed height for main image
+                width: isMobile ? "100%" : 500,
+                height: isMobile ? 300 : 400,
                 margin: "0 auto",
                 display: "flex",
                 justifyContent: "center",
@@ -195,7 +320,7 @@ const CTSC86WCPage = () => {
                 sx={{
                   width: "100%",
                   height: "100%",
-                  objectFit: "contain", // Ensures image fits within the box without distortion
+                  objectFit: "contain",
                   borderRadius: "8px",
                 }}
               />
@@ -215,12 +340,15 @@ const CTSC86WCPage = () => {
                   key={index}
                   sx={{
                     cursor: "pointer",
-                    border: selectedImage === image.src ? `2px solid ${greenDark}` : "2px solid transparent",
+                    border:
+                      selectedImage === image.src
+                        ? `2px solid ${colors.darkBlue}`
+                        : "2px solid transparent",
                     borderRadius: "4px",
                     overflow: "hidden",
                     transition: "border 0.3s",
-                    width: isMobile ? 40 : 50, // Fixed thumbnail width
-                    height: isMobile ? 40 : 50, // Fixed thumbnail height
+                    width: isMobile ? 40 : 50,
+                    height: isMobile ? 40 : 50,
                   }}
                   onClick={() => setSelectedImage(image.src)}
                 >
@@ -231,7 +359,7 @@ const CTSC86WCPage = () => {
                     sx={{
                       width: "100%",
                       height: "100%",
-                      objectFit: "cover", // Ensures thumbnails fill the space
+                      objectFit: "cover",
                     }}
                   />
                 </Box>
@@ -244,7 +372,7 @@ const CTSC86WCPage = () => {
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 700,
-                background: "linear-gradient(90deg, #006400, #0D47A1)",
+                background: `linear-gradient(45deg, ${colors.gradientStart} 0%, ${colors.darkBlue} 100%)`,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 lineHeight: 1.2,
@@ -283,7 +411,7 @@ const CTSC86WCPage = () => {
                     fontFamily: "Roboto, sans-serif",
                     fontWeight: 500,
                     backgroundColor: "#fff",
-                    border: `1px solid ${greenDark}`,
+                    border: `1px solid ${colors.darkBlue}`,
                     borderRadius: "16px",
                     color: "#374151",
                     px: isMobile ? 1.5 : 2,
@@ -292,6 +420,61 @@ const CTSC86WCPage = () => {
                   }}
                 />
               ))}
+            </Box>
+            <Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  gap: 1,
+                  mt: 4,
+                  justifyContent: isMobile ? "center" : "flex-start",
+                  flexWrap: "wrap",
+                }}
+              >
+                {[
+                  {
+                    size: '65" inch',
+                    route: "/products/smart-screens/ct-sc65wc",
+                  },
+                  {
+                    size: '75" inch',
+                    route: "/products/smart-screens/ct-sc75wc",
+                  },
+                  {
+                    size: '86" inch',
+                    route: "/products/smart-screens/ct-sc86wc",
+                  },
+                ].map((model, index) => (
+                  <Chip
+                    key={index}
+                    label={model.size}
+                    onClick={() => navigate(model.route)}
+                    clickable
+                    sx={{
+                      fontWeight: 600,
+                      color: "#fff",
+                      backgroundColor: colors.darkBlue,
+                      "&:hover": {
+                        backgroundColor: colors.lightBlue,
+                      },
+                    }}
+                  />
+                ))}
+              </Box>
+              <Box>
+                <Typography
+                  sx={{
+                    fontFamily: "poppins",
+                    textAlign: isMobile ? "center" : "left",
+                    mb: 2,
+                    mx: 1,
+                    mt: 1,
+                    fontSize: isMobile ? "0.9rem" : "1rem",
+                  }}
+                >
+                  Available Sizes
+                </Typography>
+              </Box>
             </Box>
           </Grid>
         </Grid>
@@ -316,7 +499,7 @@ const CTSC86WCPage = () => {
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               color: "#1F2937",
-              borderBottom: `1px solid ${greenDark}`,
+              borderBottom: `1px solid ${colors.darkBlue}`,
               pb: 2,
               mb: 4,
               textAlign: isMobile ? "center" : "left",
@@ -330,15 +513,15 @@ const CTSC86WCPage = () => {
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   sx={{
-                    backgroundColor: "#F1FFF7",
-                    borderBottom: `1px solid ${greenDark}`,
+                    backgroundColor: colors.blue,
+                    borderBottom: `1px solid ${colors.darkBlue}`,
                   }}
                 >
                   <Typography
                     sx={{
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 700,
-                      color: greenDark,
+                      color: colors.darkBlue,
                       fontSize: isMobile ? "0.9rem" : "1rem",
                     }}
                   >
@@ -353,7 +536,11 @@ const CTSC86WCPage = () => {
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
                         <CheckCircleOutlineIcon
-                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
+                          sx={{
+                            color: colors.darkBlue,
+                            mr: 1,
+                            fontSize: isMobile ? 18 : 24,
+                          }}
                         />
                         <Typography
                           sx={{
@@ -375,15 +562,15 @@ const CTSC86WCPage = () => {
                 <AccordionSummary
                   expandIcon={<ExpandMoreIcon />}
                   sx={{
-                    backgroundColor: "#F1FFF7",
-                    borderBottom: `1px solid ${greenDark}`,
+                    backgroundColor: colors.blue,
+                    borderBottom: `1px solid ${colors.darkBlue}`,
                   }}
                 >
                   <Typography
                     sx={{
                       fontFamily: "Roboto, sans-serif",
                       fontWeight: 700,
-                      color: greenDark,
+                      color: colors.darkBlue,
                       fontSize: isMobile ? "0.9rem" : "1rem",
                     }}
                   >
@@ -398,7 +585,11 @@ const CTSC86WCPage = () => {
                         sx={{ display: "flex", alignItems: "center", mb: 1 }}
                       >
                         <CheckCircleOutlineIcon
-                          sx={{ color: green, mr: 1, fontSize: isMobile ? 18 : 24 }}
+                          sx={{
+                            color: colors.darkBlue,
+                            mr: 1,
+                            fontSize: isMobile ? 18 : 24,
+                          }}
                         />
                         <Typography
                           sx={{
@@ -422,7 +613,7 @@ const CTSC86WCPage = () => {
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               color: "#1F2937",
-              borderBottom: `1px solid ${greenDark}`,
+              borderBottom: `1px solid ${colors.darkBlue}`,
               pb: 2,
               mt: isMobile ? 4 : 6,
               mb: 4,
@@ -434,7 +625,7 @@ const CTSC86WCPage = () => {
           <TableContainer>
             <Table sx={{ minWidth: isMobile ? "auto" : 650 }}>
               <TableHead>
-                <TableRow sx={{ backgroundColor: greenDark }}>
+                <TableRow sx={{ backgroundColor: colors.darkBlue }}>
                   <TableCell
                     sx={{
                       color: "#fff",
@@ -466,7 +657,7 @@ const CTSC86WCPage = () => {
                       sx={{
                         fontFamily: "Roboto, sans-serif",
                         fontWeight: 700,
-                        color: greenDark,
+                        color: colors.darkBlue,
                         fontSize: isMobile ? "0.75rem" : "0.875rem",
                         padding: isMobile ? "8px" : "16px",
                       }}
@@ -489,40 +680,171 @@ const CTSC86WCPage = () => {
             </Table>
           </TableContainer>
 
-          {/* Product Notes Section */}
+          {/* Download Brochure Section */}
           <Typography
             variant={isMobile ? "h6" : "h5"}
             sx={{
               fontFamily: "Poppins, sans-serif",
               fontWeight: 700,
               color: "#1F2937",
-              borderBottom: `1px solid ${greenDark}`,
+              borderBottom: `1px solid ${colors.darkBlue}`,
               pb: 2,
               mt: isMobile ? 4 : 6,
               mb: 4,
               textAlign: isMobile ? "center" : "left",
             }}
           >
-            Product Notes
+            Download Brochure
           </Typography>
-          <Box>
-            {productNotes.map((note, index) => (
-              <Typography
-                key={index}
-                sx={{
-                  fontFamily: "Roboto, sans-serif",
-                  color: "#374151",
-                  fontSize: isMobile ? "0.85rem" : "1rem",
-                  mb: 1,
-                }}
-              >
-                - {note}
-              </Typography>
-            ))}
+          <Box sx={{ textAlign: isMobile ? "center" : "left" }}>
+            <Button
+              variant="contained"
+              startIcon={<GetAppIcon />}
+              onClick={handleOpenDownloadModal}
+              sx={{
+                backgroundColor: colors.darkBlue,
+                color: "#fff",
+                fontFamily: "Roboto, sans-serif",
+                fontWeight: 600,
+                padding: isMobile ? "8px 16px" : "10px 24px",
+                borderRadius: "8px",
+                "&:hover": {
+                  backgroundColor: colors.lightBlue,
+                },
+              }}
+            >
+              Download CT-SC86WC Brochure
+            </Button>
           </Box>
+
+          {/* Download Modal */}
+          <Dialog open={openDownloadModal} onClose={handleCloseDownloadModal}>
+            <DialogTitle>Download Brochure</DialogTitle>
+            <DialogContent>
+              {!formStatus.submitted ? (
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: "center",
+                      color: "#757575",
+                      mb: 2,
+                      maxWidth: 400,
+                      mx: "auto",
+                      fontFamily: "Roboto, sans-serif",
+                    }}
+                  >
+                    Please enter your email and phone number to download the CT-SC86WC brochure.
+                  </Typography>
+                  {formStatus.error && (
+                    <Alert severity="error" sx={{ mb: 3 }}>
+                      {formStatus.error}
+                    </Alert>
+                  )}
+                  <form
+                    action="https://formsubmit.co/55e5b9f59fce6cd0a042ec9ed8a98709"
+                    method="POST"
+                    onSubmit={handleFormSubmit}
+                  >
+                    <input type="hidden" name="_captcha" value="false" />
+                    <input
+                      type="hidden"
+                      name="_subject"
+                      value="New Brochure Download Request - CT-SC86WC"
+                    />
+                    <input
+                      type="hidden"
+                      name="_autoresponse"
+                      value="Thank you for downloading the CT-SC86WC brochure!"
+                    />
+                    <input type="hidden" name="_template" value="table" />
+                    <TextField
+                      fullWidth
+                      label="Email Address"
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={handleEmailChange}
+                      error={!!emailError}
+                      helperText={emailError}
+                      required
+                      InputLabelProps={{ shrink: true }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          "& fieldset": { borderColor: colors.darkBlue },
+                          "&:hover fieldset": { borderColor: colors.lightBlue },
+                          "&.Mui-focused fieldset": { borderColor: colors.lightBlue },
+                        },
+                        "& .MuiInputLabel-root": { color: "#757575" },
+                        "& .MuiInputLabel-root.Mui-focused": { color: colors.darkBlue },
+                        mb: 2,
+                      }}
+                    />
+                    <TextField
+                      fullWidth
+                      label="Phone Number"
+                      type="tel"
+                      name="phone"
+                      value={phone}
+                      onChange={handlePhoneChange}
+                      error={!!phoneError}
+                      helperText={phoneError}
+                      required
+                      InputLabelProps={{ shrink: true }}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          "& fieldset": { borderColor: colors.darkBlue },
+                          "&:hover fieldset": { borderColor: colors.lightBlue },
+                          "&.Mui-focused fieldset": { borderColor: colors.lightBlue },
+                        },
+                        "& .MuiInputLabel-root": { color: "#757575" },
+                        "& .MuiInputLabel-root.Mui-focused": { color: colors.darkBlue },
+                      }}
+                    />
+                    <Box sx={{ textAlign: "center", mt: 3 }}>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        disabled={formStatus.loading}
+                        sx={{
+                          fontFamily: "Poppins, sans-serif",
+                          fontWeight: 500,
+                          fontSize: "1rem",
+                          px: 6,
+                          py: 1.5,
+                          borderRadius: 2,
+                          background: `linear-gradient(45deg, ${colors.darkBlue}, ${colors.lightBlue})`,
+                          textTransform: "none",
+                          "&:hover": {
+                            background: `linear-gradient(45deg, ${colors.lightBlue}, ${colors.darkBlue})`,
+                          },
+                          "&:disabled": {
+                            background: "#B0BEC5",
+                          },
+                        }}
+                      >
+                        {formStatus.loading ? (
+                          <CircularProgress size={24} color="inherit" />
+                        ) : (
+                          "Submit & Download"
+                        )}
+                      </Button>
+                    </Box>
+                  </form>
+                </Box>
+              ) : (
+                <Alert severity="success" sx={{ mb: 3 }}>
+                  Thank you! Your download should start shortly.
+                </Alert>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseDownloadModal}>Cancel</Button>
+            </DialogActions>
+          </Dialog>
         </Paper>
 
-        <Contact />
+        {/* <Contact /> */}
       </Container>
     </Section>
   );

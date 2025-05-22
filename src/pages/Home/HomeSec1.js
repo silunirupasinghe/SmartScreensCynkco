@@ -1,153 +1,173 @@
 import React from "react";
-import { Box, Typography, Button, Stack } from "@mui/material";
+import { Box, Typography, Button, Stack, useTheme, useMediaQuery } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import herohome from "../../Assets/herohome.jpg";
-import CameraIcon from "@mui/icons-material/PhotoCamera"; // Icon for camera feature
-import MicIcon from "@mui/icons-material/Mic"; // Icon for microphone feature
-import WifiIcon from "@mui/icons-material/Wifi"; // Icon for Dual WiFi
+import herohome from "../../Assets/homenew.png"; // Default image for larger screens
+import herohomeMobile from "../../Assets/herohome-mobile.png"; // Image for small screens
+import CameraIcon from "@mui/icons-material/PhotoCamera";
+import MicIcon from "@mui/icons-material/Mic";
+import WifiIcon from "@mui/icons-material/Wifi";
+import colors from "../../theme/colors"; // Import the colors
 
 const HeroSection = () => {
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm")); // Below 600px
 
   const handleLearnMore = () => {
-    navigate("/products/smart-screens/"); // Adjust the route as needed
+    navigate("/products/smart-screens/");
   };
+
+  const imageSrc = isSmallScreen ? herohomeMobile : herohome;
 
   return (
     <Box
       sx={{
-        position: "relative", // For absolute positioning of the text
-        overflow: "hidden", // Prevent any overflow issues
+        position: "relative",
+        overflow: "hidden",
+        width: "100%",
+        minHeight: "100vh",
       }}
     >
       <Box
         sx={{
-          width: "auto", // Full width
-          height: "100vh", // Full viewport height
-          maxWidth: "100%", // Ensure no max-width constraint
+          width: "100%",
+          height: { xs: "100vh", sm: "90vh", md: "100vh" },
+          maxWidth: "100%",
         }}
       >
         <img
-          src={herohome}
+          src={imageSrc}
           alt="CYNKCO smart boards"
           style={{
-            width: "100%", // Full width
-            height: "100vh", // Full height
-            objectFit: "cover", // Fill the space, may crop the image
-            display: "block", // Remove any inline spacing
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            objectPosition: "center",
+            display: "block",
           }}
         />
+      </Box>
 
-        {/* Overlay Text on the Image */}
-        <Box
+      {/* Overlay Text on the Image */}
+      <Box
+        sx={{
+          position: "absolute",
+          top: { xs: "30%", sm: "40%", md: "30%" },
+          left: { xs: "5%", sm: "8%", md: "7%" },
+          width: { xs: "90%", sm: "80%", md: "50%" },
+          textAlign: "left",
+          color: colors.textOverlay, // Use color from colors.js
+        }}
+      >
+        {/* Subtitle */}
+        <Typography
+          variant="h6"
           sx={{
-            position: "absolute",
-            top: { xs: "40%", sm: "60%", md: "30%" }, // Adjust position for different screen sizes
-            left: { xs: "5%", sm: "10%" }, // Position towards the left
-            textAlign: "left", // Align text to the left
-            color: "#fff", // White text for contrast
-            transform: { xs: "translateY(-50%)", md: "none" }, // Center vertically on smaller screens
+            background: `linear-gradient(45deg, ${colors.darkBlue}, ${colors.lightBlue})`, // Fixed syntax
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            fontWeight: 500,
+            fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem" },
+            lineHeight: 1.2,
           }}
         >
-          {/* Subtitle */}
-          <Typography
-            variant="h6"
-            sx={{
-              background: "linear-gradient(45deg, #006400, #0D47A1)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              fontWeight: 500,
-              fontSize: { xs: "1rem", sm: "1.25rem", md: "1.5rem" }, // Responsive font size
-            }}
-          >
-            CYNKCO Smart Boards
-          </Typography>
+          CYNKCO Smart Boards
+        </Typography>
 
-          {/* Main Heading */}
-          <Typography
-            variant="h3"
-            sx={{
-              fontWeight: "bold",
-              background: "linear-gradient(45deg, #006400, #0D47A1)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              mt: 1,
-              mb: 2,
-              fontSize: { xs: "1.5rem", sm: "2rem", md: "3rem" }, // Responsive font size
-            }}
-          >
-            NEXT-LEVEL INTERACTIVE <br /> COLLABORATION
-          </Typography>
+        {/* Main Heading */}
+        <Typography
+          variant="h3"
+          sx={{
+            fontWeight: "bold",
+            background: `linear-gradient(45deg, ${colors.gradientStart}, ${colors.darkBlue})`, // Use colors from colors.js
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            mt: 1,
+            mb: 2,
+            fontSize: { xs: "1.3rem", sm: "1.8rem", md: "3rem" },
+            lineHeight: 1.3,
+          }}
+        >
+          NEXT-LEVEL INTERACTIVE <br /> COLLABORATION
+        </Typography>
 
-          {/* Icons and Labels */}
-          <Stack
-            direction="row"
-            spacing={{ xs: 1, sm: 2, md: 3 }}
-            sx={{ mb: 3 }}
-          >
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <CameraIcon
-                sx={{
-                  color: "#4285F4", // Blue for camera
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                }}
-              />
-              <Typography
-                variant="body2"
-                sx={{ color: "#555", fontSize: { xs: "0.75rem", md: "1rem" } }}
-              >
-                High-Quality Camera
-              </Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <MicIcon
-                sx={{
-                  color: "#24AC4C", // Green for microphones
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                }}
-              />
-              <Typography
-                variant="body2"
-                sx={{ color: "#555", fontSize: { xs: "0.75rem", md: "1rem" } }}
-              >
-                Advanced Audio
-              </Typography>
-            </Box>
-            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-              <WifiIcon
-                sx={{
-                  color: "#000000", // Black for WiFi
-                  fontSize: { xs: "1rem", md: "1.5rem" },
-                }}
-              />
-              <Typography
-                variant="body2"
-                sx={{ color: "#555", fontSize: { xs: "0.75rem", md: "1rem" } }}
-              >
-                Dual-Band WiFi
-              </Typography>
-            </Box>
-          </Stack>
+        {/* Icons and Labels */}
+        <Stack
+          direction={{ xs: "column", sm: "row" }}
+          spacing={{ xs: 1, sm: 2, md: 3 }}
+          sx={{ mb: 3 }}
+        >
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <CameraIcon
+              sx={{
+                color: colors.cameraIcon, // Use color from colors.js
+                fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
+              }}
+            />
+            <Typography
+              variant="body2"
+              sx={{
+                color: colors.featureText, // Use color from colors.js
+                fontSize: { xs: "0.7rem", sm: "0.85rem", md: "1rem" },
+              }}
+            >
+              High-Quality Camera
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <MicIcon
+              sx={{
+                color: colors.micIcon, // Use color from colors.js
+                fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
+              }}
+            />
+            <Typography
+              variant="body2"
+              sx={{
+                color: colors.featureText, // Use color from colors.js
+                fontSize: { xs: "0.7rem", sm: "0.85rem", md: "1rem" },
+              }}
+            >
+              Advanced Audio
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <WifiIcon
+              sx={{
+                color: colors.wifiIcon, // Use color from colors.js
+                fontSize: { xs: "1rem", sm: "1.2rem", md: "1.5rem" },
+              }}
+            />
+            <Typography
+              variant="body2"
+              sx={{
+                color: colors.featureText, // Use color from colors.js
+                fontSize: { xs: "0.7rem", sm: "0.85rem", md: "1rem" },
+              }}
+            >
+              Dual-Band WiFi
+            </Typography>
+          </Box>
+        </Stack>
 
-          {/* Learn More Button */}
-          <Button
-            variant="contained"
-            onClick={handleLearnMore}
-            sx={{
-              backgroundColor: "#006400", // Green button
-              color: "#fff",
-              textTransform: "none",
-              padding: { xs: "8px 16px", md: "10px 20px" }, // Responsive padding
-              borderRadius: "25px",
-              fontSize: { xs: "0.875rem", md: "1rem" }, // Responsive font size
-              "&:hover": {
-                backgroundColor: "#24AC4C",
-              },
-            }}
-          >
-            Learn More
-          </Button>
-        </Box>
+        {/* Learn More Button */}
+        <Button
+          variant="contained"
+          onClick={handleLearnMore}
+          sx={{
+            backgroundColor: colors.darkBlue, // Use color from colors.js
+            color: colors.textOverlay, // Use color from colors.js
+            textTransform: "none",
+            padding: { xs: "6px 12px", sm: "8px 16px", md: "10px 20px" },
+            borderRadius: "25px",
+            fontSize: { xs: "0.75rem", sm: "0.875rem", md: "1rem" },
+            "&:hover": {
+              backgroundColor: colors.lightBlue, // Use color from colors.js
+            },
+          }}
+        >
+          Learn More
+        </Button>
       </Box>
     </Box>
   );

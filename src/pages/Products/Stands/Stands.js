@@ -17,9 +17,8 @@ import CT1800 from "../../../Assets/Products/CT-1800.png";
 import CT2100 from "../../../Assets/Products/CT-2100.png";
 import ProductHeroSection from "./StandHero";
 
-// Theme Colors
-const green = "#24AC4C";
-const greenDark = "#006400";
+import colors from "../../../theme/colors";
+
 
 const products = [
   {
@@ -97,7 +96,7 @@ const StandsPage = () => {
                       variant="h4"
                       sx={{
                         fontWeight: "bold",
-                        color: greenDark,
+                        color: colors.darkBlue,
                         mb: { xs: 1, sm: 2 }, // Responsive margin-bottom
                         fontSize: { xs: "1.25rem", sm: "1.5rem", md: "2rem" }, // Responsive font size
                         textAlign: { xs: "center", md: "left" }, // Center on mobile, left on desktop
@@ -130,7 +129,7 @@ const StandsPage = () => {
                         component={Link}
                         to="/contact"
                         sx={{
-                          backgroundColor: greenDark,
+                          backgroundColor: colors.darkBlue,
                           color: "#fff",
                           fontWeight: "bold",
                           textTransform: "none",
@@ -139,7 +138,7 @@ const StandsPage = () => {
                           fontSize: { xs: "0.9rem", sm: "1rem" }, // Responsive font size
                           borderRadius: "8px",
                           "&:hover": {
-                            backgroundColor: green,
+                            backgroundColor: colors.lightBlue,
                           },
                         }}
                       >
@@ -153,7 +152,7 @@ const StandsPage = () => {
                   <Divider
                     sx={{
                       my: { xs: 2, sm: 3, md: 4 }, // Responsive margin
-                      borderColor: greenDark,
+                      borderColor: colors.darkBlue,
                       borderWidth: 0.5,
                     }}
                   />

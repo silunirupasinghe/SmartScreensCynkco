@@ -19,12 +19,12 @@ import CT011 from "../../../Assets/Products/Accessories/pen.png";
 import CT16A from "../../../Assets/Products/Accessories/SharableDongal.png";
 import CT20 from "../../../Assets/Products/Accessories/speakers.png";
 
+
 // Hero section
 import AccessoryHero from "./AccessoryHero";
 
-// Theme Colors
-const green = "#24AC4C";
-const greenDark = "#006400";
+import colors from "../../../theme/colors";
+
 
 // Styled Card with improved design
 const AccessoryCard = styled(Card)(({ theme }) => ({
@@ -32,7 +32,7 @@ const AccessoryCard = styled(Card)(({ theme }) => ({
   height: "100%",
   margin: "auto",
   borderRadius: 16,
-  border: `1px solid ${greenDark}`,
+  border: `1px solid ${colors.darkBlue}`,
   transition: "all 0.3s ease",
   display: "flex",
   flexDirection: "column",
@@ -71,7 +71,7 @@ const AccessoriesPage = () => {
       <AccessoryHero />
 
       {/* Accessories Section */}
-      <Box sx={{ background: "#FAFFFC", py: { md: 8, xs: 5 } }}>
+      <Box sx={{  py: { md: 8, xs: 5 } }}>
         <Container maxWidth="lg">
           <Grid container spacing={{ xs: 3, md: 5 }} justifyContent="center">
             {accessories.map((product, index) => (
@@ -87,7 +87,7 @@ const AccessoriesPage = () => {
                         justifyContent: "center",
                         alignItems: "center",
                         background: "#fff",
-                        borderBottom: `1px solid ${greenDark}`,
+                        borderBottom: `1px solid ${colors.darkBlue}`,
                         p: 2,
                       }}
                     >
@@ -109,7 +109,7 @@ const AccessoriesPage = () => {
                         variant="h5"
                         sx={{
                           fontWeight: "bold",
-                          color: greenDark,
+                          color: colors.darkBlue,
                           mb: 1.5,
                           fontSize: { xs: "1.2rem", md: "1.4rem" },
                         }}
@@ -135,7 +135,7 @@ const AccessoriesPage = () => {
                         component={Link}
                         to="/contact"
                         sx={{
-                          backgroundColor: greenDark,
+                          backgroundColor: colors.darkBlue,
                           color: "#fff",
                           fontWeight: 600,
                           textTransform: "none",
@@ -144,7 +144,7 @@ const AccessoriesPage = () => {
                           py: 1.2,
                           borderRadius: "10px",
                           "&:hover": {
-                            backgroundColor: green,
+                            backgroundColor: colors.darkBlue,
                           },
                         }}
                       >

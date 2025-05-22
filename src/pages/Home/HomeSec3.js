@@ -6,9 +6,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 import screen1 from "../../Assets/Home/screen1.png";
-import googleIcons from "../../Assets/Home/google.png"
-import accessories from "../../Assets/Home/accessories.png"
-import wifi from "../../Assets/Home/wifi.png"
+import googleIcons from "../../Assets/Home/google.png";
+import accessories from "../../Assets/Home/accessories.png";
+import wifi from "../../Assets/Home/wifi.png";
+
+import colors from "../../theme/colors";
 // Updated Product Data with CT-SC65WC focus and additional features
 const productData = [
   { id: 1, title: "CT-SC65WC", image: screen1 }, // Flagship product
@@ -18,7 +20,7 @@ const productData = [
     id: 4,
     title: "Accessories",
     image: accessories,
-  }, 
+  },
 ];
 
 const HomeSec3 = () => {
@@ -43,7 +45,7 @@ const HomeSec3 = () => {
           textAlign: "center",
           fontSize: { xs: "1.6rem", sm: "2.2rem", md: "2.5rem" },
           lineHeight: 1.2,
-          background: "linear-gradient(45deg, #006400, #0D47A1)",
+          background: `linear-gradient(45deg, ${colors.gradientStart} 0%, ${colors.darkBlue} 100%)`, // Use colors from colors.js
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -143,7 +145,7 @@ const HomeSec3 = () => {
                   sx={{
                     height: 300,
                     borderRadius: 3,
-                    bgcolor: isActive ? "#E0F4E9" : "#F7FDFC",
+                    bgcolor: isActive ? colors.blue : "#F7FDFC",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
@@ -169,7 +171,7 @@ const HomeSec3 = () => {
                     fontWeight={600}
                     align="center"
                     sx={{
-                      color: isActive ? "#007D52" : "#666",
+                      color: isActive ? colors.darkBlue : "#666",
                       fontSize: isActive ? "1.1rem" : "1rem",
                     }}
                   >

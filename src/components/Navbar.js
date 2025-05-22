@@ -128,7 +128,7 @@ function Navbar() {
               component={item.subcategories ? "div" : Link}
               to={item.subcategories ? undefined : item.path}
               sx={{
-                color: isParentActive(item) ? "#24AC4C" : "inherit",
+                color: isParentActive(item) ? "#colors.darkBlue" : "inherit",
                 fontWeight: isParentActive(item) ? "bold" : "normal",
               }}
             >
@@ -154,7 +154,7 @@ function Navbar() {
                       }
                       sx={{
                         pl: 4,
-                        color: isActive(sub.path) ? "#24AC4C" : "inherit",
+                        color: isActive(sub.path) ? "#colors.darkBlue" : "inherit",
                         fontWeight: isActive(sub.path) ? "bold" : "normal",
                       }}
                     >
@@ -172,7 +172,7 @@ function Navbar() {
 
   const smartScreensDrawer = (
     <Box sx={{ width: 300, p: 2 }}>
-      <Typography variant="h6" sx={{ p: 2, color: "#24AC4C" }}>
+      <Typography variant="h6" sx={{ p: 2, color: "#colors.darkBlue" }}>
         Smart Screens
       </Typography>
       <List>
@@ -189,7 +189,7 @@ function Navbar() {
             sx={{
               display: "flex",
               alignItems: "center",
-              color: isActive(screen.url) ? "#24AC4C" : "inherit",
+              color: isActive(screen.url) ? "#colors.darkBlue" : "inherit",
               fontWeight: isActive(screen.url) ? "bold" : "normal",
             }}
           >
@@ -240,7 +240,7 @@ function Navbar() {
                   }
                   sx={{
                     mx: 1,
-                    color: isParentActive(item) ? "#24AC4C" : "inherit",
+                    color: isParentActive(item) ? "#colors.darkBlue" : "inherit",
                     fontWeight: isParentActive(item) ? "bold" : "normal",
                   }}
                 >
@@ -265,7 +265,7 @@ function Navbar() {
                             : () => setAnchorEl(null)
                         }
                         sx={{
-                          color: isActive(sub.path) ? "#24AC4C" : "inherit",
+                          color: isActive(sub.path) ? "#colors.darkBlue" : "inherit",
                           fontWeight: isActive(sub.path) ? "bold" : "normal",
                         }}
                       >

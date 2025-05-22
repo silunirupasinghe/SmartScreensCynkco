@@ -18,14 +18,15 @@ import {
   LocationOn,
 } from "@mui/icons-material";
 import { styled } from "@mui/system";
+import colors from "../theme/colors";
 
 // Theme Colors (aligned with CYNKCO branding)
-const primaryColor = "#24AC4C"; // Green for icons
+
 const textColor = "#E0E0E0"; // Light gray for text
 
 // Styled Footer Container
 const FooterContainer = styled(Box)({
-  backgroundColor: "#103B29", // Dark green
+  backgroundColor: colors.footerBlue, // Dark green
   color: textColor,
   padding: "2rem 0",
   display: "flex", // Add flexbox for vertical centering
@@ -44,20 +45,20 @@ const FooterLink = styled(Link)({
   fontWeight: "400",
   transition: "color 0.3s",
   "&:hover": {
-    color: primaryColor,
+    color: colors.blue,
     textDecoration: "underline",
   },
 });
 
 // Styled External Link for "Developed by"
 const ExternalLink = styled("a")({
-  color: textColor,
+  color: colors.blue,
   textDecoration: "none",
   fontSize: "0.75rem",
   fontWeight: "400",
   transition: "color 0.3s",
   "&:hover": {
-    color: primaryColor,
+    color: colors.lightBlue,
     textDecoration: "underline",
   },
 });
@@ -70,7 +71,7 @@ const SocialIconButton = styled(IconButton)(({ bg }) => ({
   transition: "transform 0.3s ease-in-out",
   "&:hover": {
     transform: "scale(1.1)",
-    backgroundColor: primaryColor,
+    backgroundColor: colors.lightBlue,
   },
 }));
 
@@ -113,24 +114,16 @@ const Footer = () => {
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Our Products
             </Typography>
-            <FooterLink to="/products/smart-screens/ct-sc65wc">
-              CT-SC65WC
+            <FooterLink to="/products/smart-screens">
+              Smart Screens
             </FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc65a">
-              CT-SC65A
+            <FooterLink to="/products/accessories">
+              Screen Stands
             </FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc75a">
-              CT-SC75A
+            <FooterLink to="/products/screen-stands">
+              Accessories
             </FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc86wc">
-              CT-SC86WC
-            </FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc85a">
-              CT-SC85A
-            </FooterLink>
-            <FooterLink to="/products/smart-screens/ct-sc75wc">
-              CT-SC75WC
-            </FooterLink>
+            
           </Grid>
 
           {/* Contact Info & Social Media */}
@@ -139,17 +132,17 @@ const Footer = () => {
               Contact Us
             </Typography>
             <Box display="flex" alignItems="center" mb={1}>
-              <LocationOn sx={{ color: primaryColor, mr: 1 }} />
+              <LocationOn sx={{ color: colors.lightBlue, mr: 1 }} />
               <Typography variant="body2">
                 No 286, R. A. De Mel Mawatha, Colombo 00300, Sri Lanka
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" mb={1}>
-              <Phone sx={{ color: primaryColor, mr: 1 }} />
+              <Phone sx={{ color: colors.lightBlue, mr: 1 }} />
               <Typography variant="body2">+94 112 233 445</Typography>
             </Box>
             <Box display="flex" alignItems="center">
-              <Email sx={{ color: primaryColor, mr: 1 }} />
+              <Email sx={{ color: colors.lightBlue, mr: 1 }} />
               <Typography variant="body2">support@cynkco.com</Typography>
             </Box>
           </Grid>

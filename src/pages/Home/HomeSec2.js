@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography, Grid, useTheme, useMediaQuery } from "@mui/material";
 import smartScreen2 from "../../Assets/smartScreen2.jpg";
+import colors from "../../theme/colors"; // Import the colors
 
 const HomeSec2 = () => {
   const theme = useTheme();
@@ -63,7 +64,7 @@ const HomeSec2 = () => {
                 mb: { xs: 1, sm: 2 }, // Responsive margin-bottom
                 fontSize: { xs: "1.5rem", sm: "2rem", md: "2.5rem" },
                 lineHeight: 1.2,
-                background: "linear-gradient(45deg, #006400, #0D47A1)",
+                background: `linear-gradient(45deg, ${colors.darkBlue}, ${colors.lightBlue})`,
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
               }}

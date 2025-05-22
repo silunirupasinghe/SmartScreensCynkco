@@ -4,14 +4,11 @@ import "@fontsource/roboto/400.css"; // Regular for body text
 import { Link } from "react-router-dom"; // Assuming you're using React Router
 import { Box, Typography, Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
-
-// Theme Colors
-const green = "#24AC4C";
-const greenDark = "#006400";
+import colors from "../../../theme/colors"; // Adjust path to match your project structure
 
 // Styled Components
 const ContactSection = styled(Box)(({ theme }) => ({
-  background: `linear-gradient(90deg, #006400, #0D47A1)`,
+  background: `linear-gradient(45deg, ${colors.darkBlue}, ${colors.lightBlue})`,
   color: "#fff",
   padding: theme.spacing(4),
   textAlign: "center",
@@ -22,14 +19,14 @@ const ContactSection = styled(Box)(({ theme }) => ({
 
 const StyledButton = styled(Button)(({ theme }) => ({
   backgroundColor: "#fff",
-  color: greenDark,
+  color: colors.darkBlue,
   fontFamily: "Poppins, sans-serif",
   fontWeight: 700,
   padding: theme.spacing(1.5, 4),
   borderRadius: "25px",
   textTransform: "none",
   "&:hover": {
-    backgroundColor: green,
+    backgroundColor: colors.lightBlue,
     color: "#fff",
   },
 }));

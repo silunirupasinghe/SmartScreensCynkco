@@ -13,6 +13,7 @@ import meetingImg from "../../Assets/Home/meeting.jpg";
 import educationImg from "../../Assets/Home/classroom.jpeg";
 import retailImg from "../../Assets/Home/retail.jpg";
 
+import colors from "../../theme/colors"; // Import the colors
 const industryData = [
   {
     title: "Bank & Finance Solution",
@@ -58,7 +59,7 @@ const HomeSec4 = () => {
           textAlign: "center",
           fontSize: { xs: "1.5rem", sm: "2rem", md: "2.3rem" },
           lineHeight: 1.0,
-          background: 'linear-gradient(45deg, #006400, #0D47A1 )',
+          background: `linear-gradient(45deg, ${colors.gradientStart} 0%, ${colors.darkBlue} 100%)`, // Use colors from colors.js
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
         }}
@@ -66,7 +67,7 @@ const HomeSec4 = () => {
         One Platform. Endless Possibilities.
       </Typography>
 
-      <Box sx={{ background: "#F1FFF7", py: 6, px: { xs: 2, md: 10 }, my: 4 }}>
+      <Box sx={{ background: colors.blue, py: 6, px: { xs: 2, md: 10 }, my: 4 }}>
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           spaceBetween={12}
@@ -89,13 +90,11 @@ const HomeSec4 = () => {
               <Box
                 sx={{
                   background: "#fff",
-                  borderRadius: 4,
+                  borderRadius: 2,
                   overflow: "hidden",
                   mx: "auto",
                   maxWidth: 360,
                   height: 400,
-                  border: 1,
-                  borderColor: "#24ac4c",
                   display: "flex",
                   flexDirection: "column",
                 }}

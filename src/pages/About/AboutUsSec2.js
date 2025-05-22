@@ -31,21 +31,6 @@ const AboutUs = () => {
         "Launched our first product, the CT-SC65A Smart Board, marking our entry into the interactive display market. This 65-inch 4K UHD Smart Board gained traction in schools and corporate offices for its seamless collaboration features.",
     },
     {
-      year: "[Year – please specify, e.g., 2018]",
-      event:
-        "Expanded our product portfolio with the Alpha and H-type stands, designed to complement our Smart Boards. We also established our first international office in [Location – please specify], marking our global expansion.",
-    },
-    {
-      year: "[Year – please specify, e.g., 2020]",
-      event:
-        "Achieved a milestone in exports, reaching over [Number – please specify, e.g., 15] countries. Our CT-SC series Smart Boards became a preferred choice for interactive learning and presentations worldwide.",
-    },
-    {
-      year: "[Year – please specify, e.g., 2022]",
-      event:
-        "Introduced Android 11-powered Smart Boards, enhancing user experience with faster performance and advanced features. We also obtained [Certifications – please specify, e.g., CE, FCC, RoHS] certifications, ensuring global quality standards.",
-    },
-    {
       year: "2024",
       event:
         "Upgraded our Smart Boards to Android 13, offering improved split-screen functionality and user privacy settings. Our production facility expanded to [Facility Size – please specify, e.g., 50,000 sqm], doubling our capacity to meet growing demand.",
