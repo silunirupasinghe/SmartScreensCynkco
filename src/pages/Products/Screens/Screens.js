@@ -9,6 +9,8 @@ import {
   CardMedia,
   CardContent,
   CardActions,
+  Tabs,
+  Tab,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
@@ -16,12 +18,13 @@ import { styled } from "@mui/material/styles";
 import { Fade } from "@mui/material";
 import ScreenHero from "../Screens/ScreenHero.js";
 import { Link } from "react-router-dom";
-import colors from "../../../theme/colors"; // Adjust path to match your project structure
+import colors from "../../../theme/colors";
 
 // Import Google Fonts via @fontsource
 import "@fontsource/poppins/700.css"; // Bold for headings
 import "@fontsource/roboto/400.css"; // Regular for body text
 
+// Images
 import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
 import CTSC65WC from "../../../Assets/Products/Screens/CTSC65WC/CT-SC65WC.png";
 import CTSC75WC from "../../../Assets/Products/Screens/CTSC75WC/CT-SC75WC.png";
@@ -37,148 +40,153 @@ const ProductCard = styled(Card)(({ theme }) => ({
   transition: "transform 0.3s ease-in-out",
   display: "flex",
   flexDirection: "column", // Ensure content fits within fixed height
-
   "&:hover": {
     transform: "translateY(-8px)",
   },
 }));
 
-// Styled Button for category selection
-const CategoryButton = styled(Button)(({ theme, active }) => ({
-  color: active ? colors.darkBlue : "#000000",
-  fontFamily: "Poppins, sans-serif",
-  fontWeight: 600,
-  textTransform: "none",
-  px: 6,
-  py: 1,
-  m: 2,
-  borderRadius: "15px",
-  border: `2px solid ${active ? colors.darkBlue : "#000000"}`,
-  "&:hover": {
-    backgroundColor: colors.darkBlue,
-    color: "#ffffff",
-  },
-  margin: theme.spacing(1),
-}));
-
-// Product Data with shortened descriptions, separated into two categories
-const singleSystemNoCamera = [
+// Define the collections
+const collections = [
   {
-    name: "CT-SC65A",
-    image: CTSC65A,
-    description:
-      "A 65-inch 4K Ultra HD SmartScreen with high-precision touch and wireless screen sharing, great for interactive presentations.",
-    url: "/products/smart-screens/ct-sc65a",
-  },
-  {
-    name: "CT-SC75A",
-    image: CTSC75A,
-    description:
-      "A 75-inch 4K Ultra HD display with dual-pen writing and wireless screen transfer, ideal for team brainstorming.",
-    url: "/products/smart-screens/ct-sc75a",
+    name: "Single System without Camera",
+    products: [
+      {
+        name: "CT-SC65A",
+        image: CTSC65A,
+        description:
+          "A 65-inch 4K Ultra HD SmartScreen with high-precision touch and wireless screen sharing, great for interactive presentations.",
+        url: "/products/smart-screens/ct-sc65a",
+      },
+      {
+        name: "CT-SC75A",
+        image: CTSC75A,
+        description:
+          "A 75-inch 4K Ultra HD display with dual-pen writing and wireless screen transfer, ideal for team brainstorming.",
+        url: "/products/smart-screens/ct-sc75a",
+      },
+      {
+        name: "CT-SC85A",
+        image: CTSC85A,
+        description:
+          "An 86-inch 4K Ultra HD SmartScreen with precise touch and wireless sharing, perfect for interactive meeting spaces.",
+        url: "/products/smart-screens/ct-sc85a",
+      },
+    ],
   },
   {
-    name: "CT-SC85A",
-    image: CTSC85A,
-    description:
-      "An 86-inch 4K Ultra HD SmartScreen with precise touch and wireless sharing, perfect for interactive meeting spaces.",
-    url: "/products/smart-screens/ct-sc85a",
-  },
-];
-
-const dualSystemWithCamera = [
-  {
-    name: "CT-SC65WC",
-    image: CTSC65WC,
-    description:
-      "A 65-inch 4K Ultra HD SmartScreen with a 48MP camera and 8-array mic, ideal for video conferencing and collaborative work.",
-    url: "/products/smart-screens/ct-sc65wc",
-  },
-  {
-    name: "CT-SC75WC",
-    image: CTSC75WC,
-    description:
-      "A 75-inch 4K Ultra HD display with a 48MP camera and dual-pen writing, perfect for virtual meetings and team collaboration.",
-    url: "/products/smart-screens/ct-sc75wc",
-  },
-  {
-    name: "CT-SC86WC",
-    image: CTSC86WC,
-    description:
-      "An 86-inch 4K Ultra HD display with a 48MP camera and high-precision touch, suited for large-scale video conferencing.",
-    url: "/products/smart-screens/ct-sc86wc",
+    name: "Dual System with Camera",
+    products: [
+      {
+        name: "CT-SC65WC",
+        image: CTSC65WC,
+        description:
+          "A 65-inch 4K Ultra HD SmartScreen with a 48MP camera and 8-array mic, ideal for video conferencing and collaborative work.",
+        url: "/products/smart-screens/ct-sc65wc",
+      },
+      {
+        name: "CT-SC75WC",
+        image: CTSC75WC,
+        description:
+          "A 75-inch 4K Ultra HD display with a 48MP camera and dual-pen writing, perfect for virtual meetings and team collaboration.",
+        url: "/products/smart-screens/ct-sc75wc",
+      },
+      {
+        name: "CT-SC86WC",
+        image: CTSC86WC,
+        description:
+          "An 86-inch 4K Ultra HD display with a 48MP camera and high-precision touch, suited for large-scale video conferencing.",
+        url: "/products/smart-screens/ct-sc86wc",
+      },
+    ],
   },
 ];
 
 const ScreensPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
-  const [selectedCategory, setSelectedCategory] = useState("single"); // Default to single system
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
+  const [activeTab, setActiveTab] = useState(0);
 
   // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  // Determine which products to display based on selected category
-  const productsToDisplay =
-    selectedCategory === "single" ? singleSystemNoCamera : dualSystemWithCamera;
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
+  };
 
   return (
     <Box>
       {/* Hero Section */}
       <ScreenHero />
 
-      {/* Category Selection and Product Cards Section */}
+      {/* Tabs and Product Cards Section */}
       <Box
         sx={{
-
           mt: { xs: 4, md: 6 }, // Negative margin to overlap with hero
           pb: { md: 6, xs: 4 }, // Padding bottom for spacing
           position: "relative", // Ensure proper stacking context
         }}
       >
         <Container maxWidth="lg">
-          {/* Category Selector */}
-          <Box
+          {/* Tabs for Collections */}
+          <Tabs
+            value={activeTab}
+            onChange={handleTabChange}
+            centered={!isMobile} // Centered on larger screens, scrollable on mobile
+            variant={isMobile ? "scrollable" : "standard"} // Scrollable on mobile
+            scrollButtons="auto"
+            allowScrollButtonsMobile
             sx={{
-              display: "flex",
-              justifyContent: "center",
-              mb: 4,
-              flexWrap: "wrap",
+              mb: { xs: 3, sm: 4, md: 6 },
+              "& .MuiTab-root": {
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: 600,
+                fontSize: {
+                  xs: "0.8rem", // Smaller font for mobile
+                  sm: "0.9rem", // Medium font for tablet
+                  md: "1.1rem", // Larger font for desktop
+                },
+                color: colors.darkBlue,
+                textTransform: "none",
+                px: { xs: 1, sm: 1, md: 4 }, // Responsive padding
+                minWidth: { xs: 100, sm: 160, md: 200 }, // Ensure tabs don't shrink too much
+              },
+              "& .Mui-selected": {
+                color: colors.lightBlue,
+              },
+              "& .MuiTabs-indicator": {
+                backgroundColor: colors.lightBlue,
+              },
+              "& .MuiTabs-scrollButtons": {
+                color: colors.darkBlue,
+                "&.Mui-disabled": {
+                  opacity: 0.3,
+                },
+              },
             }}
           >
-            <CategoryButton
-              active={selectedCategory === "single"}
-              onClick={() => setSelectedCategory("single")}
-            >
-              Single System without Camera
-            </CategoryButton>
-            <CategoryButton
-              active={selectedCategory === "dual"}
-              onClick={() => setSelectedCategory("dual")}
-            >
-              Dual System with Camera
-            </CategoryButton>
-          </Box>
+            {collections.map((collection, index) => (
+              <Tab key={index} label={collection.name} />
+            ))}
+          </Tabs>
 
           {/* Product Cards */}
           <Typography
             variant={isMobile ? "h4" : "h3"}
             sx={{
               fontFamily: "Poppins, sans-serif",
-              fontWeight: 700,
+              fontWeight: 500,
               color: colors.darkBlue,
               textAlign: "center",
               mb: 4,
             }}
           >
-            {selectedCategory === "single"
-              ? "Single System without Camera"
-              : "Dual System with Camera"}
+            {collections[activeTab].name}
           </Typography>
           <Grid container spacing={isMobile ? 2 : 4} justifyContent="center">
-            {productsToDisplay.map((screen, index) => (
+            {collections[activeTab].products.map((screen, index) => (
               <Grid item xs={12} sm={6} md={4} key={screen.name}>
                 <Fade in timeout={1000 + index * 200}>
                   <ProductCard
@@ -197,8 +205,8 @@ const ScreensPage = () => {
                       <Typography
                         variant="h5"
                         sx={{
-                          fontFamily: "Poppins, sans-serif", // Google Font: Poppins
-                          fontWeight: 700, // Bold
+                          fontFamily: "Poppins, sans-serif",
+                          fontWeight: 700,
                           color: colors.darkBlue,
                           mb: 1.5,
                           fontSize: { xs: "1.25rem", md: "1.5rem" },
@@ -209,8 +217,8 @@ const ScreensPage = () => {
                       <Typography
                         variant="body2"
                         sx={{
-                          fontFamily: "Roboto, sans-serif", // Google Font: Roboto
-                          fontWeight: 400, // Regular
+                          fontFamily: "Roboto, sans-serif",
+                          fontWeight: 400,
                           color: "#333",
                           lineHeight: 1.6,
                           fontSize: { xs: "0.9rem", md: "1rem" },
@@ -227,7 +235,7 @@ const ScreensPage = () => {
                         sx={{
                           backgroundColor: colors.darkBlue,
                           color: "#fff",
-                          fontFamily: "Poppins, sans-serif", // Apply Poppins to button
+                          fontFamily: "Poppins, sans-serif",
                           fontWeight: "bold",
                           textTransform: "none",
                           px: 3,

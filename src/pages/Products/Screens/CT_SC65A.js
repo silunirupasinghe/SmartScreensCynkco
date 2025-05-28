@@ -34,7 +34,7 @@ import "@fontsource/poppins/700.css";
 import "@fontsource/roboto/400.css";
 import Contact from "./Contact";
 import GetAppIcon from "@mui/icons-material/GetApp";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import colors from "../../../theme/colors";
 
@@ -42,9 +42,6 @@ import colors from "../../../theme/colors";
 import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
 import CTSC75A from "../../../Assets/Products/Screens/CTSC75A/CTSC75A.png";
 import CTSC85A from "../../../Assets/Products/Screens/CTSC85A/CTSC85A.jpg";
-
-
-
 
 // Styled Components
 const Section = styled(Box)(({ theme }) => ({
@@ -60,6 +57,7 @@ const SpecsHeader = styled(Box)(({ theme }) => ({
 
 const CTSC65APage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
 
@@ -113,11 +111,13 @@ const CTSC65APage = () => {
     },
     {
       label: "Audio",
-      value: "2x15W speakers (2.0 sound track), located at bottom and back side",
+      value:
+        "2x15W speakers (2.0 sound track), located at bottom and back side",
     },
     {
       label: "System",
-      value: "Android 11.0, Quad-core A55 CPU, MaliG52MP2 GPU, 4GB RAM, 32GB ROM",
+      value:
+        "android 13.0, Quad-core A55 CPU, MaliG52MP2 GPU, 4GB RAM, 32GB ROM",
     },
     {
       label: "Connectivity",
@@ -146,12 +146,13 @@ const CTSC65APage = () => {
     },
     { label: "Standard Modules", value: "PC Module: OPS62A" },
     { label: "Components", value: "On/Off button (bottom), Camera (top)" },
+    { label: "Warranty", value: "2 years warranty" },
   ];
 
   // Key Features
   const keyFeatures = [
     "Ultra-narrow Bezel Design with Simple Appearance",
-    "Android 11.0 Operating System",
+    "android 13.0 Operating System",
     "4K Ultra HD Display with Full-channel 4K UI",
     "Dual-pen, Dual-color Writing for Multi-people Collaboration",
     "Wireless Screen Sharing",
@@ -171,7 +172,7 @@ const CTSC65APage = () => {
   // Keywords for Chips
   const keywords = [
     "Interactive Whiteboard",
-    "Android 11",
+    "android 13",
     "Ultra-narrow Bezel",
     "4K UHD Display",
     "Infrared Touch",
@@ -267,7 +268,9 @@ const CTSC65APage = () => {
         setEmailError("");
         setPhoneError("");
       } else {
-        throw new Error(`Submission failed with status ${response.status}: ${responseText}`);
+        throw new Error(
+          `Submission failed with status ${response.status}: ${responseText}`
+        );
       }
     } catch (error) {
       console.error("Form Submission Error:", error);
@@ -381,7 +384,6 @@ const CTSC65APage = () => {
             >
               Android/Windows
             </Typography>
-            
 
             <Box
               sx={{
@@ -441,10 +443,15 @@ const CTSC65APage = () => {
                     sx={{
                       fontWeight: 600,
                       color: "#fff",
-                      backgroundColor: colors.darkBlue,
+                      backgroundColor:
+                        location.pathname === model.route
+                          ? colors.lightBlue // active
+                          : colors.darkBlue, // default
+
                       "&:hover": {
                         backgroundColor: colors.lightBlue,
                       },
+                     
                     }}
                   />
                 ))}
@@ -722,7 +729,8 @@ const CTSC65APage = () => {
                       fontFamily: "Roboto, sans-serif",
                     }}
                   >
-                    Please enter your email and phone number to download the CT-SC65A brochure.
+                    Please enter your email and phone number to download the
+                    CT-SC65A brochure.
                   </Typography>
                   {formStatus.error && (
                     <Alert severity="error" sx={{ mb: 3 }}>
@@ -761,10 +769,14 @@ const CTSC65APage = () => {
                         "& .MuiOutlinedInput-root": {
                           "& fieldset": { borderColor: colors.darkBlue },
                           "&:hover fieldset": { borderColor: colors.darkBlue },
-                          "&.Mui-focused fieldset": { borderColor: colors.darkBlue },
+                          "&.Mui-focused fieldset": {
+                            borderColor: colors.darkBlue,
+                          },
                         },
                         "& .MuiInputLabel-root": { color: "#757575" },
-                        "& .MuiInputLabel-root.Mui-focused": { color: colors.darkBlue },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: colors.darkBlue,
+                        },
                         mb: 2,
                       }}
                     />
@@ -783,10 +795,14 @@ const CTSC65APage = () => {
                         "& .MuiOutlinedInput-root": {
                           "& fieldset": { borderColor: colors.darkBlue },
                           "&:hover fieldset": { borderColor: colors.darkBlue },
-                          "&.Mui-focused fieldset": { borderColor: colors.darkBlue },
+                          "&.Mui-focused fieldset": {
+                            borderColor: colors.darkBlue,
+                          },
                         },
                         "& .MuiInputLabel-root": { color: "#757575" },
-                        "& .MuiInputLabel-root.Mui-focused": { color: colors.darkBlue },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: colors.darkBlue,
+                        },
                       }}
                     />
                     <Box sx={{ textAlign: "center", mt: 3 }}>

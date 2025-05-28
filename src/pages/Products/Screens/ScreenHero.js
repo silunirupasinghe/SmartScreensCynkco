@@ -3,6 +3,8 @@ import { Box, Typography, Container  } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import heroImage from "../../../Assets/hero.jpg"
 
+import colors from "../../../theme/colors"; // Adjust path to match your project structure
+
 // Styled component for the hero section with gradient and background image
 const HeroSection = styled(Box)(({ theme }) => ({
   height: "80vh",
@@ -36,7 +38,7 @@ const Hero = () => {
             sx={{
               fontSize: { xs: "2rem", md: "3rem" },
               fontWeight: "bold",
-              background: "linear-gradient(30deg, #0D47A1, #006400)",
+              background: `linear-gradient(45deg, ${colors.gradientStart} 0%, ${colors.darkBlue} 100%)`,
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               lineHeight: 1.2,
@@ -44,7 +46,7 @@ const Hero = () => {
               textAlign: "center",
             }}
           >
-           Smart Screens
+           SMART SCREENS
           </Typography>
           <Typography
           variant="subtitle1"

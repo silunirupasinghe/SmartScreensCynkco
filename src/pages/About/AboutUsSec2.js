@@ -30,41 +30,9 @@ const AboutUs = () => {
       event:
         "Launched our first product, the CT-SC65A Smart Board, marking our entry into the interactive display market. This 65-inch 4K UHD Smart Board gained traction in schools and corporate offices for its seamless collaboration features.",
     },
-    {
-      year: "2024",
-      event:
-        "Upgraded our Smart Boards to Android 13, offering improved split-screen functionality and user privacy settings. Our production facility expanded to [Facility Size – please specify, e.g., 50,000 sqm], doubling our capacity to meet growing demand.",
-    },
-    {
-      year: "2025",
-      event:
-        "Celebrating [Years – please specify, e.g., 10] years of innovation, Cynkco continues to lead the SmartScreen industry, serving thousands of clients globally with a team of [Employee Count – please specify, e.g., 500+] dedicated professionals.",
-    },
   ];
 
-  // Certifications data for Cynkco Technologies
-  const certifications = [
-    {
-      name: "[Certification – please specify, e.g., CE]",
-      description:
-        "Ensures compliance with European safety, health, and environmental protection standards.",
-    },
-    {
-      name: "[Certification – please specify, e.g., FCC]",
-      description:
-        "Certifies that our products meet U.S. regulations for electromagnetic interference.",
-    },
-    {
-      name: "[Certification – please specify, e.g., RoHS]",
-      description:
-        "Confirms our commitment to restricting hazardous substances in electronic products.",
-    },
-    {
-      name: "[Certification – please specify, e.g., ISO9001]",
-      description:
-        "Reflects our adherence to international quality management standards.",
-    },
-  ];
+ 
 
   return (
     <Box
@@ -162,100 +130,6 @@ const AboutUs = () => {
           ))}
         </Box>
 
-        {/* Certifications Section */}
-        <Box sx={{ mb: { xs: 4, md: 6 } }}>
-          <Box sx={{ mt: { xs: 6, md: 10 }, mb: { xs: 3, md: 4 } }}>
-            <Typography
-              variant="h2"
-              sx={{
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: 600,
-                mb: { xs: 4, md: 5 },
-                textAlign: "center",
-                fontSize: { xs: "1.3rem", sm: "1.8rem", md: "2.3rem" }, // Responsive heading size
-                lineHeight: 1.0,
-                background: "linear-gradient(45deg, #006400, #0D47A1)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              Our Certifications
-            </Typography>
-
-            <Box
-              sx={{
-                background: "#F1FFF7",
-                py: { xs: 4, md: 6 }, // Reduced padding on XS
-                px: { xs: 1, sm: 2, md: 10 }, // Responsive padding
-                my: { xs: 2, md: 4 },
-              }}
-            >
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={12}
-                slidesPerView={1}
-                loop={true}
-                pagination={{ clickable: true }}
-                autoplay={{ delay: 3600 }}
-                breakpoints={{
-                  0: { slidesPerView: 1, spaceBetween: 8 }, // Adjusted for XS screens
-                  600: { slidesPerView: 1, spaceBetween: 10 },
-                  768: { slidesPerView: 2, spaceBetween: 12 },
-                  1024: { slidesPerView: 3, spaceBetween: 12 },
-                  1280: { slidesPerView: 4, spaceBetween: 12 }, // Large screens
-                  1536: { slidesPerView: 4, spaceBetween: 12 }, // XL screens
-                }}
-                style={{ paddingBottom: "40px", paddingTop: "10px" }} // Reduced paddingBottom for smaller screens
-              >
-                {certifications.map((certification, index) => (
-                  <SwiperSlide key={index}>
-                    <Box
-                      sx={{
-                        background: "#fff",
-                        borderRadius: 4,
-                        overflow: "hidden",
-                        mx: "auto",
-                        maxWidth: { xs: 300, sm: 320, md: 360 }, // Responsive card width
-                        height: { xs: 360, sm: 380, md: 400 }, // Responsive height
-                        border: 1,
-                        borderColor: "#24ac4c",
-                        display: "flex",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <Box
-                        component="img"
-                        src={certification.name}
-                        
-                        sx={{
-                          width: "100%",
-                          height: { xs: 180, sm: 200, md: 220 }, // Responsive image height
-                          objectFit: "cover",
-                        }}
-                      />
-                      <Box sx={{ p: { xs: 1.5, md: 2 }, overflow: "hidden", flexGrow: 1 }}>
-                        <Typography
-                          variant="body2"
-                          color="text.secondary"
-                          sx={{
-                            fontFamily: "Roboto, sans-serif",
-                            fontWeight: 400,
-                            fontSize: { xs: "0.85rem", sm: "0.9rem", md: "0.92rem" }, // Responsive font size
-                            lineHeight: 1.5,
-                            maxHeight: "4.5rem",
-                            overflow: "hidden",
-                          }}
-                        >
-                          {certification.description}
-                        </Typography>
-                      </Box>
-                    </Box>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </Box>
-          </Box>
-        </Box>
 
         {/* Operations and Commitment Section */}
         <Box

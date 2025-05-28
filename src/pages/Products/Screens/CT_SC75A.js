@@ -34,7 +34,7 @@ import { styled } from "@mui/material/styles";
 import "@fontsource/poppins/700.css";
 import "@fontsource/roboto/400.css";
 import Contact from "./Contact";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import colors from "../../../theme/colors";
 
 // Note: Update these paths to the correct image locations
@@ -55,6 +55,7 @@ const SpecsHeader = styled(Box)(({ theme }) => ({
 
 const CTSC75APage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
@@ -115,7 +116,7 @@ const CTSC75APage = () => {
     {
       label: "System",
       value:
-        "Android 11.0, Quad-core A55 CPU, MaliG52MP2 GPU, 4GB RAM, 32GB ROM",
+        "android 13.0, Quad-core A55 CPU, MaliG52MP2 GPU, 4GB RAM, 32GB ROM",
     },
     {
       label: "Connectivity",
@@ -150,12 +151,13 @@ const CTSC75APage = () => {
       label: "Components",
       value: "On/Off button (bottom), Camera (top)",
     },
+    { label: "Warranty", value: "2 years warranty" },
   ];
 
   // Key Features
   const keyFeatures = [
     "Ultra-narrow Bezel Design with Simple Appearance",
-    "Android 11.0 Operating System",
+    "android 13.0 Operating System",
     "4K Ultra HD Display with Full-channel 4K UI",
     "Dual-pen, Dual-color Writing for Multi-people Collaboration",
     "Wireless Screen Sharing",
@@ -270,7 +272,9 @@ const CTSC75APage = () => {
         setEmailError("");
         setPhoneError("");
       } else {
-        throw new Error(`Submission failed with status ${response.status}: ${responseText}`);
+        throw new Error(
+          `Submission failed with status ${response.status}: ${responseText}`
+        );
       }
     } catch (error) {
       console.error("Form Submission Error:", error);
@@ -373,7 +377,7 @@ const CTSC75APage = () => {
               CYNKCO CT-SC75A
             </Typography>
             <Typography
-              variant={isMobile ? "h5" : isTablet ? "h5" : "h4"}
+              variant={isMobile ? "h5" : isTablet ? "h5" : "h5"}
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 500,
@@ -443,7 +447,10 @@ const CTSC75APage = () => {
                     sx={{
                       fontWeight: 600,
                       color: "#fff",
-                      backgroundColor: colors.darkBlue,
+                       backgroundColor:
+                        location.pathname === model.route
+                          ? colors.lightBlue // active
+                          : colors.darkBlue, // default
                       "&:hover": {
                         backgroundColor: colors.lightBlue,
                       },
@@ -724,7 +731,8 @@ const CTSC75APage = () => {
                       fontFamily: "Roboto, sans-serif",
                     }}
                   >
-                    Please enter your email and phone number to download the CT-SC75A brochure.
+                    Please enter your email and phone number to download the
+                    CT-SC75A brochure.
                   </Typography>
                   {formStatus.error && (
                     <Alert severity="error" sx={{ mb: 3 }}>
@@ -763,10 +771,14 @@ const CTSC75APage = () => {
                         "& .MuiOutlinedInput-root": {
                           "& fieldset": { borderColor: colors.darkBlue },
                           "&:hover fieldset": { borderColor: colors.lightBlue },
-                          "&.Mui-focused fieldset": { borderColor: colors.lightBlue },
+                          "&.Mui-focused fieldset": {
+                            borderColor: colors.lightBlue,
+                          },
                         },
                         "& .MuiInputLabel-root": { color: "#757575" },
-                        "& .MuiInputLabel-root.Mui-focused": { color: colors.darkBlue },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: colors.darkBlue,
+                        },
                         mb: 2,
                       }}
                     />
@@ -785,10 +797,14 @@ const CTSC75APage = () => {
                         "& .MuiOutlinedInput-root": {
                           "& fieldset": { borderColor: colors.darkBlue },
                           "&:hover fieldset": { borderColor: colors.lightBlue },
-                          "&.Mui-focused fieldset": { borderColor: colors.lightBlue },
+                          "&.Mui-focused fieldset": {
+                            borderColor: colors.lightBlue,
+                          },
                         },
                         "& .MuiInputLabel-root": { color: "#757575" },
-                        "& .MuiInputLabel-root.Mui-focused": { color: colors.darkBlue },
+                        "& .MuiInputLabel-root.Mui-focused": {
+                          color: colors.darkBlue,
+                        },
                       }}
                     />
                     <Box sx={{ textAlign: "center", mt: 3 }}>

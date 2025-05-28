@@ -68,7 +68,7 @@ const HomeSec3 = () => {
         }}
       >
         CYNKCO redefines smart display technology with the CT-SC65WC, featuring
-        Android 11.0, a 4K anti-glare display, and dual-pen collaboration tools.
+        android 13.0, a 4K anti-glare display, and dual-pen collaboration tools.
         Combined with dynamic video walls, advanced connectivity options like
         100Gb Ethernet, and essential accessories, CYNKCO solutions empower
         seamless interaction and productivity in education, healthcare,
