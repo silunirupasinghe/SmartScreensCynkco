@@ -56,7 +56,7 @@ const Hero = () => {
               margin: "0 auto",
             }}
           >
-            "We're here to help you connect and grow."
+            We're here to help you connect and grow
           </Typography>
         </HeroContent>
       </Container>

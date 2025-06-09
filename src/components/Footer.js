@@ -8,15 +8,7 @@ import {
   IconButton,
   Divider,
 } from "@mui/material";
-import {
-  Facebook,
-  Twitter,
-  LinkedIn,
-  Instagram,
-  Email,
-  Phone,
-  LocationOn,
-} from "@mui/icons-material";
+import { Email, Phone, LocationOn } from "@mui/icons-material";
 import { styled } from "@mui/system";
 import colors from "../theme/colors";
 
@@ -114,16 +106,9 @@ const Footer = () => {
             <Typography variant="h6" fontWeight="bold" gutterBottom>
               Our Products
             </Typography>
-            <FooterLink to="/products/smart-screens">
-              Smart Screens
-            </FooterLink>
-            <FooterLink to="/products/accessories">
-              Screen Stands
-            </FooterLink>
-            <FooterLink to="/products/screen-stands">
-              Accessories
-            </FooterLink>
-            
+            <FooterLink to="/products/smart-screens">Smart Screens</FooterLink>
+            <FooterLink to="/products/accessories">Screen Stands</FooterLink>
+            <FooterLink to="/products/screen-stands">Accessories</FooterLink>
           </Grid>
 
           {/* Contact Info & Social Media */}
@@ -134,16 +119,16 @@ const Footer = () => {
             <Box display="flex" alignItems="center" mb={1}>
               <LocationOn sx={{ color: colors.lightBlue, mr: 1 }} />
               <Typography variant="body2">
-                No 286, R. A. De Mel Mawatha, Colombo 00300, Sri Lanka
+                60 Paya Lebar Road, #06-39, Paya Lebar Square, Singapore 409051.
               </Typography>
             </Box>
             <Box display="flex" alignItems="center" mb={1}>
               <Phone sx={{ color: colors.lightBlue, mr: 1 }} />
-              <Typography variant="body2">+94 112 233 445</Typography>
+              <Typography variant="body2">+6560502580</Typography>
             </Box>
             <Box display="flex" alignItems="center">
               <Email sx={{ color: colors.lightBlue, mr: 1 }} />
-              <Typography variant="body2">support@cynkco.com</Typography>
+              <Typography variant="body2">info@connexit.biz</Typography>
             </Box>
           </Grid>
         </Grid>
@@ -154,8 +139,8 @@ const Footer = () => {
         {/* Copyright Notice */}
         <Box textAlign="center">
           <Typography variant="body2">
-            © {new Date().getFullYear()} Connex Information Technology (Pvt) Ltd.
-            All Rights Reserved.
+            © {new Date().getFullYear()} Connex Information Technology (Pvt)
+            Ltd. All Rights Reserved.
           </Typography>
           <Typography variant="body2" sx={{ mt: 1 }}>
             Developed by{" "}

@@ -14,7 +14,6 @@ import {
   TextField,
   CircularProgress,
   Alert,
-  Chip,
   Accordion,
   AccordionSummary,
   AccordionDetails,
@@ -140,7 +139,7 @@ const StandsPage = () => {
     if (formStatus.submitted) {
       const timer = setTimeout(() => {
         const link = document.createElement("a");
-        link.href = "/path/to/Stands_Brochure.pdf"; // Update with real path
+        link.href = "/brochures/cyncko_stands_brochure.pdf"; // Update with real path
         link.download = "Stands_Brochure.pdf";
         document.body.appendChild(link);
         link.click();
@@ -301,42 +300,7 @@ const StandsPage = () => {
             {collections[activeTab].description}
           </Typography>
 
-          {/* Download Brochure Section */}
-          <Typography
-            variant="h5"
-            sx={{
-              fontFamily: "Poppins, sans-serif",
-              fontWeight: 700,
-              color: "#1F2937",
-              borderBottom: `1px solid ${colors.darkBlue}`,
-              pb: 2,
-              mt: { xs: 4, sm: 6, md: 8 },
-              mb: 4,
-              textAlign: "center",
-            }}
-          >
-            Download Brochure
-          </Typography>
-          <Box sx={{ textAlign: "center", mb: { xs: 4, sm: 6, md: 8 } }}>
-            <Button
-              variant="contained"
-              startIcon={<GetAppIcon />}
-              onClick={handleOpenDownloadModal}
-              sx={{
-                backgroundColor: colors.darkBlue,
-                color: "#fff",
-                fontFamily: "Roboto, sans-serif",
-                fontWeight: 600,
-                padding: { xs: "8px 16px", sm: "10px 24px" },
-                borderRadius: "8px",
-                "&:hover": {
-                  backgroundColor: colors.lightBlue,
-                },
-              }}
-            >
-              Download Stands Brochure
-            </Button>
-          </Box>
+          
 
           
 
@@ -494,6 +458,43 @@ const StandsPage = () => {
             ))}
           </Grid>
 
+          {/* Download Brochure Section */}
+          <Typography
+            variant="h5"
+            sx={{
+              fontFamily: "Poppins, sans-serif",
+              fontWeight: 700,
+              color: "#1F2937",
+              borderBottom: `1px solid ${colors.darkBlue}`,
+              pb: 2,
+              mt: { xs: 4, sm: 6, md: 8 },
+              mb: 4,
+              textAlign: "center",
+            }}
+          >
+            Download Brochure
+          </Typography>
+          <Box sx={{ textAlign: "center", mb: { xs: 4, sm: 6, md: 8 } }}>
+            <Button
+              variant="contained"
+              startIcon={<GetAppIcon />}
+              onClick={handleOpenDownloadModal}
+              sx={{
+                backgroundColor: colors.darkBlue,
+                color: "#fff",
+                fontFamily: "Roboto, sans-serif",
+                fontWeight: 600,
+                padding: { xs: "8px 16px", sm: "10px 24px" },
+                borderRadius: "8px",
+                "&:hover": {
+                  backgroundColor: colors.lightBlue,
+                },
+              }}
+            >
+              Download Stands Brochure
+            </Button>
+          </Box>
+
           {/* Download Modal */}
           <Dialog open={openDownloadModal} onClose={handleCloseDownloadModal}>
             <DialogTitle>Download Brochure</DialogTitle>
@@ -598,10 +599,10 @@ const StandsPage = () => {
                           px: 6,
                           py: 1.5,
                           borderRadius: 2,
-                          background: colors.darkBlue,
+                          background: `linear-gradient(45deg, ${colors.darkBlue}, ${colors.lightBlue})`,
                           textTransform: "none",
                           "&:hover": {
-                            background: colors.lightBlue,
+                            background: `linear-gradient(45deg, ${colors.lightBlue}, ${colors.darkBlue})`,
                           },
                           "&:disabled": {
                             background: "#B0BEC5",

@@ -38,7 +38,7 @@ const SectionHeader = styled(Typography)(({ theme }) => ({
 const SectionContent = styled(Typography)(({ theme }) => ({
   fontFamily: "Poppins, sans-serif",
   fontSize: { xs: "0.9rem", sm: "1rem", md: "1.2rem" }, // Responsive font size
-  color: "grey.600",
+  color: colors.black,
   textAlign: "justify",
   mb: { xs: 2, sm: 3, md: 6 }, // Responsive margin-bottom
   px: { xs: 2, sm: 3, md: 2 }, // Responsive padding-x
@@ -83,10 +83,10 @@ const SolutionSec2 = () => {
           {/* Main Header */}
           <Box sx={{ textAlign: "center", my: { xs: 2, sm: 3, md: 4 } }}>
             <SectionContent sx={{ my: { xs: 2, sm: 4, md: 8 } }}>
-              Interactive <strong>smart boards</strong> are engineered to
+              Interactive smart boards are engineered to
               enhance collaboration, communication, and productivity across
               diverse sectors. With advanced displays, multi-user interactivity,
-              and seamless connectivity, these <strong>smart boards</strong>{" "}
+              and seamless connectivity, these smart boards
               streamline workflows and deliver efficient solutions for
               education, healthcare, business, and meeting rooms, meeting the
               demands of modern environments with cutting-edge technology.
@@ -188,7 +188,7 @@ const SolutionSec2 = () => {
           background: colors.blue,
         }}
       >
-        <SectionHeader variant="h4" sx={{ mb: { xs: 1, sm: 2 } }}>
+        <SectionHeader variant="h4" sx={{ mb: { xs: 1, sm: 2, md:3 } }}>
           Why Choose Smart Boards?
         </SectionHeader>
         <Box
@@ -200,19 +200,19 @@ const SolutionSec2 = () => {
         >
           {[
             {
-              text: "- <strong>Enhanced Visual Clarity:</strong> High-quality displays with glare reduction ensure clear visibility, speeding up comprehension and reducing time spent adjusting for lighting conditions.",
+              text: "<strong>Enhanced Visual Clarity:</strong> High-quality displays with glare reduction ensure clear visibility, speeding up comprehension and reducing time spent adjusting for lighting conditions.",
             },
             {
-              text: "- <strong>Streamlined Collaboration:</strong> Multi-user touch and writing tools enable simultaneous input, accelerating group tasks and decision-making across industries.",
+              text: "<strong>Streamlined Collaboration:</strong> Multi-user touch and writing tools enable simultaneous input, accelerating group tasks and decision-making across industries.",
             },
             {
-              text: "- <strong>Efficient Integration:</strong> Seamless connectivity with devices and software minimizes setup time, ensuring quick access to resources and smooth workflows.",
+              text: "<strong>Efficient Integration:</strong> Seamless connectivity with devices and software minimizes setup time, ensuring quick access to resources and smooth workflows.",
             },
             {
-              text: "- <strong>Long-Term Reliability:</strong> Durable designs reduce downtime and maintenance, providing consistent performance that enhances operational efficiency.",
+              text: "<strong>Long-Term Reliability:</strong> Durable designs reduce downtime and maintenance, providing consistent performance that enhances operational efficiency.",
             },
             {
-              text: "- <strong>Improved Remote Interaction:</strong> Audiovisual tools facilitate fast, clear communication with remote participants, cutting delays and boosting teamwork efficiency.",
+              text: "<strong>Improved Remote Interaction:</strong> Audiovisual tools facilitate fast, clear communication with remote participants, cutting delays and boosting teamwork efficiency.",
             },
           ].map((item, index) => (
             <Typography
@@ -221,7 +221,7 @@ const SolutionSec2 = () => {
               sx={{
                 fontFamily: "Poppins, sans-serif",
                 fontSize: { xs: "0.85rem", sm: "0.95rem", md: "1.1rem" }, // Responsive font size
-                color: "grey.600",
+                color: colors.black,
                 mb: { xs: 1.5, sm: 2 }, // Responsive margin-bottom
                 textAlign: "left", // Left-align for readability
               }}

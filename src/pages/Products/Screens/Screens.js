@@ -13,16 +13,23 @@ import {
   Tab,
   useMediaQuery,
   useTheme,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { Fade } from "@mui/material";
 import ScreenHero from "../Screens/ScreenHero.js";
 import { Link } from "react-router-dom";
 import colors from "../../../theme/colors";
+import GetAppIcon from "@mui/icons-material/GetApp";
 
-// Import Google Fonts via @fontsource
-import "@fontsource/poppins/700.css"; // Bold for headings
-import "@fontsource/roboto/400.css"; // Regular for body text
+import "@fontsource/poppins/700.css";
+import "@fontsource/roboto/400.css";
 
 // Images
 import CTSC65A from "../../../Assets/Products/Screens/CT-SC65A.png";
@@ -32,20 +39,18 @@ import CTSC75A from "../../../Assets/Products/Screens/CTSC75A/CTSC75A.png";
 import CTSC86WC from "../../../Assets/Products/Screens/CT-SC86WC.png";
 import CTSC85A from "../../../Assets/Products/Screens/CT-SC85A.png";
 
-// Styled Card component with fixed size, hover effect, and darkBlue border
 const ProductCard = styled(Card)(({ theme }) => ({
-  height: 450, // Fixed height for all cards
+  height: 450,
   margin: "auto",
   borderRadius: 5,
   transition: "transform 0.3s ease-in-out",
   display: "flex",
-  flexDirection: "column", // Ensure content fits within fixed height
+  flexDirection: "column",
   "&:hover": {
     transform: "translateY(-8px)",
   },
 }));
 
-// Define the collections
 const collections = [
   {
     name: "Single System without Camera",
@@ -103,39 +108,109 @@ const collections = [
 
 const ScreensPage = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm")); // < 600px
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md")); // 600px - 960px
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [activeTab, setActiveTab] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [phoneError, setPhoneError] = useState("");
+  const [formStatus, setFormStatus] = useState({
+    submitted: false,
+    loading: false,
+    error: null,
+  });
 
-  // Scroll to top on component mount
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (formStatus.submitted) {
+      const timer = setTimeout(() => {
+        const link = document.createElement("a");
+        link.href = "/brochures/smart_board_broucher.pdf"; // Update with your path
+        link.download = "Screens_Brochure.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        handleCloseModal();
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [formStatus.submitted]);
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
   };
 
+  const handleOpenModal = () => {
+    setFormStatus({ submitted: false, loading: false, error: null });
+    setEmail("");
+    setPhone("");
+    setEmailError("");
+    setPhoneError("");
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
+  const validateEmail = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email) return setEmailError("Email is required"), false;
+    if (!regex.test(email)) return setEmailError("Invalid email"), false;
+    return true;
+  };
+
+  const validatePhone = () => {
+    const regex = /^\+?[\d\s-]{10,}$/;
+    if (!phone) return setPhoneError("Phone is required"), false;
+    if (!regex.test(phone)) return setPhoneError("Invalid phone number"), false;
+    return true;
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    if (!validateEmail() || !validatePhone()) return;
+
+    setFormStatus({ submitted: false, loading: true, error: null });
+
+    try {
+      const form = e.target;
+      const formData = new FormData(form);
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (response.ok) {
+        setFormStatus({ submitted: true, loading: false, error: null });
+      } else {
+        const text = await response.text();
+        throw new Error(`Error ${response.status}: ${text}`);
+      }
+    } catch (err) {
+      setFormStatus({ submitted: false, loading: false, error: err.message });
+    }
+  };
+
   return (
     <Box>
-      {/* Hero Section */}
       <ScreenHero />
 
-      {/* Tabs and Product Cards Section */}
       <Box
         sx={{
-          mt: { xs: 4, md: 6 }, // Negative margin to overlap with hero
-          pb: { md: 6, xs: 4 }, // Padding bottom for spacing
-          position: "relative", // Ensure proper stacking context
+          mt: { xs: 4, md: 6 },
+          pb: { md: 6, xs: 4 },
+          position: "relative",
         }}
       >
         <Container maxWidth="lg">
-          {/* Tabs for Collections */}
           <Tabs
             value={activeTab}
             onChange={handleTabChange}
-            centered={!isMobile} // Centered on larger screens, scrollable on mobile
-            variant={isMobile ? "scrollable" : "standard"} // Scrollable on mobile
+            centered={!isMobile}
+            variant={isMobile ? "scrollable" : "standard"}
             scrollButtons="auto"
             allowScrollButtonsMobile
             sx={{
@@ -143,27 +218,17 @@ const ScreensPage = () => {
               "& .MuiTab-root": {
                 fontFamily: "Poppins, sans-serif",
                 fontWeight: 600,
-                fontSize: {
-                  xs: "0.8rem", // Smaller font for mobile
-                  sm: "0.9rem", // Medium font for tablet
-                  md: "1.1rem", // Larger font for desktop
-                },
+                fontSize: { xs: "0.8rem", sm: "0.9rem", md: "1.1rem" },
                 color: colors.darkBlue,
                 textTransform: "none",
-                px: { xs: 1, sm: 1, md: 4 }, // Responsive padding
-                minWidth: { xs: 100, sm: 160, md: 200 }, // Ensure tabs don't shrink too much
+                px: { xs: 1, sm: 1, md: 4 },
+                minWidth: { xs: 100, sm: 160, md: 200 },
               },
-              "& .Mui-selected": {
-                color: colors.lightBlue,
-              },
-              "& .MuiTabs-indicator": {
-                backgroundColor: colors.lightBlue,
-              },
+              "& .Mui-selected": { color: colors.lightBlue },
+              "& .MuiTabs-indicator": { backgroundColor: colors.lightBlue },
               "& .MuiTabs-scrollButtons": {
                 color: colors.darkBlue,
-                "&.Mui-disabled": {
-                  opacity: 0.3,
-                },
+                "&.Mui-disabled": { opacity: 0.3 },
               },
             }}
           >
@@ -172,7 +237,6 @@ const ScreensPage = () => {
             ))}
           </Tabs>
 
-          {/* Product Cards */}
           <Typography
             variant={isMobile ? "h4" : "h3"}
             sx={{
@@ -185,18 +249,15 @@ const ScreensPage = () => {
           >
             {collections[activeTab].name}
           </Typography>
+
           <Grid container spacing={isMobile ? 2 : 4} justifyContent="center">
             {collections[activeTab].products.map((screen, index) => (
               <Grid item xs={12} sm={6} md={4} key={screen.name}>
                 <Fade in timeout={1000 + index * 200}>
-                  <ProductCard
-                    sx={{
-                      width: isMobile ? 290 : 350, // Dynamic width based on screen size
-                    }}
-                  >
+                  <ProductCard sx={{ width: isMobile ? 290 : 350 }}>
                     <CardMedia
                       component="img"
-                      height="200" // Fixed image height within card
+                      height="200"
                       image={screen.image}
                       alt={screen.name}
                       sx={{ objectFit: "cover" }}
@@ -241,9 +302,7 @@ const ScreensPage = () => {
                           px: 3,
                           py: 1,
                           borderRadius: "8px",
-                          "&:hover": {
-                            backgroundColor: colors.lightBlue,
-                          },
+                          "&:hover": { backgroundColor: colors.lightBlue },
                         }}
                       >
                         More
@@ -254,6 +313,140 @@ const ScreensPage = () => {
               </Grid>
             ))}
           </Grid>
+
+          {/* Common Download Brochure Section */}
+          <Box textAlign="center" mt={10}>
+            <Typography
+              variant="h5"
+              fontWeight={700}
+              gutterBottom
+              sx={{
+                borderBottom: `1px solid ${colors.darkBlue}`,
+                pb: 2,
+                mt: { xs: 4, sm: 6, md: 8 },
+                fontFamily: "Poppins, sans-serif",
+              }}
+            >
+              Download Brochure
+            </Typography>
+            <Button
+              variant="contained"
+              startIcon={<GetAppIcon />}
+              onClick={handleOpenModal}
+              sx={{
+                backgroundColor: colors.darkBlue,
+                color: "#fff",
+                fontWeight: 600,
+                px: 4,
+                py: 1.2,
+                mt: { xs: 2, sm: 4, md: 4 },
+                borderRadius: "10px",
+                textTransform: "none",
+                "&:hover": { backgroundColor: colors.lightBlue },
+              }}
+            >
+              Download Brochure
+            </Button>
+          </Box>
+
+          {/* Modal */}
+          <Dialog open={openModal} onClose={handleCloseModal}>
+            <DialogTitle>Screens Brochure Download</DialogTitle>
+            <DialogContent>
+              {!formStatus.submitted ? (
+                <form
+                  action="https://formsubmit.co/silunirupasinghe@gmail.com" // 🔁 Replace with your real formsubmit ID
+                  method="POST"
+                  onSubmit={handleFormSubmit}
+                >
+                  <Typography
+                    variant="subtitle1"
+                    sx={{
+                      textAlign: "center",
+                      color: "#757575",
+                      mb: 2,
+                      maxWidth: 400,
+                      mx: "auto",
+                      fontFamily: "Roboto, sans-serif",
+                    }}
+                  >
+                    Please enter your email and phone number to download the
+                    screens brochure.
+                  </Typography>
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input
+                    type="hidden"
+                    name="_subject"
+                    value="Screens Brochure Request"
+                  />
+                  <TextField
+                    fullWidth
+                    label="Email Address"
+                    name="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      setEmailError("");
+                    }}
+                    error={!!emailError}
+                    helperText={emailError}
+                    margin="normal"
+                    required
+                  />
+                  <TextField
+                    fullWidth
+                    label="Phone Number"
+                    name="phone"
+                    value={phone}
+                    onChange={(e) => {
+                      setPhone(e.target.value);
+                      setPhoneError("");
+                    }}
+                    error={!!phoneError}
+                    helperText={phoneError}
+                    margin="normal"
+                    required
+                  />
+                  {formStatus.error && (
+                    <Alert severity="error" sx={{ mt: 2 }}>
+                      {formStatus.error}
+                    </Alert>
+                  )}
+                  <Box textAlign="center" mt={3}>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      disabled={formStatus.loading}
+                      sx={{
+                        px: 5,
+                        py: 1.3,
+                        fontWeight: 600,
+                        fontSize: "1rem",
+                        background: `linear-gradient(45deg, ${colors.darkBlue}, ${colors.lightBlue})`,
+                        textTransform: "none",
+                        "&:hover": {
+                          background: `linear-gradient(45deg, ${colors.lightBlue}, ${colors.darkBlue})`,
+                        },
+                      }}
+                    >
+                      {formStatus.loading ? (
+                        <CircularProgress size={24} color="inherit" />
+                      ) : (
+                        "Submit & Download"
+                      )}
+                    </Button>
+                  </Box>
+                </form>
+              ) : (
+                <Alert severity="success" sx={{ mt: 3 }}>
+                  Thank you! Your download will start shortly.
+                </Alert>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleCloseModal}>Cancel</Button>
+            </DialogActions>
+          </Dialog>
         </Container>
       </Box>
     </Box>

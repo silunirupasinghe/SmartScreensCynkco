@@ -88,7 +88,7 @@ const ContactUs = () => {
                   fontSize: '1rem',
                 }}
               >
-                Our friendly team is here to help.
+                Our team is here to help.
               </Typography>
               <Typography
                 variant="body2"
@@ -98,13 +98,13 @@ const ContactUs = () => {
                   fontSize: '1rem',
                 }}
               >
-                hello@merakiui.com
+                info@connexit.biz
               </Typography>
             </Box>
           </Grid>
 
           {/* Office Section */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={4} gap={2}>
             <Box
               sx={{
                 display: 'flex',
@@ -148,7 +148,7 @@ const ContactUs = () => {
                   fontSize: '1rem',
                 }}
               >
-                Come say hello at our office HQ.
+                Come meet the team.
               </Typography>
               <Typography
                 variant="body2"
@@ -156,9 +156,11 @@ const ContactUs = () => {
                   color: colors.darkBlue,
                   fontWeight: 'medium',
                   fontSize: '1rem',
+                  textWrap: 'wrap',
                 }}
               >
-                100 Smith Street Collingwood VIC 3066 AU
+                60 Paya Lebar Road, #06-39, <br/> Paya Lebar Square, 
+                Singapore 409051.
               </Typography>
             </Box>
           </Grid>
@@ -208,7 +210,7 @@ const ContactUs = () => {
                   fontSize: '1rem',
                 }}
               >
-                Mon-Fri from 8am to 5pm.
+                Call us anytime.
               </Typography>
               <Typography
                 variant="body2"
@@ -218,7 +220,7 @@ const ContactUs = () => {
                   fontSize: '1rem',
                 }}
               >
-                +1 (555) 000-0000
+                +6560502580
               </Typography>
             </Box>
           </Grid>

@@ -88,8 +88,8 @@ const CTSC65WCPage = () => {
     if (formStatus.submitted) {
       const timer = setTimeout(() => {
         const link = document.createElement("a");
-        link.href = "/path/to/CT-SC65WC_brochure.pdf"; // Update with real path
-        link.download = "CT-SC65WC_brochure.pdf";
+         link.href = "/brochures/smart_board_broucher.pdf"; // Update with real path
+        link.download = "smart_screens_brochure.pdf";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
