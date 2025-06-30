@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Typography, Grid, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Typography, Grid, useTheme, useMediaQuery, Chip } from "@mui/material";
 import smartScreen2 from "../../Assets/smartScreen2.jpg";
 import colors from "../../theme/colors"; // Import the colors
 
@@ -8,8 +8,8 @@ const HomeSec2 = () => {
   const isSmDown = useMediaQuery(theme.breakpoints.down("sm")); // Small screens and below
 
   const specs = [
-    ["4K Ultra HD Display", "48MP Camera", "Dual-Band WiFi"],
-    ["8-Array Microphone", "40-Point Touch", "Wireless Sharing"],
+    "4K Ultra HD Display", "48MP Camera", "Dual-Band WiFi",
+    "8-Array Microphone", "40-Point Touch", "Wireless Sharing",
   ];
 
   return (
@@ -84,31 +84,35 @@ const HomeSec2 = () => {
               The CYNKCO CT-SC65WC interactive smart board redefines efficiency with its zero-lamination design, delivering smooth writing and vibrant visuals for seamless collaboration.
             </Typography>
 
-            {/* Specs Section */}
-            <Grid
-              container
-              spacing={isSmDown ? 1 : 2}
-              sx={{ maxWidth: { xs: "100%", sm: 450 } }} // Full width on small screens
+           
+            
+
+              <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 1,
+                justifyContent: isSmDown ? "center" : "flex-start",
+              }}
             >
-              {specs.map((column, colIndex) => (
-                <Grid item xs={6} key={colIndex}>
-                  {column.map((spec, index) => (
-                    <Typography
-                      key={index}
-                      variant="body2"
-                      sx={{
-                        fontWeight: 600,
-                        mb: 1,
-                        fontSize: { xs: "0.85rem", sm: "0.95rem", md: "1rem" },
-                        color: "#333",
-                      }}
-                    >
-                      • {spec}
-                    </Typography>
-                  ))}
-                </Grid>
+              {specs.map((spec, index) => (
+                <Chip
+                  key={index}
+                  label={spec}
+                  sx={{
+                    fontFamily: "Roboto, sans-serif",
+                    fontWeight: 500,
+                    backgroundColor: "#fff",
+                    border: `1px solid ${colors.darkBlue}`,
+                    borderRadius: "16px",
+                    color: "#374151",
+                    px: isSmDown ? 1.5 : 2,
+                    py: 0.5,
+                    fontSize: isSmDown ? "0.75rem" : "0.875rem",
+                  }}
+                />
               ))}
-            </Grid>
+            </Box>
           </Box>
         </Grid>
       </Grid>

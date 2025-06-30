@@ -98,7 +98,7 @@ const ContactUs = () => {
                   fontSize: '1rem',
                 }}
               >
-                info@connexit.biz
+                info@cynkco.com
               </Typography>
             </Box>
           </Grid>
@@ -220,7 +220,7 @@ const ContactUs = () => {
                   fontSize: '1rem',
                 }}
               >
-                +6560502580
+                +65 6050 2580
               </Typography>
             </Box>
           </Grid>

@@ -128,7 +128,7 @@ const Contact = () => {
             )}
 
             <form
-              action="https://formsubmit.co/55e5b9f59fce6cd0a042ec9ed8a98709"
+              action="https://formsubmit.co/info@cynkco.com"
               method="POST"
               onSubmit={handleSubmit}
             >
@@ -179,7 +179,7 @@ const Contact = () => {
                     type="email"
                     required
                     fullWidth
-                    placeholder="e.g. name@company.com"
+                    placeholder="name@company.com"
                     InputLabelProps={{ shrink: true }}
                     sx={{
                       flex: 1,
@@ -198,7 +198,7 @@ const Contact = () => {
                     label="Phone Number"
                     required
                     fullWidth
-                    placeholder="e.g. +1 (555) 123-4567"
+                    placeholder="+1 (555) 123-4567"
                     InputLabelProps={{ shrink: true }}
                     sx={{
                       flex: 1,

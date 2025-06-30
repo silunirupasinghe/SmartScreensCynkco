@@ -738,7 +738,7 @@ const CTSC65APage = () => {
                     </Alert>
                   )}
                   <form
-                    action="https://formsubmit.co/55e5b9f59fce6cd0a042ec9ed8a98709"
+                    action="https://formsubmit.co/info@cynkco.com"
                     method="POST"
                     onSubmit={handleFormSubmit}
                   >

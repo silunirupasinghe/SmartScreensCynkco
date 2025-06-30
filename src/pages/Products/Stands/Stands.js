@@ -84,11 +84,11 @@ const collections = [
     description: `The π Type Collection is engineered for premium, large-scale display solutions, supporting screens from 86 to 120 inches. These heavy-duty stands feature a 200KG load capacity, 360° horizontal rotation, and innovative additions like wire harness card designs and integrated storage boxes, perfect for professional and organized environments.`,
     products: [
       {
-        name: "CT-590 (Black)",
+        name: "CT-590/ CT-R1",
         image: CT590,
         size: "86–120 inches",
         details: {
-          description: `The CT-590 (Black) is a heavy-duty stand built for large displays. Engineered for professional use, it offers precision and adaptability for premium setups.`,
+          description: `This is a heavy-duty stand built for large displays. Engineered for professional use, it offers precision and adaptability for premium setups.`,
           liftingRange: "TV center height: 1450mm",
           loadCapacity: "200KG",
           material: "Cold-rolled steel",
@@ -100,23 +100,23 @@ const collections = [
           ],
         },
       },
-      {
-        name: "CT-R1",
-        image: CT590,
-        size: "86–120 inches",
-        details: {
-          description: `The CT-R1 is a heavy-duty stand built for large displays. Engineered for professional use, it ensures long-lasting stability and adaptability.`,
-          liftingRange: "TV center height: 1450mm",
-          loadCapacity: "200KG",
-          material: "Cold-rolled steel",
-          features: [
-            "360° horizontal rotation",
-            "Wire harness card design",
-            "Integrated storage box",
-            "Hole distance range: 200x200mm to 1200x600mm",
-          ],
-        },
-      },
+      // {
+      //   name: "CT-R1",
+      //   image: CT590,
+      //   size: "86–120 inches",
+      //   details: {
+      //     description: `The CT-R1 is a heavy-duty stand built for large displays. Engineered for professional use, it ensures long-lasting stability and adaptability.`,
+      //     liftingRange: "TV center height: 1450mm",
+      //     loadCapacity: "200KG",
+      //     material: "Cold-rolled steel",
+      //     features: [
+      //       "360° horizontal rotation",
+      //       "Wire harness card design",
+      //       "Integrated storage box",
+      //       "Hole distance range: 200x200mm to 1200x600mm",
+      //     ],
+      //   },
+      // },
     ],
   },
 ];
@@ -520,7 +520,7 @@ const StandsPage = () => {
                     </Alert>
                   )}
                   <form
-                    action="https://formsubmit.co/55e5b9f59fce6cd0a042ec9ed8a98709"
+                    action="https://formsubmit.co/info@cynkco.com"
                     method="POST"
                     onSubmit={handleFormSubmit}
                   >

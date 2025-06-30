@@ -44,14 +44,14 @@ const AboutUsSec3 = () => {
                 Phone
               </Typography>
               <Typography variant="body1" sx={{ fontSize: { xs: "1rem", md: "1.1rem" }, mb: 2 }}>
-                (+65) 60502580
+                +65 6050 2580
               </Typography>
 
               <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>
                 Email
               </Typography>
               <Typography variant="body1" sx={{ fontSize: { xs: "1rem", md: "1.1rem" }, mb: 2 }}>
-                connect@cynkco.com
+                info@cynkco.com
               </Typography>
 
               <Typography variant="body1" color="text.secondary" sx={{ mb: 1 }}>

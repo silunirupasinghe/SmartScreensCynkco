@@ -58,8 +58,8 @@ const Hero = () => {
             px: { xs: 2, md: 0 },
           }}
         >
-          "Explore Interactive Displays, Smart Boards & Robust Display Stands <br/>for
-          Seamless Business & Education Experiences"
+          Explore Interactive Displays, Smart Boards & Robust Display Stands <br/>for
+          Seamless Business & Education Experiences
         </Typography>
         </HeroContent>
       </Container>

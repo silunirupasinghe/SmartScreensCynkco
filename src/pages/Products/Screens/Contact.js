@@ -53,10 +53,10 @@ function Contact() {
       >
         Contact us for more information or inquiries at{" "}
         <a
-          href="tel:+1-800-555-1234"
+          href="tel:+65 6050 2580"
           style={{ color: "#fff", textDecoration: "underline" }}
         >
-          +1-800-555-1234
+          +65 6050 2580
         </a>
       </Typography>
       <StyledButton component={Link} to="/contact">

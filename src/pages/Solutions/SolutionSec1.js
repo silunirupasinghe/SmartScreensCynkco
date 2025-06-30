@@ -57,7 +57,7 @@ const SolutionSec1 = () => {
               px: { xs: 2, md: 0 },
             }}
           >
-            "Comprehensive Solutions with CYNKCO Smartboards"
+            Comprehensive Solutions with CYNKCO Smartboards
           </Typography>
         </HeroContent>
       </Container>

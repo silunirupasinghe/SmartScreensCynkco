@@ -355,7 +355,7 @@ const ScreensPage = () => {
             <DialogContent>
               {!formStatus.submitted ? (
                 <form
-                  action="https://formsubmit.co/silunirupasinghe@gmail.com" // 🔁 Replace with your real formsubmit ID
+                  action="https://formsubmit.co/info@cynkco.com" // 🔁 Replace with your real formsubmit ID
                   method="POST"
                   onSubmit={handleFormSubmit}
                 >

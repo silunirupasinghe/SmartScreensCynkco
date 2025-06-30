@@ -238,7 +238,7 @@ const AccessoriesPage = () => {
             <DialogContent>
               {!formStatus.submitted ? (
                 <form
-                  action="https://formsubmit.co/silunirupasinghe@gmail.com" // Replace this with your FormSubmit ID
+                  action="https://formsubmit.co/info@cynkco.com" // Replace this with your FormSubmit ID
                   method="POST"
                   onSubmit={handleFormSubmit}
                 >

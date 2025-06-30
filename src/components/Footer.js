@@ -124,11 +124,11 @@ const Footer = () => {
             </Box>
             <Box display="flex" alignItems="center" mb={1}>
               <Phone sx={{ color: colors.lightBlue, mr: 1 }} />
-              <Typography variant="body2">+6560502580</Typography>
+              <Typography variant="body2">+65 6050 2580</Typography>
             </Box>
             <Box display="flex" alignItems="center">
               <Email sx={{ color: colors.lightBlue, mr: 1 }} />
-              <Typography variant="body2">info@connexit.biz</Typography>
+              <Typography variant="body2">info@cynkco.com</Typography>
             </Box>
           </Grid>
         </Grid>
@@ -139,8 +139,7 @@ const Footer = () => {
         {/* Copyright Notice */}
         <Box textAlign="center">
           <Typography variant="body2">
-            © {new Date().getFullYear()} Connex Information Technology (Pvt)
-            Ltd. All Rights Reserved.
+            © {new Date().getFullYear()} cynkco.com. All Rights Reserved.
           </Typography>
           <Typography variant="body2" sx={{ mt: 1 }}>
             Developed by{" "}

@@ -18,6 +18,7 @@ import CTSC75WCPage from "./pages/Products/Screens/CT_SC75WC";
 import CTSC86WCPage from "./pages/Products/Screens/CT-SC86WC";
 import CTSC85APage from "./pages/Products/Screens/CT-SC85A";
 import AboutUs from "./pages/About/AboutUs";
+import NotFound from "./components/NotFound";
 
 function App() {
   return (
@@ -58,6 +59,10 @@ function App() {
           path="/products/smart-screens/ct-sc75wc"
           element={<CTSC75WCPage />}
         />
+
+        <Route path="*" element={<NotFound />} />
+
+
       </Routes>
       <Footer />
     </Router>
