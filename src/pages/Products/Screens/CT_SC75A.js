@@ -78,7 +78,6 @@ const CTSC75APage = () => {
   // Array of available images
   const images = [
     { src: CTSC75A, alt: "CYNKCO Smart Screen CT-SC75A Primary" },
-    // { src: CTSC75A_Alternate, alt: "CYNKCO Smart Screen CT-SC75A Alternate" },
   ];
 
   useEffect(() => {

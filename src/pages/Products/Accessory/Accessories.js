@@ -62,10 +62,10 @@ const accessories = [
     brochurePath: "/brochures/wirless_mic_brochure.pdf",
   },
   {
-    name: "OPS-994K",
+    name: "CT-OPS",
     image: ops,
     description:
-      "OPS-994K is a powerful modular computing solution with support for 6th–8th Gen Intel CPUs, 4K display output, rich I/O ports, and compatibility with Windows and Linux OS. Ideal for high-end smart displays and interactive panels.",
+      "CT-OPS is a powerful modular computing solution with support for 6th–8th Gen Intel CPUs, 4K display output, rich I/O ports, and compatibility with Windows and Linux OS. Ideal for high-end smart displays and interactive panels.",
     brochurePath: "/brochures/ops_brochure.pdf",
   },
 ];

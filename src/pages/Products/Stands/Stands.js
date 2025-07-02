@@ -31,11 +31,13 @@ import CT2100 from "../../../Assets/Products/CT-2100.png";
 import Standhero from "./StandHero";
 import colors from "../../../theme/colors";
 
-// Define the collections with details and sizes
+// Define the collections with details, sizes, and brochure paths
 const collections = [
   {
     name: "H TYPE COLLECTION",
     description: `The H Type Collection is designed for versatility and durability, catering to a wide range of display sizes from 32 to 120 inches. Crafted with cold-rolled steel, these stands offer robust support, adjustable lifting ranges, and integrated features like camera and center trays, making them ideal for educational, corporate, and digital signage applications.`,
+    brochurePath: "/brochures/h_stands_brochure.pdf",
+    brochureName: "H_Stands_Brochure.pdf",
     products: [
       {
         name: "CT-1700",
@@ -82,6 +84,8 @@ const collections = [
   {
     name: "π TYPE COLLECTION",
     description: `The π Type Collection is engineered for premium, large-scale display solutions, supporting screens from 86 to 120 inches. These heavy-duty stands feature a 200KG load capacity, 360° horizontal rotation, and innovative additions like wire harness card designs and integrated storage boxes, perfect for professional and organized environments.`,
+    brochurePath: "/brochures/pi_stands_brochure.pdf",
+    brochureName: "Pi_Stands_Brochure.pdf",
     products: [
       {
         name: "CT-590/ CT-R1",
@@ -100,23 +104,6 @@ const collections = [
           ],
         },
       },
-      // {
-      //   name: "CT-R1",
-      //   image: CT590,
-      //   size: "86–120 inches",
-      //   details: {
-      //     description: `The CT-R1 is a heavy-duty stand built for large displays. Engineered for professional use, it ensures long-lasting stability and adaptability.`,
-      //     liftingRange: "TV center height: 1450mm",
-      //     loadCapacity: "200KG",
-      //     material: "Cold-rolled steel",
-      //     features: [
-      //       "360° horizontal rotation",
-      //       "Wire harness card design",
-      //       "Integrated storage box",
-      //       "Hole distance range: 200x200mm to 1200x600mm",
-      //     ],
-      //   },
-      // },
     ],
   },
 ];
@@ -139,8 +126,10 @@ const StandsPage = () => {
     if (formStatus.submitted) {
       const timer = setTimeout(() => {
         const link = document.createElement("a");
-        link.href = "/brochures/cyncko_stands_brochure.pdf"; // Update with real path
-        link.download = "Stands_Brochure.pdf";
+        const fileUrl = `${process.env.PUBLIC_URL}${collections[activeTab].brochurePath}`;
+        link.href = fileUrl;
+        link.download = collections[activeTab].brochureName;
+        console.log("Download URL:", fileUrl); // Debug the URL
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -148,7 +137,7 @@ const StandsPage = () => {
       }, 1500);
       return () => clearTimeout(timer);
     }
-  }, [formStatus.submitted]);
+  }, [formStatus.submitted, activeTab]);
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
@@ -300,10 +289,6 @@ const StandsPage = () => {
             {collections[activeTab].description}
           </Typography>
 
-          
-
-          
-
           {/* Product Images and Details Section */}
           <Typography
             variant="h5"
@@ -321,7 +306,7 @@ const StandsPage = () => {
           </Typography>
           <Grid container spacing={{ xs: 4, sm: 4, md: 2 }} justifyContent="center">
             {collections[activeTab].products.map((product, index) => (
-              <Grid  key={index} size={{md:4, sm:12}}>
+              <Grid key={index} size={{ md: 4, sm: 12 }}>
                 <Fade in timeout={1000 + index * 200}>
                   <Box
                     sx={{
@@ -344,14 +329,11 @@ const StandsPage = () => {
                         mb: 2,
                       }}
                     />
-                    
-                    
                     {/* Stand Details Accordion */}
                     <Accordion
                       sx={{
                         width: "100%",
                         maxWidth: { xs: "300px", sm: "350px", md: "400px" },
-                        
                         borderRadius: "8px",
                         "&:before": { display: "none" },
                       }}
@@ -373,7 +355,7 @@ const StandsPage = () => {
                             color: colors.darkBlue,
                           }}
                         >
-                          {product.name}  {"["} {product.size} {"]"}
+                          {product.name} {"["} {product.size} {"]"}
                         </Typography>
                       </AccordionSummary>
                       <AccordionDetails>
@@ -472,7 +454,7 @@ const StandsPage = () => {
               textAlign: "center",
             }}
           >
-            Download Brochure
+            Download {collections[activeTab].name} Brochure
           </Typography>
           <Box sx={{ textAlign: "center", mb: { xs: 4, sm: 6, md: 8 } }}>
             <Button
@@ -491,13 +473,13 @@ const StandsPage = () => {
                 },
               }}
             >
-              Download Stands Brochure
+              Download {collections[activeTab].name} Brochure
             </Button>
           </Box>
 
           {/* Download Modal */}
           <Dialog open={openDownloadModal} onClose={handleCloseDownloadModal}>
-            <DialogTitle>Download Brochure</DialogTitle>
+            <DialogTitle>Download {collections[activeTab].name} Brochure</DialogTitle>
             <DialogContent>
               {!formStatus.submitted ? (
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
@@ -512,7 +494,7 @@ const StandsPage = () => {
                       fontFamily: "Roboto, sans-serif",
                     }}
                   >
-                    Please enter your email and phone number to download the Stands brochure.
+                    Please enter your email and phone number to download the {collections[activeTab].name} brochure.
                   </Typography>
                   {formStatus.error && (
                     <Alert severity="error" sx={{ mb: 3 }}>
@@ -528,12 +510,12 @@ const StandsPage = () => {
                     <input
                       type="hidden"
                       name="_subject"
-                      value="New Brochure Download Request - Stands"
+                      value={`New Brochure Download Request - ${collections[activeTab].name}`}
                     />
                     <input
                       type="hidden"
                       name="_autoresponse"
-                      value="Thank you for downloading the Stands brochure!"
+                      value={`Thank you for downloading the ${collections[activeTab].name} brochure!`}
                     />
                     <input type="hidden" name="_template" value="table" />
                     <TextField
