@@ -88,7 +88,7 @@ const CTSC85APage = () => {
     if (formStatus.submitted) {
       const timer = setTimeout(() => {
         const link = document.createElement("a");
-         link.href = "/brochures/smart_board_broucher.pdf"; // Update with real path
+        link.href = "/brochures/smart_board_broucher.pdf"; // Update with real path
         link.download = "smart_screens_brochure.pdf";
         document.body.appendChild(link);
         link.click();
@@ -249,43 +249,33 @@ const CTSC85APage = () => {
   // Handle Form Submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const isEmailValid = validateEmail();
-    const isPhoneValid = validatePhone();
-    if (!isEmailValid || !isPhoneValid) return;
+    if (!validateEmail() || !validatePhone()) return;
+
     setFormStatus({ submitted: false, loading: true, error: null });
 
     try {
-      const form = e.target;
-      const formData = new FormData(form);
-
-      const response = await fetch(form.action, {
+      const response = await fetch("https://cynkco.com/api/brochure/download", {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          phone,
+          product_name: "CT-SC85A Smart Screen",
+        }),
       });
 
-      const responseText = await response.text();
-      console.log("FormSubmit Response Status:", response.status);
-      console.log("FormSubmit Response Text:", responseText);
-
+      const data = await response.json();
       if (response.ok) {
+        console.log("✅ Backend:", data.message);
         setFormStatus({ submitted: true, loading: false, error: null });
-        form.reset();
-        setEmail("");
-        setPhone("");
-        setEmailError("");
-        setPhoneError("");
       } else {
-        throw new Error(
-          `Submission failed with status ${response.status}: ${responseText}`
-        );
+        throw new Error(data.error || "Server error");
       }
     } catch (error) {
-      console.error("Form Submission Error:", error);
       setFormStatus({
         submitted: false,
         loading: false,
-        error: `An error occurred: ${error.message}. Please check the console for details or contact support.`,
+        error: error.message,
       });
     }
   };
@@ -451,7 +441,7 @@ const CTSC85APage = () => {
                     sx={{
                       fontWeight: 600,
                       color: "#fff",
-                       backgroundColor:
+                      backgroundColor:
                         location.pathname === model.route
                           ? colors.lightBlue // active
                           : colors.darkBlue, // default
@@ -744,7 +734,7 @@ const CTSC85APage = () => {
                     </Alert>
                   )}
                   <form
-                    action="https://formsubmit.co/info@cynkco.com"
+                    action="https://cynkco.com/api/brochure/download"
                     method="POST"
                     onSubmit={handleFormSubmit}
                   >

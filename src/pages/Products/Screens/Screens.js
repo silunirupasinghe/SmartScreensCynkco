@@ -175,22 +175,29 @@ const ScreensPage = () => {
     setFormStatus({ submitted: false, loading: true, error: null });
 
     try {
-      const form = e.target;
-      const formData = new FormData(form);
-      const response = await fetch(form.action, {
+      const response = await fetch("https://cynkco.com/api/brochure/download", {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          phone,
+          product_name: "Screens Brochure",
+        }),
       });
 
+      const data = await response.json();
       if (response.ok) {
+        console.log("✅ Backend:", data.message);
         setFormStatus({ submitted: true, loading: false, error: null });
       } else {
-        const text = await response.text();
-        throw new Error(`Error ${response.status}: ${text}`);
+        throw new Error(data.error || "Server error");
       }
-    } catch (err) {
-      setFormStatus({ submitted: false, loading: false, error: err.message });
+    } catch (error) {
+      setFormStatus({
+        submitted: false,
+        loading: false,
+        error: error.message,
+      });
     }
   };
 
@@ -354,11 +361,7 @@ const ScreensPage = () => {
             <DialogTitle>Screens Brochure Download</DialogTitle>
             <DialogContent>
               {!formStatus.submitted ? (
-                <form
-                  action="https://formsubmit.co/info@cynkco.com" // 🔁 Replace with your real formsubmit ID
-                  method="POST"
-                  onSubmit={handleFormSubmit}
-                >
+                <form method="POST" onSubmit={handleFormSubmit}>
                   <Typography
                     variant="subtitle1"
                     sx={{

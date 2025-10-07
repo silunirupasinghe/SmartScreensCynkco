@@ -22,21 +22,26 @@ const Contact = () => {
     e.preventDefault();
     setFormStatus({ ...formStatus, loading: true, error: null });
 
-    try {
-      const form = e.target;
-      const formData = new FormData(form);
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries()); // convert to JSON
 
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
-      });
+    try {
+      const response = await fetch(
+        "https://cynkco.com/api/contact/send-email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
 
       if (response.ok) {
         setFormStatus({ submitted: true, loading: false, error: null });
-        form.reset();
+        e.target.reset();
       } else {
-        throw new Error("Submission failed");
+        throw new Error("Failed to submit form");
       }
     } catch (error) {
       setFormStatus({
@@ -127,11 +132,7 @@ const Contact = () => {
               </Alert>
             )}
 
-            <form
-              action="https://formsubmit.co/info@cynkco.com"
-              method="POST"
-              onSubmit={handleSubmit}
-            >
+            <form onSubmit={handleSubmit}>
               <input type="hidden" name="_captcha" value="false" />
               <input
                 type="hidden"
@@ -157,7 +158,9 @@ const Contact = () => {
                         "& .MuiOutlinedInput-root": {
                           "& fieldset": { borderColor: colors.darkBlue },
                           "&:hover fieldset": { borderColor: colors.lightBlue },
-                          "&.Mui-focused fieldset": { borderColor: colors.lightBlue },
+                          "&.Mui-focused fieldset": {
+                            borderColor: colors.lightBlue,
+                          },
                         },
                         "& .MuiInputLabel-root": {
                           fontFamily: "Roboto, sans-serif",
@@ -187,10 +190,14 @@ const Contact = () => {
                       "& .MuiOutlinedInput-root": {
                         "& fieldset": { borderColor: colors.darkBlue },
                         "&:hover fieldset": { borderColor: colors.lightBlue },
-                        "&.Mui-focused fieldset": { borderColor: colors.lightBlue },
+                        "&.Mui-focused fieldset": {
+                          borderColor: colors.lightBlue,
+                        },
                       },
                       "& .MuiInputLabel-root": { color: "#757575" },
-                      "& .MuiInputLabel-root.Mui-focused": { color: colors.lightBlue },
+                      "& .MuiInputLabel-root.Mui-focused": {
+                        color: colors.lightBlue,
+                      },
                     }}
                   />
                   <TextField
@@ -206,10 +213,14 @@ const Contact = () => {
                       "& .MuiOutlinedInput-root": {
                         "& fieldset": { borderColor: colors.darkBlue },
                         "&:hover fieldset": { borderColor: colors.lightBlue },
-                        "&.Mui-focused fieldset": { borderColor: colors.lightBlue },
+                        "&.Mui-focused fieldset": {
+                          borderColor: colors.lightBlue,
+                        },
                       },
                       "& .MuiInputLabel-root": { color: "#757575" },
-                      "& .MuiInputLabel-root.Mui-focused": { color: colors.lightBlue },
+                      "& .MuiInputLabel-root.Mui-focused": {
+                        color: colors.lightBlue,
+                      },
                     }}
                   />
                 </Box>
@@ -228,10 +239,14 @@ const Contact = () => {
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": { borderColor: colors.darkBlue },
                       "&:hover fieldset": { borderColor: colors.lightBlue },
-                      "&.Mui-focused fieldset": { borderColor: colors.lightBlue },
+                      "&.Mui-focused fieldset": {
+                        borderColor: colors.lightBlue,
+                      },
                     },
                     "& .MuiInputLabel-root": { color: "#757575" },
-                    "& .MuiInputLabel-root.Mui-focused": { color: colors.lightBlue },
+                    "& .MuiInputLabel-root.Mui-focused": {
+                      color: colors.lightBlue,
+                    },
                   }}
                 />
 
@@ -249,10 +264,9 @@ const Contact = () => {
                       py: 1.5,
                       borderRadius: 2,
                       background: `linear-gradient(45deg, ${colors.darkBlue}, ${colors.lightBlue})`,
-                textTransform: "none",
+                      textTransform: "none",
                       "&:hover": {
-                       background: `linear-gradient(45deg, ${colors.lightBlue}, ${colors.darkBlue})`,
-                
+                        background: `linear-gradient(45deg, ${colors.lightBlue}, ${colors.darkBlue})`,
                       },
                       "&:disabled": {
                         background: "#B0BEC5",

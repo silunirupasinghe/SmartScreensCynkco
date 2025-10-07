@@ -48,7 +48,11 @@ const collections = [
           liftingRange: "1250–1500mm",
           loadCapacity: "100KG",
           material: "Cold-rolled steel",
-          features: ["Camera tray", "Center tray", "Varied VESA mounting patterns"],
+          features: [
+            "Camera tray",
+            "Center tray",
+            "Varied VESA mounting patterns",
+          ],
         },
       },
       {
@@ -76,7 +80,11 @@ const collections = [
           liftingRange: "1100–1500mm",
           loadCapacity: "200KG",
           material: "Cold-rolled steel",
-          features: ["Camera tray", "Center tray", "Wide hole distance compatibility"],
+          features: [
+            "Camera tray",
+            "Center tray",
+            "Wide hole distance compatibility",
+          ],
         },
       },
     ],
@@ -201,43 +209,33 @@ const StandsPage = () => {
   // Handle Form Submission
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    const isEmailValid = validateEmail();
-    const isPhoneValid = validatePhone();
-    if (!isEmailValid || !isPhoneValid) return;
+    if (!validateEmail() || !validatePhone()) return;
+
     setFormStatus({ submitted: false, loading: true, error: null });
 
     try {
-      const form = e.target;
-      const formData = new FormData(form);
-
-      const response = await fetch(form.action, {
+      const response = await fetch("https://cynkco.com/api/brochure/download", {
         method: "POST",
-        body: formData,
-        headers: { Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          phone,
+          product_name: "stands brochure - " + collections[activeTab].name,
+        }),
       });
 
-      const responseText = await response.text();
-      console.log("FormSubmit Response Status:", response.status);
-      console.log("FormSubmit Response Text:", responseText);
-
+      const data = await response.json();
       if (response.ok) {
+        console.log("✅ Backend:", data.message);
         setFormStatus({ submitted: true, loading: false, error: null });
-        form.reset();
-        setEmail("");
-        setPhone("");
-        setEmailError("");
-        setPhoneError("");
       } else {
-        throw new Error(
-          `Submission failed with status ${response.status}: ${responseText}`
-        );
+        throw new Error(data.error || "Server error");
       }
     } catch (error) {
-      console.error("Form Submission Error:", error);
       setFormStatus({
         submitted: false,
         loading: false,
-        error: `An error occurred: ${error.message}. Please check the console for details or contact support.`,
+        error: error.message,
       });
     }
   };
@@ -304,7 +302,11 @@ const StandsPage = () => {
           >
             Our Stands
           </Typography>
-          <Grid container spacing={{ xs: 4, sm: 4, md: 2 }} justifyContent="center">
+          <Grid
+            container
+            spacing={{ xs: 4, sm: 4, md: 2 }}
+            justifyContent="center"
+          >
             {collections[activeTab].products.map((product, index) => (
               <Grid key={index} size={{ md: 4, sm: 12 }}>
                 <Fade in timeout={1000 + index * 200}>
@@ -479,7 +481,9 @@ const StandsPage = () => {
 
           {/* Download Modal */}
           <Dialog open={openDownloadModal} onClose={handleCloseDownloadModal}>
-            <DialogTitle>Download {collections[activeTab].name} Brochure</DialogTitle>
+            <DialogTitle>
+              Download {collections[activeTab].name} Brochure
+            </DialogTitle>
             <DialogContent>
               {!formStatus.submitted ? (
                 <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
@@ -494,18 +498,15 @@ const StandsPage = () => {
                       fontFamily: "Roboto, sans-serif",
                     }}
                   >
-                    Please enter your email and phone number to download the {collections[activeTab].name} brochure.
+                    Please enter your email and phone number to download the{" "}
+                    {collections[activeTab].name} brochure.
                   </Typography>
                   {formStatus.error && (
                     <Alert severity="error" sx={{ mb: 3 }}>
                       {formStatus.error}
                     </Alert>
                   )}
-                  <form
-                    action="https://formsubmit.co/info@cynkco.com"
-                    method="POST"
-                    onSubmit={handleFormSubmit}
-                  >
+                  <form method="POST" onSubmit={handleFormSubmit}>
                     <input type="hidden" name="_captcha" value="false" />
                     <input
                       type="hidden"
