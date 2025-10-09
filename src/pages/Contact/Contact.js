@@ -27,7 +27,7 @@ const Contact = () => {
 
     try {
       const response = await fetch(
-        "https://cynkco.com/api/contact/send-email",
+        "https://api.cynkco.com/api/contact/send-email",
         {
           method: "POST",
           headers: {

@@ -140,16 +140,19 @@ const AccessoriesPage = () => {
     setFormStatus({ submitted: false, loading: true, error: null });
 
     try {
-      const response = await fetch("https://cynkco.com/api/brochure/download", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          phone,
-          product_name:
-            "Accessory - " + activeProduct?.name || "Unknown Product",
-        }),
-      });
+      const response = await fetch(
+        "https://api.cynkco.com/api/brochure/download",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            phone,
+            product_name:
+              "Accessory - " + activeProduct?.name || "Unknown Product",
+          }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {

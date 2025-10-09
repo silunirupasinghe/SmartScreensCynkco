@@ -246,15 +246,18 @@ const CTSC65APage = () => {
     setFormStatus({ submitted: false, loading: true, error: null });
 
     try {
-      const response = await fetch("https://cynkco.com/api/brochure/download", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email,
-          phone,
-          product_name: "CT-SC65A Smart Screen",
-        }),
-      });
+      const response = await fetch(
+        "https://api.cynkco.com/api/brochure/download",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email,
+            phone,
+            product_name: "CT-SC65A Smart Screen",
+          }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {
@@ -727,7 +730,7 @@ const CTSC65APage = () => {
                     </Alert>
                   )}
                   <form
-                    action="https://cynkco.com/api/brochure/download"
+                    action="https://api.cynkco.com/api/brochure/download"
                     method="POST"
                     onSubmit={handleFormSubmit}
                   >
